@@ -1,42 +1,47 @@
 package Domain;
-import java.util.Date;
+import java.time.LocalTime;
+import java.util.*;
 
 public class Cita{
- 
-    private Date fecha;
-    private Date hora;
+    private Consultorio consultorio;
+    private Medico medicoAsignado;
     private String motivo;
-    private String codigo;
-    private String numeroDocumento;
+    private Date fechaCita;
+    private LocalTime hora;
+    private Random idCita;
+    private Date fechaRegistro;
 
     //Constructor por defecto
     public Cita(){
         
     }
-    
-    //Constructor parametrizado
-    public Cita(Date fecha, Date hora, String motivo, String codigo, String numeroDocumento) {
-        this.fecha = fecha;
-        this.hora = hora;
+
+    //Contructor con parámetros
+    public Cita(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, LocalTime hora, Random idCita, Date fechaRegistro) {
+        this.consultorio = consultorio;
+        this.medicoAsignado = medicoAsignado;
         this.motivo = motivo;
-        this.codigo = codigo;
-        this.numeroDocumento = numeroDocumento;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public Date getHora() {
-        return hora;
-    }
-
-    public void setHora(Date hora) {
+        this.fechaCita = fechaCita;
         this.hora = hora;
+        this.idCita = idCita;
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    //Getters y Setters
+    public Consultorio getConsultorio() {
+        return consultorio;
+    }
+
+    public void setConsultorio(Consultorio consultorio) {
+        this.consultorio = consultorio;
+    }
+
+    public Medico getMedicoAsignado() {
+        return medicoAsignado;
+    }
+
+    public void setMedicoAsignado(Medico medicoAsignado) {
+        this.medicoAsignado = medicoAsignado;
     }
 
     public String getMotivo() {
@@ -47,19 +52,59 @@ public class Cita{
         this.motivo = motivo;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public Date getFechaCita() {
+        return fechaCita;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setFechaCita(Date fechaCita) {
+        this.fechaCita = fechaCita;
     }
 
-    public String getNumeroDocumento() {
-        return numeroDocumento;
+    public LocalTime getHora() {
+        return hora;
     }
 
-    public void setNumeroDocumento(String numeroDocumento) {
-        this.numeroDocumento = numeroDocumento;
-    }    
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
+
+    public Random getIdCita() {
+        return idCita;
+    }
+
+    public void setIdCita(Random idCita) {
+        this.idCita = idCita;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
 }

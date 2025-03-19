@@ -1,111 +1,69 @@
 package Domain;
-
+import java.util.ArrayList;
 import java.util.Date;
-public class Paciente {
+public class Paciente extends Usuarios {
     
-    private String primerNombre;
-    private String segundoNombre;
-    private String primerApellido;
-    private String segundoApellido;
-    private String tipoDeDocumento;
-    private String numeroDeDocumento;
-    private String genero;
-    private String estadoCivil;
-    private String direccionResidencia;
-    private Date fechaNacimiento;
+    private String tipoDocumento;
+    private String numeroDocumento;
     private String telefono;
+    private String direccionResidencia;
+    private String estadoCivil;
+    private String genero;
     private String email;
     private String EPS;
-    private Date fechaRegistro;
     private String tipoSangre;
-    private String consultorioAsignado;
+    private Date fechaNacimiento;
+    private Date fechaRegistro;
+    private ArrayList<Cita> cita;
+    //private ArrayList<HistorialMedico> historialMedico;
     
-    //Constructor por defecto
+  
     public Paciente(){
     }
     
-     //Constructor parametrizado
-     public Paciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoDeDocumento, String numeroDeDocumento, String genero, String estadoCivil, String direccionResidencia, Date fechaNacimiento, String telefono, String email, String EPS, Date fechaRegistro, String tipoSangre, String consultorioAsignado) {
-        this.primerNombre = primerNombre;
-        this.segundoNombre = segundoNombre;
-        this.primerApellido = primerApellido;
-        this.segundoApellido = segundoApellido;
-        this.tipoDeDocumento = tipoDeDocumento;
-        this.numeroDeDocumento = numeroDeDocumento;
-        this.genero = genero;
-        this.estadoCivil = estadoCivil;
-        this.direccionResidencia = direccionResidencia;
-        this.fechaNacimiento = fechaNacimiento;
+    public Paciente(String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
+            String tipoDocumento, String numeroDocumento, String telefono, String direccionResidencia, String estadoCivil,
+            String genero, String email, String EPS, String tipoSangre, Date fechaNacimiento, Date fechaRegistro,
+            ArrayList<Cita> cita){
+     
+        
+        super(usuario, contraseña, primerNombre, segundoNombre, primerApellido, segundoApellido);  
+        this.tipoDocumento = tipoDocumento;
+        this.numeroDocumento = numeroDocumento;
         this.telefono = telefono;
+        this.direccionResidencia = direccionResidencia;
+        this.estadoCivil = estadoCivil;
+        this.genero = genero;
         this.email = email;
         this.EPS = EPS;
-        this.fechaRegistro = fechaRegistro;
         this.tipoSangre = tipoSangre;
-        this.consultorioAsignado = consultorioAsignado;
+        this.fechaNacimiento = fechaNacimiento;
+        this.fechaRegistro = fechaRegistro;
+        this.cita = new ArrayList<>(cita);
     }
 
-    public String getPrimerNombre() {
-        return primerNombre;
+    public String getTipoDocumento() {
+        return tipoDocumento;
     }
 
-    public void setPrimerNombre(String primerNombre) {
-        this.primerNombre = primerNombre;
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
 
-    public String getSegundoNombre() {
-        return segundoNombre;
+    public String getNumeroDocumento() {
+        return numeroDocumento;
     }
 
-    public void setSegundoNombre(String segundoNombre) {
-        this.segundoNombre = segundoNombre;
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
     }
 
-    public String getPrimerApellido() {
-        return primerApellido;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setPrimerApellido(String primerApellido) {
-        this.primerApellido = primerApellido;
-    }
-
-    public String getSegundoApellido() {
-        return segundoApellido;
-    }
-
-    public void setSegundoApellido(String segundoApellido) {
-        this.segundoApellido = segundoApellido;
-    }
-
-    public String getTipoDeDocumento() {
-        return tipoDeDocumento;
-    }
-
-    public void setTipoDeDocumento(String tipoDeDocumento) {
-        this.tipoDeDocumento = tipoDeDocumento;
-    }
-
-    public String getNumeroDeDocumento() {
-        return numeroDeDocumento;
-    }
-
-    public void setNumeroDeDocumento(String numeroDeDocumento) {
-        this.numeroDeDocumento = numeroDeDocumento;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public String getEstadoCivil() {
-        return estadoCivil;
-    }
-
-    public void setEstadoCivil(String estadoCivil) {
-        this.estadoCivil = estadoCivil;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getDireccionResidencia() {
@@ -116,20 +74,20 @@ public class Paciente {
         this.direccionResidencia = direccionResidencia;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
+    public String getEstadoCivil() {
+        return estadoCivil;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     public String getEmail() {
@@ -148,6 +106,22 @@ public class Paciente {
         this.EPS = EPS;
     }
 
+    public String getTipoSangre() {
+        return tipoSangre;
+    }
+
+    public void setTipoSangre(String tipoSangre) {
+        this.tipoSangre = tipoSangre;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
     public Date getFechaRegistro() {
         return fechaRegistro;
     }
@@ -156,20 +130,12 @@ public class Paciente {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public String getTipoSangre() {
-        return tipoSangre;
+    public ArrayList<Cita> getCita() {
+        return cita;
     }
 
-    public void setTipoSangre(String tipoSangre) {
-        this.tipoSangre = tipoSangre;
-    }  
-
-    public String getConsultorioAsignado() {
-        return consultorioAsignado;
-    }
-
-    public void setConsultorioAsignado(String consultorioAsignado) {
-        this.consultorioAsignado = consultorioAsignado;
+    public void setCita(ArrayList<Cita> cita) {
+        this.cita = cita;
     }
    
 }
