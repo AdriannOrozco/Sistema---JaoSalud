@@ -6,16 +6,20 @@ import javax.swing.JOptionPane;
 
 public class ConexionBD {
     
-    private static final String URL = "jdbc:mysql://localhost:3306/agendasync?characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
-    private static final String USER = "root"; 
-    private static final String PASS = "";     
-    public static Connection conectar() {
-        Connection con = null; 
+    private static Connection con = null;
+    
+    private static final String URL = "jdbc:mysql://localhost:3306/loginbarbershop?characterEncoding=utf8"; //Cambiar el nombre de la base de datos para que no genere error.
+    private static final String USER = "root"; // Ajustar según el usuario de la base de datos.
+    private static final String PASS = "";     // Ajusta según la contraseña de la base de datos.
+    
+      public Connection conectar() {
         try {
             con = DriverManager.getConnection(URL, USER, PASS);
-            System.out.println("Conexión establecida con éxito.");
+            if (con != null) {
+                System.out.println("Conexión establecida con éxito.");
+            }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
         }
         return con;
     }
