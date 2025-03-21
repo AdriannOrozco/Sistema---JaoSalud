@@ -1,4 +1,4 @@
-package DataAccesObject;
+package DAO;
 public class UsuariosDAO {
     
 }

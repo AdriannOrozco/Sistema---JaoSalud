@@ -1,8 +1,11 @@
-package Domain;
+package Model;
 
 public class Recepcionista extends Usuarios {
-    
-
+   
+    private String primerNombre;
+    private String segundoNombre;
+    private String primerApellido;
+    private String segundoApellido;
     private String id;
     private String email;
     private double sueldo;
@@ -14,7 +17,11 @@ public class Recepcionista extends Usuarios {
     
     //Constructor con paramétros
     public Recepcionista(String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String nombreCompletos, String id, String email, double sueldo) {
-        super(usuario, contraseña, primerNombre, segundoNombre, primerApellido, segundoApellido);
+        super(usuario, contraseña);
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
         this.id = id;
         this.email = email;
         this.sueldo = sueldo;

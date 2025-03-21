@@ -1,8 +1,9 @@
-package Domain;
+package Model;
 import java.time.LocalTime;
 import java.util.*;
 
 public class Cita{
+    
     private Consultorio consultorio;
     private Medico medicoAsignado;
     private String motivo;
@@ -10,6 +11,9 @@ public class Cita{
     private LocalTime hora;
     private Random idCita;
     private Date fechaRegistro;
+    private Paciente paciente;
+    private String numeroDocumento;
+    private boolean estado;
 
     //Constructor por defecto
     public Cita(){
@@ -17,7 +21,8 @@ public class Cita{
     }
 
     //Contructor con parámetros
-    public Cita(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, LocalTime hora, Random idCita, Date fechaRegistro) {
+    public Cita(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, LocalTime hora, Random idCita, Date fechaRegistro,
+            Paciente paciente, String numeroDocumento, boolean estado) {
         this.consultorio = consultorio;
         this.medicoAsignado = medicoAsignado;
         this.motivo = motivo;
@@ -25,6 +30,9 @@ public class Cita{
         this.hora = hora;
         this.idCita = idCita;
         this.fechaRegistro = fechaRegistro;
+        this.paciente = paciente;
+        this.numeroDocumento = numeroDocumento;
+        this.estado = estado;
     }
 
     //Getters y Setters
@@ -83,28 +91,28 @@ public class Cita{
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public String getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }  
 }

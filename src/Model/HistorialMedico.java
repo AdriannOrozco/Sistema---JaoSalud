@@ -1,4 +1,4 @@
-package Domain;
+package Model;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,9 +17,10 @@ public class HistorialMedico extends Cita {
     }
     
     public HistorialMedico(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, LocalTime hora, Random idCita, Date fechaRegistro,
-            boolean alergia, String observaciones, ArrayList<String> resultados, ArrayList<Medicamentos> medicamento){
+            boolean alergia, String observaciones, ArrayList<String> resultados, ArrayList<Medicamentos> medicamento,
+            Paciente paciente, String numeroDocumento, boolean estado){
        
-       super(consultorio, medicoAsignado, motivo, fechaCita, hora, idCita, fechaRegistro);
+       super(consultorio, medicoAsignado, motivo, fechaCita, hora, idCita, fechaRegistro, paciente, numeroDocumento, estado);
        this.alergia = alergia;
        this.observaciones = observaciones;
        this.resultados = new ArrayList<>(resultados);

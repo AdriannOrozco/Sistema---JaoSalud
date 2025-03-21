@@ -1,8 +1,12 @@
-package Domain;
+package Model;
 import java.util.ArrayList;
 import java.util.Date;
 public class Paciente extends Usuarios {
     
+    private String primerNombre;
+    private String segundoNombre;
+    private String primerApellido;
+    private String segundoApellido;
     private String tipoDocumento;
     private String numeroDocumento;
     private String telefono;
@@ -14,8 +18,6 @@ public class Paciente extends Usuarios {
     private String tipoSangre;
     private Date fechaNacimiento;
     private Date fechaRegistro;
-    private ArrayList<Cita> cita;
-    //private ArrayList<HistorialMedico> historialMedico;
     
   
     public Paciente(){
@@ -23,11 +25,14 @@ public class Paciente extends Usuarios {
     
     public Paciente(String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
             String tipoDocumento, String numeroDocumento, String telefono, String direccionResidencia, String estadoCivil,
-            String genero, String email, String EPS, String tipoSangre, Date fechaNacimiento, Date fechaRegistro,
-            ArrayList<Cita> cita){
+            String genero, String email, String EPS, String tipoSangre, Date fechaNacimiento, Date fechaRegistro){
      
         
-        super(usuario, contraseña, primerNombre, segundoNombre, primerApellido, segundoApellido);  
+        super(usuario, contraseña);
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
         this.tipoDocumento = tipoDocumento;
         this.numeroDocumento = numeroDocumento;
         this.telefono = telefono;
@@ -39,7 +44,7 @@ public class Paciente extends Usuarios {
         this.tipoSangre = tipoSangre;
         this.fechaNacimiento = fechaNacimiento;
         this.fechaRegistro = fechaRegistro;
-        this.cita = new ArrayList<>(cita);
+
     }
 
     public String getTipoDocumento() {
@@ -130,12 +135,37 @@ public class Paciente extends Usuarios {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public ArrayList<Cita> getCita() {
-        return cita;
+    public String getPrimerNombre() {
+        return primerNombre;
     }
 
-    public void setCita(ArrayList<Cita> cita) {
-        this.cita = cita;
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = primerNombre;
     }
-   
+
+    public String getSegundoNombre() {
+        return segundoNombre;
+    }
+
+    public void setSegundoNombre(String segundoNombre) {
+        this.segundoNombre = segundoNombre;
+    }
+
+    public String getPrimerApellido() {
+        return primerApellido;
+    }
+
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
+    }
+
+    public String getSegundoApellido() {
+        return segundoApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
+    } 
+    
+    
 }
