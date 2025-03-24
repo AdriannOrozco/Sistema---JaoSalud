@@ -4,16 +4,16 @@ import java.util.*;
 
 public class Cita{
     
-    private Consultorio consultorio;
-    private Medico medicoAsignado;
-    private String motivo;
+    private Consultorio consultorio; //Solicitado
+    private Medico medicoAsignado; //Solicitado
+    private String motivo; //Solicitado
     private Date fechaCita;
-    private LocalTime hora;
-    private Random idCita;
+    private LocalTime hora; //Solicitado
+    private Random idCita; //Automático
     private Date fechaRegistro;
     private Paciente paciente;
-    private String numeroDocumento;
-    private boolean estado;
+    private String numeroDocumento; 
+    private boolean estado; //Automático
 
     //Constructor por defecto
     public Cita(){

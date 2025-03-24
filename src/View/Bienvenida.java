@@ -1,13 +1,11 @@
 package View;
 public class Bienvenida extends javax.swing.JFrame {
 
-
     public Bienvenida() {
-        initComponents();
-         setLocationRelativeTo(null);
+      initComponents();
+      setLocationRelativeTo(null);
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -27,6 +25,7 @@ public class Bienvenida extends javax.swing.JFrame {
         texto4 = new javax.swing.JLabel();
         texto5 = new javax.swing.JLabel();
         texto6 = new javax.swing.JLabel();
+        buttonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,7 +41,6 @@ public class Bienvenida extends javax.swing.JFrame {
 
         botonEntrar.setBackground(new java.awt.Color(255, 204, 0));
         botonEntrar.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 18)); // NOI18N
-        botonEntrar.setForeground(new java.awt.Color(255, 255, 255));
         botonEntrar.setText("ENTRAR");
         botonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +94,16 @@ public class Bienvenida extends javax.swing.JFrame {
         texto6.setFont(new java.awt.Font("JetBrains Mono", 0, 10)); // NOI18N
         texto6.setText("Para brindarte la mejor atención en todo en momento.");
 
+        buttonSalir.setBackground(new java.awt.Color(0, 0, 0));
+        buttonSalir.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 18)); // NOI18N
+        buttonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        buttonSalir.setText("SALIR DEL SISTEMA");
+        buttonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout fondoPrincipalLayout = new javax.swing.GroupLayout(fondoPrincipal);
         fondoPrincipal.setLayout(fondoPrincipalLayout);
         fondoPrincipalLayout.setHorizontalGroup(
@@ -121,7 +129,10 @@ public class Bienvenida extends javax.swing.JFrame {
                                 .addComponent(iconoColombia)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JLabelCartagenaDeIndias))
-                            .addComponent(botonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(fondoPrincipalLayout.createSequentialGroup()
+                                .addComponent(botonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buttonSalir)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(iconoPrincipal))
@@ -153,7 +164,9 @@ public class Bienvenida extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(texto6, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(fondoPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lineaNegra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -174,16 +187,19 @@ public class Bienvenida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrarActionPerformed
-        new Secciones().setVisible(true);
+        new Login().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonEntrarActionPerformed
 
+    private void buttonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalirActionPerformed
+    this.dispose();
+    }//GEN-LAST:event_buttonSalirActionPerformed
+
     
-    public static void main(String args[]) {
-     
+    public static void main(String args[]) {    
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-               new Bienvenida().setVisible(true);
+        public void run() {
+        new Bienvenida().setVisible(true);
             }
         });
     }
@@ -194,6 +210,7 @@ public class Bienvenida extends javax.swing.JFrame {
     private javax.swing.JLabel JLabelJao;
     private javax.swing.JLabel JlabelSistema;
     private javax.swing.JButton botonEntrar;
+    private javax.swing.JButton buttonSalir;
     private javax.swing.JPanel fondoPrincipal;
     private javax.swing.JLabel iconoColombia;
     private javax.swing.JLabel iconoPrincipal;
