@@ -5,29 +5,45 @@
 package View;
 
 import java.awt.CardLayout;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Osvaldo
  */
-public class MenuDoctor extends javax.swing.JFrame {
+public final class MenuDoctor extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuDoctor
      */
     CardLayout vista;
-    
+
     PnlCalendarioMedico PnlCalendarioMedico = new PnlCalendarioMedico();
     PnlPacientesMedico PnlPacientesMedico = new PnlPacientesMedico();
-    
-    
-    
-    
+    PnlEstadisticasMedico PnlEstadisticasMedico = new PnlEstadisticasMedico();
+    PnlReportesMedico pnlReportesMedico = new PnlReportesMedico();
+
     public MenuDoctor() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
+        iconoMenuDoctor();
+        // Asegurar que PnlVistaPrincipal tiene un CardLayout antes de hacer el cast
+        PnlVistaPrincipal.setLayout(new CardLayout());
         vista = (CardLayout) PnlVistaPrincipal.getLayout();
-        vista = (CardLayout) PnlPacientesMedico.getLayout();
+
+        // Agregar los paneles al CardLayout
+        PnlVistaPrincipal.add(PnlCalendarioMedico, "calendario");
+        PnlVistaPrincipal.add(PnlPacientesMedico, "pacientes");
+        PnlVistaPrincipal.add(PnlEstadisticasMedico, "estadisticas");
+        PnlVistaPrincipal.add(pnlReportesMedico, "reportes");
+    }
+
+    public void iconoMenuDoctor() {
+        URL url = getClass().getResource("/Resources/doctor.png");
+        ImageIcon iconoMenuDoctor = new ImageIcon(url);
+        setIconImage(iconoMenuDoctor.getImage());
     }
 
     /**
@@ -55,6 +71,7 @@ public class MenuDoctor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Salud Panel Medico");
 
+        jPanel1.setBackground(new java.awt.Color(0, 51, 102));
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 625));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -92,53 +109,54 @@ public class MenuDoctor extends javax.swing.JFrame {
         jToggleButton3.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 12)); // NOI18N
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/estadisticas.png"))); // NOI18N
         jToggleButton3.setText("ESTADISTICAS");
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
 
         jToggleButton4.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 12)); // NOI18N
         jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/informe.png"))); // NOI18N
         jToggleButton4.setText("REPORTES");
+        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelMenuLayout = new javax.swing.GroupLayout(PanelMenu);
         PanelMenu.setLayout(PanelMenuLayout);
         PanelMenuLayout.setHorizontalGroup(
             PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMenuLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
                 .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelMenuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelMenuLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelMenuLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelMenuLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelMenuLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         PanelMenuLayout.setVerticalGroup(
             PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMenuLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addGap(96, 96, 96)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(892, Short.MAX_VALUE))
         );
 
-        jPanel1.add(PanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 330, 750));
+        jPanel1.add(PanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 370, 1420));
 
-        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel4.setBackground(new java.awt.Color(0, 51, 102));
 
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/menu (1).png"))); // NOI18N
@@ -161,7 +179,7 @@ public class MenuDoctor extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1287, Short.MAX_VALUE))
+                .addContainerGap(1733, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,11 +191,14 @@ public class MenuDoctor extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1540, 80));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1980, 80));
 
         PnlVistaPrincipal.setLayout(new java.awt.CardLayout());
 
+        jLabel2.setBackground(new java.awt.Color(0, 51, 102));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/ImagenEstablecidaMedico.jpg"))); // NOI18N
+        jLabel2.setName(""); // NOI18N
+        jLabel2.setOpaque(true);
         PnlVistaPrincipal.add(jLabel2, "card2");
 
         jPanel1.add(PnlVistaPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 1210, 750));
@@ -190,16 +211,16 @@ public class MenuDoctor extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(PanelMenu.isVisible()){
+        if (PanelMenu.isVisible()) {
             PanelMenu.setVisible(false);
-        }else {
+        } else {
             PanelMenu.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -209,7 +230,7 @@ public class MenuDoctor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        PnlVistaPrincipal.add(PnlCalendarioMedico , "alta");
+        PnlVistaPrincipal.add(PnlCalendarioMedico, "alta");
         vista.show(PnlVistaPrincipal, "alta");
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
@@ -221,6 +242,20 @@ public class MenuDoctor extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        PnlVistaPrincipal.add(PnlEstadisticasMedico, "estadistica");
+        vista.show(PnlVistaPrincipal, "estadistica");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+        PnlVistaPrincipal.add(pnlReportesMedico, "reportes");
+        vista.show(PnlVistaPrincipal, "repoortes");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+    }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     /**
      * @param args the command line arguments
