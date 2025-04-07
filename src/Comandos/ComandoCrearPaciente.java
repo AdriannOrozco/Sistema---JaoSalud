@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class ComandoCrearPaciente implements ICrearPaciente {
     
    @Override
-   public void crearPaciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido
+   public void CrearPaciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido
            ,String tipoDocumento, String numeroDocumento,String telefono,  String direccionResidencia, String estadoCivil
            ,String genero, String email, String EPS, String tipoSangre, Date fechaNacimiento, Date fechaRegistro, int edad){
    
