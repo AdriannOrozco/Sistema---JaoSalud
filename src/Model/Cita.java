@@ -8,21 +8,20 @@ public class Cita{
     private Medico medicoAsignado; //Solicitado
     private String motivo; //Solicitado
     private Date fechaCita;
-    private LocalTime hora; //Solicitado
-    private Random idCita; //Automático
+    private String hora; //Solicitado
+    private int idCita; //Automático
     private Date fechaRegistro;
     private Paciente paciente;
-    private String numeroDocumento; 
+    private String numeroDocumento;
     private boolean estado; //Automático
-
-    //Constructor por defecto
+    
     public Cita(){
         
     }
 
+   
     //Contructor con parámetros
-    public Cita(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, LocalTime hora, Random idCita, Date fechaRegistro,
-            Paciente paciente, String numeroDocumento, boolean estado) {
+    public Cita(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, String hora, int idCita, Date fechaRegistro, Paciente paciente,String numeroDocumento,boolean estado) {
         this.consultorio = consultorio;
         this.medicoAsignado = medicoAsignado;
         this.motivo = motivo;
@@ -33,6 +32,14 @@ public class Cita{
         this.paciente = paciente;
         this.numeroDocumento = numeroDocumento;
         this.estado = estado;
+    }
+
+    public String getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
     }
 
     //Getters y Setters
@@ -68,19 +75,19 @@ public class Cita{
         this.fechaCita = fechaCita;
     }
 
-    public LocalTime getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(LocalTime hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 
-    public Random getIdCita() {
+    public int getIdCita() {
         return idCita;
     }
 
-    public void setIdCita(Random idCita) {
+    public void setIdCita(int idCita) {
         this.idCita = idCita;
     }
 
@@ -100,13 +107,6 @@ public class Cita{
         this.paciente = paciente;
     }
 
-    public String getNumeroDocumento() {
-        return numeroDocumento;
-    }
-
-    public void setNumeroDocumento(String numeroDocumento) {
-        this.numeroDocumento = numeroDocumento;
-    }
 
     public boolean isEstado() {
         return estado;

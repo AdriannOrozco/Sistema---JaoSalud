@@ -16,11 +16,11 @@ public class HistorialMedico extends Cita {
         
     }
     
-    public HistorialMedico(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, LocalTime hora, Random idCita, Date fechaRegistro,
+    public HistorialMedico(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, String hora, int idCita, Date fechaRegistro,
             boolean alergia, String observaciones, ArrayList<String> resultados, ArrayList<Medicamentos> medicamento,
             Paciente paciente, String numeroDocumento, boolean estado){
        
-       super(consultorio, medicoAsignado, motivo, fechaCita, hora, idCita, fechaRegistro, paciente, numeroDocumento, estado);
+       super(consultorio, medicoAsignado, motivo, fechaCita, hora, idCita, fechaRegistro, paciente,numeroDocumento,estado);
        this.alergia = alergia;
        this.observaciones = observaciones;
        this.resultados = new ArrayList<>(resultados);

@@ -10,20 +10,18 @@ import javax.swing.table.JTableHeader;
 
 public class Recepcionista extends javax.swing.JFrame {
 
-    
     DefaultTableModel modeloC = new DefaultTableModel();
 
-    
     public Recepcionista() {
         initComponents();
         setLocationRelativeTo(null);
-        tablaDeCitas();  
+        tablaDeCitas();
         seccionEditarDatoPaciente();
 
     }
-    
-    public void seccionEditarDatoPaciente(){
-         //Apartado de citas
+
+    public void seccionEditarDatoPaciente() {
+        //Apartado de citas
         panelDivisionEditarPaciente.setVisible(false);
         labelEncontrado.setVisible(false);
         labelDatoQueDesea.setVisible(false);
@@ -33,9 +31,14 @@ public class Recepcionista extends javax.swing.JFrame {
         txtActualizarDato.setVisible(false);
         buttonActualizar.setVisible(false);
         buttonCancelarModificacion.setVisible(false);
+        labelCargarEPS.setVisible(false);
+        txtCargarEPS.setVisible(false);
+        labelCargarNombre.setVisible(false);
+        txtCargarPrimerNombre.setVisible(false);
+        txtCargarPrimerApellido.setVisible(false);
     }
-    
-    private void tablaDeCitas(){
+
+    private void tablaDeCitas() {
         modeloC.addColumn("Motivo");
         modeloC.addColumn("Hora");
         modeloC.addColumn("Consultorio");
@@ -48,14 +51,11 @@ public class Recepcionista extends javax.swing.JFrame {
         tablaDeCitas.getColumnModel().getColumn(1).setWidth(120);
         tablaDeCitas.getColumnModel().getColumn(1).setMinWidth(120);
         tablaDeCitas.getColumnModel().getColumn(1).setMaxWidth(120);
-        
-        
+
         //Prieba
         JTableHeader header = tablaDeCitas.getTableHeader();
-         header.setDefaultRenderer(headerRenderer);
-}
-    
-
+        header.setDefaultRenderer(headerRenderer);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -159,6 +159,11 @@ public class Recepcionista extends javax.swing.JFrame {
         buttonActualizar = new javax.swing.JButton();
         buttonCancelarModificacion = new javax.swing.JButton();
         labelObligatorio = new javax.swing.JLabel();
+        txtCargarEPS = new javax.swing.JTextField();
+        labelCargarEPS = new javax.swing.JLabel();
+        labelCargarNombre = new javax.swing.JLabel();
+        txtCargarPrimerNombre = new javax.swing.JTextField();
+        txtCargarPrimerApellido = new javax.swing.JTextField();
         panelAgendarCita = new javax.swing.JPanel();
         panelFondoBlancoAgendarCita = new javax.swing.JPanel();
         labelTabbedAgendarCita = new javax.swing.JLabel();
@@ -534,10 +539,10 @@ public class Recepcionista extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
         );
 
-        fondoBlancoPrincipal.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 660, 90));
+        fondoBlancoPrincipal.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 660, 40));
 
         panelFondoBlancoInicio.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1076,7 +1081,7 @@ public class Recepcionista extends javax.swing.JFrame {
         panelDivisionEditarPaciente.setLayout(panelDivisionEditarPacienteLayout);
         panelDivisionEditarPacienteLayout.setHorizontalGroup(
             panelDivisionEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 654, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         panelDivisionEditarPacienteLayout.setVerticalGroup(
             panelDivisionEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1085,7 +1090,7 @@ public class Recepcionista extends javax.swing.JFrame {
 
         labelEncontrado.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
         labelEncontrado.setForeground(new java.awt.Color(0, 0, 0));
-        labelEncontrado.setText("EL PACIENTE BUSCADO FUE ENCONTRADO, A CONTINUACIÓN, HAGA LA MODIIFICACIÓN DEL ");
+        labelEncontrado.setText("DATOS DEL CLIENTE:");
 
         labelDatoQueDesea.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
         labelDatoQueDesea.setForeground(new java.awt.Color(0, 0, 0));
@@ -1134,6 +1139,34 @@ public class Recepcionista extends javax.swing.JFrame {
         labelObligatorio.setForeground(new java.awt.Color(255, 0, 0));
         labelObligatorio.setText("*");
 
+        txtCargarEPS.setEditable(false);
+        txtCargarEPS.setBackground(new java.awt.Color(225, 225, 225));
+        txtCargarEPS.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        txtCargarEPS.setForeground(new java.awt.Color(0, 0, 0));
+        txtCargarEPS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCargarEPSActionPerformed(evt);
+            }
+        });
+
+        labelCargarEPS.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
+        labelCargarEPS.setForeground(new java.awt.Color(0, 0, 0));
+        labelCargarEPS.setText("| EPS:");
+
+        labelCargarNombre.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
+        labelCargarNombre.setForeground(new java.awt.Color(0, 0, 0));
+        labelCargarNombre.setText("| NOMBRE:");
+
+        txtCargarPrimerNombre.setEditable(false);
+        txtCargarPrimerNombre.setBackground(new java.awt.Color(225, 225, 225));
+        txtCargarPrimerNombre.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        txtCargarPrimerNombre.setForeground(new java.awt.Color(0, 0, 0));
+
+        txtCargarPrimerApellido.setEditable(false);
+        txtCargarPrimerApellido.setBackground(new java.awt.Color(225, 225, 225));
+        txtCargarPrimerApellido.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        txtCargarPrimerApellido.setForeground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout panelFondoBlancoEditarPacienteLayout = new javax.swing.GroupLayout(panelFondoBlancoEditarPaciente);
         panelFondoBlancoEditarPaciente.setLayout(panelFondoBlancoEditarPacienteLayout);
         panelFondoBlancoEditarPacienteLayout.setHorizontalGroup(
@@ -1142,12 +1175,33 @@ public class Recepcionista extends javax.swing.JFrame {
                 .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelDivisionEditarPaciente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboSeleccionarDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelModificarDato))
+                        .addGap(84, 84, 84)
+                        .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelDigiteActualizacion)
+                            .addComponent(txtActualizarDato, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
                         .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelEncontrado)
-                                    .addComponent(labelDatoQueDesea)))
+                                    .addComponent(labelDatoQueDesea))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
+                                        .addComponent(labelCargarEPS)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCargarEPS))
+                                    .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
+                                        .addComponent(labelCargarNombre)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtCargarPrimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtCargarPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
                                 .addGap(234, 234, 234)
                                 .addComponent(panelTabbedEditarPaciente))
@@ -1170,23 +1224,15 @@ public class Recepcionista extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(cboBuscarNumeroIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(labelObligatorio))))))
-                            .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelModificarDato)
-                                    .addComponent(cboSeleccionarDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(84, 84, 84)
-                                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(labelDigiteActualizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtActualizarDato)))
-                            .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
-                                .addGap(212, 212, 212)
-                                .addComponent(buttonActualizar)
-                                .addGap(26, 26, 26)
-                                .addComponent(buttonCancelarModificacion)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                                .addComponent(labelObligatorio)))))))
+                        .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(buttonActualizar)
+                .addGap(18, 18, 18)
+                .addComponent(buttonCancelarModificacion)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelFondoBlancoEditarPacienteLayout.setVerticalGroup(
             panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1211,26 +1257,30 @@ public class Recepcionista extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelDivisionEditarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelEncontrado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelDatoQueDesea)
                 .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelModificarDato)
-                            .addComponent(labelDigiteActualizacion))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cboSeleccionarDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtActualizarDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(124, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonCancelarModificacion)
-                            .addComponent(buttonActualizar))
-                        .addGap(48, 48, 48))))
+                    .addComponent(txtCargarEPS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelEncontrado)
+                        .addComponent(labelCargarEPS)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelDatoQueDesea)
+                    .addComponent(labelCargarNombre)
+                    .addComponent(txtCargarPrimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCargarPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelModificarDato)
+                    .addComponent(labelDigiteActualizacion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtActualizarDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboSeleccionarDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonActualizar)
+                    .addComponent(buttonCancelarModificacion))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelEditarPacienteLayout = new javax.swing.GroupLayout(panelEditarPaciente);
@@ -1572,7 +1622,7 @@ public class Recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_panelBtnAgendarCitaMouseClicked
 
     private void panelBtnEditarCitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelBtnEditarCitaMouseClicked
-     jTabbedPane1.setSelectedIndex(4);
+        jTabbedPane1.setSelectedIndex(4);
     }//GEN-LAST:event_panelBtnEditarCitaMouseClicked
 
     private void panelBtnHistorialesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelBtnHistorialesMouseClicked
@@ -1605,27 +1655,27 @@ public class Recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_panelBtnCerrarSesionMouseClicked
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-        
+
         //Limpiar campo de nombre
         txtPrimerNombre.setText("");
         txtSegundoNombre.setText("");
         txtPrimerApellido.setText("");
         txtSegundoApellido.setText("");
-        
+
         //Limpiar campo de identificación
         cboTipoIdentificacion.setSelectedIndex(0);
         txtNumeroIdentificacion.setText("");
-        
+
         //Limpiar campo de contacto del paciente
         txtEmail.setText("");
         txtTelefono.setText("");
-        
+
         //Limpiar campo de datos del paciente
         txtDireccion.setText("");
         cboEstadoCivil.setSelectedIndex(0);
         cboGenero.setSelectedIndex(0);
         cboTipoSangre.setSelectedIndex(0);
-        
+
         //Limpiar campo resto de información
         dateChooserFechaNacimiento.setDate(null);
         cboEPS.setSelectedIndex(0);
@@ -1640,37 +1690,42 @@ public class Recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCancelarBusqActionPerformed
 
     private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
-            
-            //Cuando se encuentre el cliente, aparece la sección actualizar dato.
-            panelDivisionEditarPaciente.setVisible(true);
-            labelEncontrado.setVisible(true);
-            labelDatoQueDesea.setVisible(true);   
-            labelModificarDato.setVisible(true);
-            cboSeleccionarDato.setVisible(true);
-            labelDigiteActualizacion.setVisible(true);
-            txtActualizarDato.setVisible(true);
-            
-            //Desactivar el TextField al inicializar la sección
-            txtActualizarDato.setEnabled(false);
-            buttonActualizar.setVisible(true);
-            buttonCancelarModificacion.setVisible(true);
+
+        //Cuando se encuentre el cliente, aparece la sección actualizar dato.
+        panelDivisionEditarPaciente.setVisible(true);
+        labelEncontrado.setVisible(true);
+        labelDatoQueDesea.setVisible(true);
+        labelModificarDato.setVisible(true);
+        cboSeleccionarDato.setVisible(true);
+        labelDigiteActualizacion.setVisible(true);
+        txtActualizarDato.setVisible(true);
+        labelCargarEPS.setVisible(true);
+        txtCargarEPS.setVisible(true);
+        labelCargarNombre.setVisible(true);
+        txtCargarPrimerNombre.setVisible(true);
+        txtCargarPrimerApellido.setVisible(true);
+
+        //Desactivar el TextField al inicializar la sección
+        txtActualizarDato.setEnabled(false);
+        buttonActualizar.setVisible(true);
+        buttonCancelarModificacion.setVisible(true);
     }//GEN-LAST:event_buttonBuscarActionPerformed
 
     private void cboSeleccionarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSeleccionarDatoActionPerformed
         String opcionSeleccionada = (String) cboSeleccionarDato.getSelectedItem();
-       if ("Seleccionar".equals(opcionSeleccionada)) {
-       txtActualizarDato.setEnabled(false);
+        if ("Seleccionar".equals(opcionSeleccionada)) {
+            txtActualizarDato.setEnabled(false);
         } else {
-        txtActualizarDato.setEnabled(true);
-    }
+            txtActualizarDato.setEnabled(true);
+        }
     }//GEN-LAST:event_cboSeleccionarDatoActionPerformed
 
     private void buttonCancelarModificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarModificacionActionPerformed
-        
+
         //Limpiamos los datos
         cboSeleccionarDato.setSelectedIndex(0);
         txtActualizarDato.setText("");
-        
+
         //Ocultamos la sección
         panelDivisionEditarPaciente.setVisible(false);
         labelEncontrado.setVisible(false);
@@ -1681,22 +1736,26 @@ public class Recepcionista extends javax.swing.JFrame {
         txtActualizarDato.setVisible(false);
         buttonActualizar.setVisible(false);
         buttonCancelarModificacion.setVisible(false);
-        
+
         //Mensaje para el usuario
-         JOptionPane.showMessageDialog(null, "Proceso de modificar un dato cancelado", "Cancelación", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Proceso de modificar un dato cancelado", "Cancelación", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_buttonCancelarModificacionActionPerformed
 
     private void buttonCancelarAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarAgendarActionPerformed
-           cboConsultorio.setSelectedIndex(0);
-           cboDoctor.setSelectedIndex(0);
-           cboHoraCita.setSelectedIndex(0);
-           txtAreaMotivo.setText("");
-           txtIdentificacionCita.setText("");
-          
+        cboConsultorio.setSelectedIndex(0);
+        cboDoctor.setSelectedIndex(0);
+        cboHoraCita.setSelectedIndex(0);
+        txtAreaMotivo.setText("");
+        txtIdentificacionCita.setText("");
+
     }//GEN-LAST:event_buttonCancelarAgendarActionPerformed
 
+    private void txtCargarEPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCargarEPSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCargarEPSActionPerformed
+
     //Cambiar aparienia de la tabla
-      DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer() {
+    DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer() {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             // Establecer el color de fondo y el color de texto
@@ -1706,7 +1765,7 @@ public class Recepcionista extends javax.swing.JFrame {
             return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         }
     };
-      
+
     public static void main(String args[]) {
 
         try {
@@ -1771,6 +1830,8 @@ public class Recepcionista extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelAgregarPaciente;
     private javax.swing.JLabel labelApartadoDe;
+    private javax.swing.JLabel labelCargarEPS;
+    private javax.swing.JLabel labelCargarNombre;
     private javax.swing.JLabel labelCartagenaDeIndias;
     private javax.swing.JLabel labelCerrarSesion;
     private javax.swing.JLabel labelCitaIdentificacion;
@@ -1853,6 +1914,9 @@ public class Recepcionista extends javax.swing.JFrame {
     private javax.swing.JTextArea txtAreaMotivo;
     private javax.swing.JTextField txtBuscarCita;
     private javax.swing.JTextField txtBuscarNumeroIdentificacion;
+    private javax.swing.JTextField txtCargarEPS;
+    private javax.swing.JTextField txtCargarPrimerApellido;
+    private javax.swing.JTextField txtCargarPrimerNombre;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtEmail;

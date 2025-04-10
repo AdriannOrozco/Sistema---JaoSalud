@@ -30,6 +30,10 @@ public class Medico extends Usuarios {
         this.consultorio = consultorio;
     }
 
+    public Medico(String primerNombre) {
+    this.primerNombre = primerNombre;
+}
+    
     public String getIdentificacion() {
         return identificacion;
     }

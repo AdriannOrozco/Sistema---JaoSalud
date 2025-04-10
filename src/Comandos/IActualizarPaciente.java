@@ -2,7 +2,7 @@ package Comandos;
 
 public interface IActualizarPaciente {
     
-  public void ActualizarPaciente(  
+   void ActualizarPaciente(  
      String tipoDocumento,
      String telefono,
      String direccionResidencia,
