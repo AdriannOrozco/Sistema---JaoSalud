@@ -48,9 +48,9 @@ public class ComandoObtenerPaciente implements IObtenerPaciente {
                 int edad = rs.getInt("edad");
 
                 //Llenar paramétros del constructor.
-                Paciente paciente = new Paciente(usuario, contraseña, primerNombre, segundoNombre, primerApellido, segundoApellido,
+               /* Paciente paciente = new Paciente(usuario, contraseña, primerNombre, segundoNombre, primerApellido, segundoApellido,
                 tipoDocumento, numeroDocumento, telefono, direccionResidencia,estadoCivil ,genero, email, EPS, tipoSangre, fechaNacimiento, fechaRegistro, edad);
-                listaPacientes.add(paciente);
+                listaPacientes.add(paciente);*/
             }
 
         } catch (SQLException e) {

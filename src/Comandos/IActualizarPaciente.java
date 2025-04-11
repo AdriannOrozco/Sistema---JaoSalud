@@ -11,5 +11,5 @@ public interface IActualizarPaciente {
      String EPS,
      String edad,
       String numeroDocumento
-    );
+    ) throws Exception;
 }
