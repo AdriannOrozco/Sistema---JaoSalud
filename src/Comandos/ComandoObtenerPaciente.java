@@ -15,7 +15,7 @@ public class ComandoObtenerPaciente implements IObtenerPaciente {
     
     
     @Override
-    public List<Paciente> getPaciente(){
+    public List<Paciente> getPaciente() throws Exception {
         
         List<Paciente> listaPacientes = new ArrayList<>();
         String sql = "SELECT usuario, contraseña, primerNombre, segundoNombre, primerApellido, segundoApellido, tipoDocumento, numeroDocumento, "
@@ -32,7 +32,7 @@ public class ComandoObtenerPaciente implements IObtenerPaciente {
                 String primerNombre = rs.getString("primerNombre");
                 String segundoNombre = rs.getString("segundoNombre");
                 String primerApellido = rs.getString("primerApellido");
-                String segundoApellido = rs.getString("SegundoApellido");
+                String segundoApellido = rs.getString("segundoApellido");
                 
                 String tipoDocumento = rs.getString("tipoDocumento");
                 String numeroDocumento = rs.getString("numeroDocumento");
@@ -45,23 +45,19 @@ public class ComandoObtenerPaciente implements IObtenerPaciente {
                 String tipoSangre = rs.getString("tipoSangre");
                 Date fechaNacimiento = rs.getDate("fechaNacimiento");
                 Date fechaRegistro = rs.getDate("fechaRegistro");
-                int edad = rs.getInt("edad");
+                String edad = rs.getString("edad");
 
                 //Llenar paramétros del constructor.
-               /* Paciente paciente = new Paciente(usuario, contraseña, primerNombre, segundoNombre, primerApellido, segundoApellido,
+               Paciente paciente = new Paciente(usuario, contraseña, primerNombre, segundoNombre, primerApellido, segundoApellido,
                 tipoDocumento, numeroDocumento, telefono, direccionResidencia,estadoCivil ,genero, email, EPS, tipoSangre, fechaNacimiento, fechaRegistro, edad);
-                listaPacientes.add(paciente);*/
+                
+               listaPacientes.add(paciente);
             }
 
         } catch (SQLException e) {
-           JOptionPane.showConfirmDialog(null, "Error al obtener paciente " + e.getMessage());
+           JOptionPane.showMessageDialog(null, "Error al obtener paciente " + e.getMessage());
         }
-
         return listaPacientes;
         
-}
-    
-    
-    
-    
+}    
 }

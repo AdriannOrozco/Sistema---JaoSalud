@@ -1,7 +1,10 @@
 package View;
 
 import Comandos.ComandoCrearPaciente;
+import Comandos.ComandoEliminarPaciente;
 import Comandos.ICrearPaciente;
+import Comandos.IEliminarPaciente;
+import Comandos.metodos.MetodosUtiles;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -32,6 +35,7 @@ public class Recepcionista extends javax.swing.JFrame {
         labelModificarDato.setVisible(false);
         cboSeleccionarDato.setVisible(false);
         labelDigiteActualizacion.setVisible(false);
+        labelCargarNombre.setVisible(false);
         txtActualizarDato.setVisible(false);
         buttonActualizar.setVisible(false);
         buttonCancelarModificacion.setVisible(false);
@@ -40,6 +44,8 @@ public class Recepcionista extends javax.swing.JFrame {
         labelCargarNombre.setVisible(false);
         txtCargarPrimerNombre.setVisible(false);
         txtCargarPrimerApellido.setVisible(false);
+        buttonCancelarModificacion.setVisible(false);
+        buttonEliminarPaciente.setVisible(false);
     }
 
     private void tablaDeCitas() {
@@ -544,10 +550,10 @@ public class Recepcionista extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        fondoBlancoPrincipal.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 660, 90));
+        fondoBlancoPrincipal.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 660, 30));
 
         panelFondoBlancoInicio.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1177,7 +1183,7 @@ public class Recepcionista extends javax.swing.JFrame {
         buttonEliminarPaciente.setBackground(new java.awt.Color(0, 0, 0));
         buttonEliminarPaciente.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 14)); // NOI18N
         buttonEliminarPaciente.setForeground(new java.awt.Color(255, 255, 255));
-        buttonEliminarPaciente.setText("CANCELAR");
+        buttonEliminarPaciente.setText("ELIMINAR PACIENTE");
         buttonEliminarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEliminarPacienteActionPerformed(evt);
@@ -1246,8 +1252,8 @@ public class Recepcionista extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
                 .addGap(200, 200, 200)
-                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonEliminarPaciente)
+                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonEliminarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
                         .addComponent(buttonActualizar)
                         .addGap(18, 18, 18)
@@ -1712,25 +1718,42 @@ public class Recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCancelarBusqActionPerformed
 
     private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
+        try {
+            String numeroDocumento = txtBuscarNumeroIdentificacion.getText();
+            String tipoDocumento = cboBuscarNumeroIdentificacion.getSelectedItem().toString();
+            MetodosUtiles metodo = new MetodosUtiles();
 
-        //Cuando se encuentre el cliente, aparece la sección actualizar dato.
-        panelDivisionEditarPaciente.setVisible(true);
-        labelEncontrado.setVisible(true);
-        labelDatoQueDesea.setVisible(true);
-        labelModificarDato.setVisible(true);
-        cboSeleccionarDato.setVisible(true);
-        labelDigiteActualizacion.setVisible(true);
-        txtActualizarDato.setVisible(true);
-        labelCargarEPS.setVisible(true);
-        txtCargarEPS.setVisible(true);
-        labelCargarNombre.setVisible(true);
-        txtCargarPrimerNombre.setVisible(true);
-        txtCargarPrimerApellido.setVisible(true);
+            if (metodo.verificarPaciente(numeroDocumento, tipoDocumento, "numeroDocumento", "tipoDocumento")) {
 
-        //Desactivar el TextField al inicializar la sección
-        txtActualizarDato.setEnabled(false);
-        buttonActualizar.setVisible(true);
-        buttonCancelarModificacion.setVisible(true);
+                //Cargar datos en labels
+                metodo.cargarDatosPacientes(numeroDocumento, tipoDocumento, txtCargarEPS, txtCargarPrimerNombre, txtCargarPrimerApellido);
+                //Cuando se encuentre el cliente, aparece la sección actualizar dato.
+                panelDivisionEditarPaciente.setVisible(true);
+                labelEncontrado.setVisible(true);
+                labelDatoQueDesea.setVisible(true);
+                labelModificarDato.setVisible(true);
+                cboSeleccionarDato.setVisible(true);
+                labelDigiteActualizacion.setVisible(true);
+                txtActualizarDato.setVisible(true);
+                labelCargarEPS.setVisible(true);
+                txtCargarEPS.setVisible(true);
+                labelCargarNombre.setVisible(true);
+                txtCargarPrimerNombre.setVisible(true);
+                txtCargarPrimerApellido.setVisible(true);
+
+                txtActualizarDato.setEnabled(false);
+                buttonActualizar.setVisible(true);
+                buttonCancelarModificacion.setVisible(true);
+                buttonEliminarPaciente.setVisible(true);
+
+            } else {
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+
     }//GEN-LAST:event_buttonBuscarActionPerformed
 
     private void cboSeleccionarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSeleccionarDatoActionPerformed
@@ -1777,7 +1800,15 @@ public class Recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCargarEPSActionPerformed
 
     private void buttonEliminarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminarPacienteActionPerformed
-        // TODO add your handling code here:
+        try {
+            String numeroDocumento = txtBuscarNumeroIdentificacion.getText();
+            String tipoDocumento = cboBuscarNumeroIdentificacion.getSelectedItem().toString();
+            IEliminarPaciente eliminar = new ComandoEliminarPaciente();
+            eliminar.EliminarPaciente(tipoDocumento, numeroDocumento);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage());
+        }
+
     }//GEN-LAST:event_buttonEliminarPacienteActionPerformed
 
     private void buttonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarActionPerformed
@@ -1802,10 +1833,10 @@ public class Recepcionista extends javax.swing.JFrame {
 
             ICrearPaciente agregarPaciente = new ComandoCrearPaciente();
             agregarPaciente.CrearPaciente(primerNombre, segundoNombre, primerApellido, segundoApellido, tipoIdentificacion, numeroDocumento, telefono, direccionResidencia,
-            estadoCivil, genero, email, EPS, tipoSangre, fechaNacimiento, fechaRegistro, edad);
+                    estadoCivil, genero, email, EPS, tipoSangre, fechaNacimiento, fechaRegistro, edad);
 
         } catch (IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Validación" , JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Validación", JOptionPane.WARNING_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage());
         }
