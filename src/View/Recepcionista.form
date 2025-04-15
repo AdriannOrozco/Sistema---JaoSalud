@@ -1462,7 +1462,7 @@
                         <Property name="text" type="java.lang.String" value="5. RESTO DE INFORMACI&#xd3;N"/>
                       </Properties>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="dateChooserFechaNacimiento">
+                    <Component class="org.netbeans.modules.form.InvalidComponent" name="dateChooserFechaNacimiento">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="e1" green="e1" red="e1" type="rgb"/>

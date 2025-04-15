@@ -131,7 +131,7 @@ public class Recepcionista extends javax.swing.JFrame {
         cboTipoSangre = new javax.swing.JComboBox<>();
         panelSeparaciónPaciente = new javax.swing.JPanel();
         labelRestoDeInfo = new javax.swing.JLabel();
-        dateChooserFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        dateChooserFechaNacimiento = new org.netbeans.modules.form.InvalidComponent();
         labelFechaNacimiento = new javax.swing.JLabel();
         labelEpsPaciente = new javax.swing.JLabel();
         cboEPS = new javax.swing.JComboBox<>();
@@ -791,9 +791,6 @@ public class Recepcionista extends javax.swing.JFrame {
         labelRestoDeInfo.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 3, 14)); // NOI18N
         labelRestoDeInfo.setForeground(new java.awt.Color(0, 0, 0));
         labelRestoDeInfo.setText("5. RESTO DE INFORMACIÓN");
-
-        dateChooserFechaNacimiento.setBackground(new java.awt.Color(225, 225, 225));
-        dateChooserFechaNacimiento.setForeground(new java.awt.Color(225, 225, 225));
 
         labelFechaNacimiento.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
         labelFechaNacimiento.setForeground(new java.awt.Color(0, 0, 0));
@@ -1753,7 +1750,7 @@ public class Recepcionista extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboSeleccionarDato;
     private javax.swing.JComboBox<String> cboTipoIdentificacion;
     private javax.swing.JComboBox<String> cboTipoSangre;
-    private com.toedter.calendar.JDateChooser dateChooserFechaNacimiento;
+    private org.netbeans.modules.form.InvalidComponent dateChooserFechaNacimiento;
     private javax.swing.JPanel fondoBlancoPrincipal;
     private javax.swing.JLabel iconAgendarCita;
     private javax.swing.JLabel iconAgregarPaciente;
