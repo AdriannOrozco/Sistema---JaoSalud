@@ -40,7 +40,7 @@ public class ComandoObtenerCita implements IObtenerCita{
             Date fechaRegistro = rs.getDate("fechaResgitro");
             
             String nombrePaciente = rs.getString("paciente");
-            Paciente paciente = new Paciente(nombrePaciente);
+    
             
             String numeroDocumento = rs.getString("numeroDocumento");
             
@@ -49,7 +49,7 @@ public class ComandoObtenerCita implements IObtenerCita{
              
 
                 //Llenar paramétros del constructor.
-                Cita cita = new Cita(consultorio, medicoAsignado, motivo, fechaCita, hora, idCita, fechaRegistro, paciente, numeroDocumento, estado);
+                Cita cita = new Cita(consultorio, medicoAsignado, motivo, fechaCita, hora, idCita, fechaRegistro, nombrePaciente, numeroDocumento, estado);
                 listaCitas.add(cita);
             }
 

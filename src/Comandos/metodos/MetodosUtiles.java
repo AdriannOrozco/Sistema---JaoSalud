@@ -5,8 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Esta clase representa métodos útiles generales-específicos.
@@ -147,4 +150,147 @@ public class MetodosUtiles {
         }
     }
 
+    public void CargarConsultorios(JComboBox<String> cboConsultorio, String value) {
+        String sql = "SELECT * FROM consultorios";
+        ConexionBD con = new ConexionBD();
+        try (Connection connection = con.conectar(); PreparedStatement pst = connection.prepareStatement(sql)) {
+
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    // Agregamos los datos al JComboBox
+                    cboConsultorio.addItem(rs.getString(value));
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+
+    public void CargarDoctores(JComboBox<String> cboDoctor, String value, String value2) {
+        String sql = "SELECT * FROM doctores";
+
+        ConexionBD con = new ConexionBD();
+        try (Connection connection = con.conectar(); PreparedStatement pst = connection.prepareStatement(sql)) {
+
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    // Agregamos los datos al JComboBox
+                    cboDoctor.addItem(rs.getString(value) + " " + rs.getString(value2));
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+
+    public void MostrarMedicos(JTable tablaDoctores) {
+
+        try {
+            Connection con = ConexionBD.conectar();
+            String sql = "SELECT * FROM doctores";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Primer nombre");
+            model.addColumn("Primer apellido");
+            model.addColumn("Especialidad");
+            model.addColumn("Años de experiencia");
+
+            while (rs.next()) {
+                Object[] row = new Object[6];
+                row[0] = rs.getString("primerNombre");
+                row[1] = rs.getString("primerApellido");
+                row[2] = rs.getString("especialidad");
+                row[3] = rs.getString("AniosExperiencia");
+                model.addRow(row);
+                tablaDoctores.setEnabled(false);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar doctores: " + e.getMessage());
+        }
+    }
+    
+    public static boolean ExisteNumeroDocumento(String numeroDocumento) throws Exception {
+    if (numeroDocumento == null || numeroDocumento.trim().isEmpty()) {
+        throw new IllegalArgumentException("El número de documento no puede estar vacío.");
+    }
+
+    if (!ContieneSoloNumeros(numeroDocumento)) {
+        throw new IllegalArgumentException("El número de documento solo debe contener números.");
+    }
+
+    String sql = "SELECT 1 FROM pacientes WHERE numero_documento = ?";
+    
+    try (Connection con = ConexionBD.conectar();
+         PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+        pstmt.setString(1, numeroDocumento);
+        ResultSet rs = pstmt.executeQuery();
+
+        return rs.next(); 
+    } catch (SQLException e) {
+        throw new Exception("No hay un paciente con ese número documento. " + e.getMessage());
+    }
+}
+    
+    public static String BuscarPacientePorDocumento(String numeroDocumento) throws Exception {
+   
+        if (numeroDocumento == null || numeroDocumento.trim().isEmpty()) {
+        throw new IllegalArgumentException("El número de documento no puede estar vacío.");
+    }
+
+    if (!ContieneSoloNumeros(numeroDocumento)) {
+        throw new IllegalArgumentException("El número de documento sólo debe contener números.");
+    }
+
+    String sql = "SELECT nombre FROM pacientes WHERE numero_documento = ?";
+    try (Connection con = ConexionBD.conectar();
+         PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+        pstmt.setString(1, numeroDocumento);
+        ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            return rs.getString("nombre");
+        } else {
+            return null;
+        }
+    } catch (SQLException e) {
+        throw new Exception("Error al buscar paciente: " + e.getMessage());
+    }
+}
+
+    public static void CargarNombrePaciente(String numeroDocumento, JTextField campoNombre) {
+    
+        try {
+        if (numeroDocumento == null || numeroDocumento.trim().isEmpty()) {
+            throw new IllegalArgumentException("El número de documento no puede estar vacío.");
+        }
+
+        if (!ContieneSoloNumeros(numeroDocumento)) {
+            throw new IllegalArgumentException("El número de documento solo debe contener números.");
+        }
+
+        String nombre = BuscarPacientePorDocumento(numeroDocumento);
+
+        if (nombre != null) {
+            campoNombre.setText(nombre);
+        } else {
+            JOptionPane.showMessageDialog(null, "No existe un paciente con ese número de documento.");
+            campoNombre.setText("");
+        }
+
+    } catch (IllegalArgumentException ex) {
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+        campoNombre.setText(""); // Limpiar si hay error
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Error al cargar el nombre del paciente: " + ex.getMessage());
+        campoNombre.setText(""); // Limpiar si hay error
+    }
+}
+
+
+////////////////////////77
 }

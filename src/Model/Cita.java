@@ -8,11 +8,11 @@ public class Cita{
     private Medico medicoAsignado; //Solicitado
     private String motivo; //Solicitado
     private Date fechaCita;
-    private String hora; //Solicitado
-    private int idCita; //Automático
+    private String hora; //3
+    private int idCita; //4
     private Date fechaRegistro;
-    private Paciente paciente;
-    private String numeroDocumento;
+    private String nombrePaciente; //2
+    private String numeroDocumento; //1
     private boolean estado; //Automático
     
     public Cita(){
@@ -21,7 +21,7 @@ public class Cita{
 
    
     //Contructor con parámetros
-    public Cita(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, String hora, int idCita, Date fechaRegistro, Paciente paciente,String numeroDocumento,boolean estado) {
+    public Cita(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, String hora, int idCita, Date fechaRegistro, String nombrePaciente,String numeroDocumento,boolean estado) {
         this.consultorio = consultorio;
         this.medicoAsignado = medicoAsignado;
         this.motivo = motivo;
@@ -29,7 +29,7 @@ public class Cita{
         this.hora = hora;
         this.idCita = idCita;
         this.fechaRegistro = fechaRegistro;
-        this.paciente = paciente;
+        this.nombrePaciente = nombrePaciente;
         this.numeroDocumento = numeroDocumento;
         this.estado = estado;
     }
@@ -99,12 +99,12 @@ public class Cita{
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public String getPaciente() {
+        return nombrePaciente;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setPaciente(String nombrePaciente) {
+        this.nombrePaciente = nombrePaciente;
     }
 
 

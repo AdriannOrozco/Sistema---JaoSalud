@@ -9,14 +9,13 @@ public class Medico extends Usuarios {
     private String especialidad;
     private double salario;
     private int añosExperiencia;
-    private Consultorio consultorio;
    
     public Medico(){
         
     }
     
     public Medico(String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
-         String identificacion, String especialidad, double salario, int añosExperiencia, Consultorio consultorio) {
+         String identificacion, String especialidad, double salario, int añosExperiencia) {
    
         super(usuario, contraseña);
         this.primerNombre = primerNombre;
@@ -27,7 +26,6 @@ public class Medico extends Usuarios {
         this.especialidad = especialidad;
         this.salario = salario;
         this.añosExperiencia = añosExperiencia;
-        this.consultorio = consultorio;
     }
 
     public Medico(String primerNombre) {
@@ -65,15 +63,7 @@ public class Medico extends Usuarios {
     public void setAñosExperiencia(int añosExperiencia) {
         this.añosExperiencia = añosExperiencia;
     }
-
-    public Consultorio getConsultorio() {
-        return consultorio;
-    }
-
-    public void setConsultorio(Consultorio consultorio) {
-        this.consultorio = consultorio;
-    } 
-
+    
     public String getPrimerNombre() {
         return primerNombre;
     }
