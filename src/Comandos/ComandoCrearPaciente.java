@@ -15,12 +15,12 @@ public class ComandoCrearPaciente implements ICrearPaciente {
             String genero, String email, String EPS, String tipoSangre, Date fechaNacimiento, Date fechaRegistro, String edad) throws Exception {
 
 
-if (primerNombre == null || primerNombre.trim().isEmpty() || segundoNombre == null || segundoNombre.trim().isEmpty() ||
+if (primerNombre == null || primerNombre.trim().isEmpty() ||
     primerApellido == null || primerApellido.trim().isEmpty() || segundoApellido == null || segundoApellido.trim().isEmpty() ||
     tipoDocumento == null || tipoDocumento.trim().isEmpty() || numeroDocumento == null || numeroDocumento.trim().isEmpty() ||
     telefono == null || telefono.trim().isEmpty() || direccionResidencia == null || direccionResidencia.trim().isEmpty() ||
     estadoCivil == null || estadoCivil.trim().isEmpty() || genero == null || genero.trim().isEmpty() ||
-    email == null || email.trim().isEmpty() || EPS == null || EPS.trim().isEmpty() ||
+    EPS == null || EPS.trim().isEmpty() ||
     tipoSangre == null || tipoSangre.trim().isEmpty() || edad.trim().isEmpty()) {
   
     throw new IllegalArgumentException("Campos obligatorios vacíos.");
@@ -38,7 +38,7 @@ if (!ContieneSoloNumeros(numeroDocumento)) {
     throw new IllegalArgumentException("Documento inválido.");
 }
 
-if (numeroDocumento.length() < 7 || numeroDocumento.length() > 9) {
+if (numeroDocumento.length() < 7 || numeroDocumento.length() > 13) {
     throw new IllegalArgumentException("Longitud inválida del documento.");
 }
 
@@ -46,7 +46,7 @@ if (!ContieneSoloNumeros(telefono) || telefono.length() < 10) {
     throw new IllegalArgumentException("Teléfono inválido.");
 }
 
-if (!EsNombreValido(estadoCivil) || !EsNombreValido(genero)) {
+if (!EsNombreValido(genero)) {
     throw new IllegalArgumentException("Estado civil o género inválido.");
 }
 
@@ -82,7 +82,7 @@ if (!ContieneSoloNumeros(edad)) {
             return;
         }
 
-        String sql = "INSERT INTO pacientes (primerNombre, segundoNombre, primerApellido, tipoDocumento, numeroDocumento, telefono, direccionResidencia, estadoCivil, genero, email, EPS, tipoSangre, fechaNacimiento, fechaRegistro, edad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+       String sql = "INSERT INTO pacientes (primerNombre, segundoNombre, primerApellido, segundoApellido, tipoDocumento, numeroDocumento, telefono, direccionResidencia, estadoCivil, genero, email, EPS, tipoSangre, fechaNacimiento, fechaRegistro, edad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (Connection con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
 
             pstmt.setString(1, primerNombre);

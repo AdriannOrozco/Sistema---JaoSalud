@@ -23,12 +23,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="fondoBlancoPrincipal" alignment="0" max="32767" attributes="0"/>
+          <Component id="fondoBlancoPrincipal" alignment="0" pref="969" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="fondoBlancoPrincipal" alignment="0" max="32767" attributes="0"/>
+          <Component id="fondoBlancoPrincipal" alignment="0" pref="663" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -52,7 +52,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="290" height="630"/>
+              <AbsoluteConstraints x="0" y="0" width="290" height="660"/>
             </Constraint>
           </Constraints>
 
@@ -681,7 +681,8 @@
                               <EmptySpace pref="95" max="32767" attributes="0"/>
                               <Component id="labelTablaDeCita" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" min="-2" pref="298" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="263" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

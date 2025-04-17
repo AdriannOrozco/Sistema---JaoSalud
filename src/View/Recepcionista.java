@@ -570,7 +570,7 @@ public class Recepcionista extends javax.swing.JFrame {
                 .addGap(60, 60, 60))
         );
 
-        fondoBlancoPrincipal.add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 630));
+        fondoBlancoPrincipal.add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 660));
 
         jPanel1.setBackground(new java.awt.Color(242, 242, 242));
         jPanel1.setForeground(new java.awt.Color(0, 51, 102));
@@ -639,7 +639,8 @@ public class Recepcionista extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(labelTablaDeCita)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout panelDeInicioLayout = new javax.swing.GroupLayout(panelDeInicio);
@@ -1749,11 +1750,11 @@ public class Recepcionista extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondoBlancoPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(fondoBlancoPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondoBlancoPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(fondoBlancoPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
         );
 
         pack();

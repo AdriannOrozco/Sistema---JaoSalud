@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class buscarUsuario {
     
-      public boolean accesoUsuario(String user, String pass) {
+      public boolean accesoUsuario(String user, String pass, String rol) {
         ConexionBD db = new ConexionBD();
         boolean accesoCorrecto = false;
 
@@ -15,10 +15,11 @@ public class buscarUsuario {
             Connection cn = db.conectar();
             
             //El encargado del backend debe encargarse que se verifique el atributo "Usuario" y "Contraseña" para el acceso.
-            String sql = "SELECT username, passwordbarber FROM barbers WHERE username = ? AND passwordbarber = ?";
+            String sql = "SELECT usuario, contraseña, rol FROM usuarios WHERE usuario = ? AND contraseña = ? AND rol = ?";
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setString(1, user);
             pst.setString(2, pass);
+            pst.setString(3, rol);
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
