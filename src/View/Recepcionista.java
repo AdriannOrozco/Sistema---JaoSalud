@@ -1,7 +1,9 @@
 package View;
 
+import Comandos.ComandoActualizarPaciente;
 import Comandos.ComandoCrearPaciente;
 import Comandos.ComandoEliminarPaciente;
+import Comandos.IActualizarPaciente;
 import Comandos.ICrearPaciente;
 import Comandos.IEliminarPaciente;
 import Comandos.metodos.MetodosUtiles;
@@ -45,10 +47,10 @@ public class Recepcionista extends javax.swing.JFrame {
         defaultDate.set(2025, Calendar.JANUARY, 1);
         dateChooserFechaCita.setDate(defaultDate.getTime());
     }
-    
-    public void ValidarCalendarioFechaNacimiento(){
+
+    public void ValidarCalendarioFechaNacimiento() {
         Calendar maxDate = Calendar.getInstance();
-        maxDate.set(2025, Calendar.DECEMBER, 31,23,59,59);
+        maxDate.set(2025, Calendar.DECEMBER, 31, 23, 59, 59);
         dateChooserFechaNacimiento.setMaxSelectableDate(maxDate.getTime());
     }
 
@@ -71,6 +73,12 @@ public class Recepcionista extends javax.swing.JFrame {
         txtCargarPrimerApellido.setVisible(false);
         buttonCancelarModificacion.setVisible(false);
         buttonEliminarPaciente.setVisible(false);
+        labelEstadoCivil1.setVisible(false);
+        cboEstadoCivil1.setVisible(false);
+        cboTipoIdentificacion1.setVisible(false);
+        labelTipoIdentificación1.setVisible(false);
+        cboEPS1.setVisible(false);
+        labelEpsPaciente1.setVisible(false);
     }
 
     private void tablaDeCitas() {
@@ -200,6 +208,12 @@ public class Recepcionista extends javax.swing.JFrame {
         txtCargarPrimerNombre = new javax.swing.JTextField();
         txtCargarPrimerApellido = new javax.swing.JTextField();
         buttonEliminarPaciente = new javax.swing.JButton();
+        labelEstadoCivil1 = new javax.swing.JLabel();
+        cboEstadoCivil1 = new javax.swing.JComboBox<>();
+        cboTipoIdentificacion1 = new javax.swing.JComboBox<>();
+        labelTipoIdentificación1 = new javax.swing.JLabel();
+        labelEpsPaciente1 = new javax.swing.JLabel();
+        cboEPS1 = new javax.swing.JComboBox<>();
         panelAgendarCita = new javax.swing.JPanel();
         panelFondoBlancoAgendarCita = new javax.swing.JPanel();
         labelTabbedAgendarCita = new javax.swing.JLabel();
@@ -636,7 +650,7 @@ public class Recepcionista extends javax.swing.JFrame {
             .addGroup(panelFondoBlancoInicioLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(labelTabbedInicio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addComponent(labelTablaDeCita)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1052,7 +1066,7 @@ public class Recepcionista extends javax.swing.JFrame {
                                 .addComponent(buttonAgregar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(buttonCancelar)))
-                        .addGap(0, 29, Short.MAX_VALUE)))
+                        .addGap(0, 59, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -1137,7 +1151,6 @@ public class Recepcionista extends javax.swing.JFrame {
 
         labelDatoQueDesea.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
         labelDatoQueDesea.setForeground(new java.awt.Color(0, 0, 0));
-        labelDatoQueDesea.setText("DATO QUE DESEA:");
 
         cboSeleccionarDato.setBackground(new java.awt.Color(225, 225, 225));
         cboSeleccionarDato.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
@@ -1167,6 +1180,11 @@ public class Recepcionista extends javax.swing.JFrame {
         buttonActualizar.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 14)); // NOI18N
         buttonActualizar.setForeground(new java.awt.Color(255, 255, 255));
         buttonActualizar.setText("ACTUALIZAR");
+        buttonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonActualizarActionPerformed(evt);
+            }
+        });
 
         buttonCancelarModificacion.setBackground(new java.awt.Color(0, 0, 0));
         buttonCancelarModificacion.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 14)); // NOI18N
@@ -1220,6 +1238,37 @@ public class Recepcionista extends javax.swing.JFrame {
             }
         });
 
+        labelEstadoCivil1.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        labelEstadoCivil1.setForeground(new java.awt.Color(0, 0, 0));
+        labelEstadoCivil1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/estadoCivilPaciente.png"))); // NOI18N
+        labelEstadoCivil1.setText("Estado civil:");
+
+        cboEstadoCivil1.setBackground(new java.awt.Color(225, 225, 225));
+        cboEstadoCivil1.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        cboEstadoCivil1.setForeground(new java.awt.Color(0, 0, 0));
+        cboEstadoCivil1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Casado/a", "Soltero/a" }));
+
+        cboTipoIdentificacion1.setBackground(new java.awt.Color(225, 225, 225));
+        cboTipoIdentificacion1.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        cboTipoIdentificacion1.setForeground(new java.awt.Color(0, 0, 0));
+        cboTipoIdentificacion1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "C.C", "T.I", "R.C", "C.E" }));
+
+        labelTipoIdentificación1.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        labelTipoIdentificación1.setForeground(new java.awt.Color(0, 0, 0));
+        labelTipoIdentificación1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/tipoIdentificacionPaciente.png"))); // NOI18N
+        labelTipoIdentificación1.setText("Especifique el tipo:");
+
+        labelEpsPaciente1.setBackground(new java.awt.Color(0, 0, 0));
+        labelEpsPaciente1.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        labelEpsPaciente1.setForeground(new java.awt.Color(0, 0, 0));
+        labelEpsPaciente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/EpsPaciente.png"))); // NOI18N
+        labelEpsPaciente1.setText("EPS de afiliación:");
+
+        cboEPS1.setBackground(new java.awt.Color(225, 225, 225));
+        cboEPS1.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        cboEPS1.setForeground(new java.awt.Color(0, 0, 0));
+        cboEPS1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "SaludTotal", "CooSalud", "Mutual Ser" }));
+
         javax.swing.GroupLayout panelFondoBlancoEditarPacienteLayout = new javax.swing.GroupLayout(panelFondoBlancoEditarPaciente);
         panelFondoBlancoEditarPaciente.setLayout(panelFondoBlancoEditarPacienteLayout);
         panelFondoBlancoEditarPacienteLayout.setHorizontalGroup(
@@ -1229,15 +1278,6 @@ public class Recepcionista extends javax.swing.JFrame {
                     .addComponent(panelDivisionEditarPaciente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
                         .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cboSeleccionarDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelModificarDato))
-                                .addGap(84, 84, 84)
-                                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelDigiteActualizacion)
-                                    .addComponent(txtActualizarDato, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1277,18 +1317,33 @@ public class Recepcionista extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(cboBuscarNumeroIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(labelObligatorio)))))))
+                                                .addComponent(labelObligatorio))))))
+                            .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cboSeleccionarDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelModificarDato)
+                                    .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
+                                        .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labelEstadoCivil1)
+                                            .addComponent(cboEstadoCivil1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(labelEpsPaciente1)
+                                            .addComponent(cboEPS1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(labelTipoIdentificación1)
+                                    .addComponent(cboTipoIdentificacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(59, 59, 59)
+                                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelDigiteActualizacion)
+                                    .addComponent(txtActualizarDato, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
+                                        .addComponent(buttonActualizar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(buttonCancelarModificacion))
+                                    .addComponent(buttonEliminarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonEliminarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
-                        .addComponent(buttonActualizar)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonCancelarModificacion)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelFondoBlancoEditarPacienteLayout.setVerticalGroup(
             panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1324,21 +1379,39 @@ public class Recepcionista extends javax.swing.JFrame {
                     .addComponent(labelCargarNombre)
                     .addComponent(txtCargarPrimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCargarPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelModificarDato)
-                    .addComponent(labelDigiteActualizacion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtActualizarDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboSeleccionarDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonActualizar)
-                    .addComponent(buttonCancelarModificacion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonEliminarPaciente)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(labelDigiteActualizacion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtActualizarDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelModificarDato)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboSeleccionarDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelEstadoCivil1)
+                            .addComponent(labelEpsPaciente1))))
+                .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonCancelarModificacion)
+                            .addComponent(buttonActualizar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonEliminarPaciente))
+                    .addGroup(panelFondoBlancoEditarPacienteLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(panelFondoBlancoEditarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cboEstadoCivil1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboEPS1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelTipoIdentificación1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboTipoIdentificacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelEditarPacienteLayout = new javax.swing.GroupLayout(panelEditarPaciente);
@@ -1590,7 +1663,7 @@ public class Recepcionista extends javax.swing.JFrame {
                         .addGroup(panelFondoBlancoAgendarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelEsAutomatico)
                             .addComponent(txtIdentificacionCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                         .addGroup(panelFondoBlancoAgendarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonCancelarAgendar)
                             .addComponent(buttonAgendar))
@@ -1681,7 +1754,7 @@ public class Recepcionista extends javax.swing.JFrame {
                     .addComponent(labelObligatorioID))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(304, Short.MAX_VALUE))
+                .addContainerGap(334, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelEditarLayout = new javax.swing.GroupLayout(panelEditar);
@@ -1717,7 +1790,7 @@ public class Recepcionista extends javax.swing.JFrame {
             .addGroup(panelFondoBlancoHistorialMedicoLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(labelTabbedHistorialMédico)
-                .addContainerGap(423, Short.MAX_VALUE))
+                .addContainerGap(453, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelHistorialMédicoLayout = new javax.swing.GroupLayout(panelHistorialMédico);
@@ -1733,7 +1806,7 @@ public class Recepcionista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Historial Médico", panelHistorialMédico);
 
-        fondoBlancoPrincipal.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 660, 500));
+        fondoBlancoPrincipal.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 660, 530));
 
         labelJaoSalud.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 24)); // NOI18N
         labelJaoSalud.setForeground(new java.awt.Color(0, 51, 102));
@@ -1845,9 +1918,20 @@ public class Recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCancelarBusqActionPerformed
 
     private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
+
         try {
             String numeroDocumento = txtBuscarNumeroIdentificacion.getText();
             String tipoDocumento = cboBuscarNumeroIdentificacion.getSelectedItem().toString();
+
+            if (numeroDocumento.trim().isEmpty() || tipoDocumento.trim().equalsIgnoreCase("--")) {
+                JOptionPane.showMessageDialog(null, "Hay campos sin específicar", "Datos sin marcas", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (!metodo.ContieneSoloNumeros(numeroDocumento) || numeroDocumento.length() < 7 || numeroDocumento.length() > 12) {
+                JOptionPane.showMessageDialog(null, "Número de documento inválido", "Número de documento inválido", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             if (metodo.verificarPaciente(numeroDocumento, tipoDocumento, "numeroDocumento", "tipoDocumento")) {
 
@@ -1872,12 +1956,15 @@ public class Recepcionista extends javax.swing.JFrame {
                 buttonCancelarModificacion.setVisible(true);
                 buttonEliminarPaciente.setVisible(true);
 
-            } else {
+                txtBuscarNumeroIdentificacion.setEnabled(false);
+                buttonBuscar.setEnabled(false);
 
+            } else {
+                JOptionPane.showMessageDialog(null, "Ese usuario no está registrado en el sistema. ", "No encontrado", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
 
     }//GEN-LAST:event_buttonBuscarActionPerformed
@@ -1886,8 +1973,59 @@ public class Recepcionista extends javax.swing.JFrame {
         String opcionSeleccionada = (String) cboSeleccionarDato.getSelectedItem();
         if ("Seleccionar".equals(opcionSeleccionada)) {
             txtActualizarDato.setEnabled(false);
-        } else {
+            labelEstadoCivil1.setVisible(false);
+            cboEstadoCivil1.setVisible(false);
+            cboTipoIdentificacion1.setVisible(false);
+            labelTipoIdentificación1.setVisible(false);
+        }
+
+        if ("Email".equals(opcionSeleccionada) || "Dirección de residencia".equals(opcionSeleccionada) || "Teléfono".equals(opcionSeleccionada) || "Edad".equals(opcionSeleccionada)) {
             txtActualizarDato.setEnabled(true);
+            labelEstadoCivil1.setVisible(false);
+            cboEstadoCivil1.setVisible(false);
+            cboTipoIdentificacion1.setVisible(false);
+            labelTipoIdentificación1.setVisible(false);
+            cboEPS1.setVisible(false);
+            labelEpsPaciente1.setVisible(false);
+        }
+
+        if ("Tipo de documento".equals(opcionSeleccionada) || "Estado civil".equals(opcionSeleccionada) || "EPS".equals(opcionSeleccionada)) {
+            txtActualizarDato.setEnabled(false);
+
+        }
+
+        if ("Estado civil".equals(opcionSeleccionada)) {
+            labelEstadoCivil1.setVisible(true);
+            cboEstadoCivil1.setVisible(true);
+
+            cboEPS1.setVisible(false);
+            labelEpsPaciente1.setVisible(false);
+
+            cboTipoIdentificacion1.setVisible(false);
+            labelTipoIdentificación1.setVisible(false);
+        }
+
+        if ("Tipo de documento".equals(opcionSeleccionada)) {
+            labelEstadoCivil1.setVisible(false);
+            cboEstadoCivil1.setVisible(false);
+
+            cboTipoIdentificacion1.setVisible(true);
+            labelTipoIdentificación1.setVisible(true);
+
+            cboEPS1.setVisible(false);
+            labelEpsPaciente1.setVisible(false);
+
+        }
+
+        if ("EPS".equals(opcionSeleccionada)) {
+            labelEstadoCivil1.setVisible(false);
+            cboEstadoCivil1.setVisible(false);
+
+            cboTipoIdentificacion1.setVisible(false);
+            labelTipoIdentificación1.setVisible(false);
+
+            cboEPS1.setVisible(true);
+            labelEpsPaciente1.setVisible(true);
         }
     }//GEN-LAST:event_cboSeleccionarDatoActionPerformed
 
@@ -1907,6 +2045,24 @@ public class Recepcionista extends javax.swing.JFrame {
         txtActualizarDato.setVisible(false);
         buttonActualizar.setVisible(false);
         buttonCancelarModificacion.setVisible(false);
+        labelCargarEPS.setVisible(false);
+        txtCargarEPS.setVisible(false);
+        labelCargarNombre.setVisible(false);
+        txtCargarPrimerNombre.setVisible(false);
+        txtCargarPrimerApellido.setVisible(false);
+        labelModificarDato.setVisible(false);
+        cboSeleccionarDato.setVisible(false);
+        labelDigiteActualizacion.setVisible(false);
+        txtActualizarDato.setVisible(false);
+        buttonEliminarPaciente.setVisible(false);
+        cboEPS1.setVisible(false);
+        labelEpsPaciente1.setVisible(false);
+
+        txtBuscarNumeroIdentificacion.setEnabled(true);
+        buttonBuscar.setEnabled(true);
+
+        txtBuscarNumeroIdentificacion.setText("");
+        cboBuscarNumeroIdentificacion.setSelectedIndex(0);
 
         //Mensaje para el usuario
         JOptionPane.showMessageDialog(null, "Proceso de modificar un dato cancelado", "Cancelación", JOptionPane.INFORMATION_MESSAGE);
@@ -1931,6 +2087,7 @@ public class Recepcionista extends javax.swing.JFrame {
             String tipoDocumento = cboBuscarNumeroIdentificacion.getSelectedItem().toString();
             IEliminarPaciente eliminar = new ComandoEliminarPaciente();
             eliminar.EliminarPaciente(tipoDocumento, numeroDocumento);
+            limpiarDespuesDeActualizar();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage());
         }
@@ -1975,6 +2132,131 @@ public class Recepcionista extends javax.swing.JFrame {
     private void txtIdentificacionPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionPacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdentificacionPacienteActionPerformed
+
+    private void limpiarDespuesDeActualizar() {
+        txtBuscarNumeroIdentificacion.setEnabled(true);
+        buttonBuscar.setEnabled(true);
+
+        panelDivisionEditarPaciente.setVisible(false);
+        labelEncontrado.setVisible(false);
+        labelDatoQueDesea.setVisible(false);
+        labelModificarDato.setVisible(false);
+        cboSeleccionarDato.setVisible(false);
+        labelDigiteActualizacion.setVisible(false);
+        txtActualizarDato.setVisible(false);
+        buttonActualizar.setVisible(true);
+        buttonCancelarModificacion.setVisible(false);
+        labelCargarEPS.setVisible(false);
+        txtCargarEPS.setVisible(false);
+        labelCargarNombre.setVisible(false);
+        txtCargarPrimerNombre.setVisible(false);
+        txtCargarPrimerApellido.setVisible(false);
+        labelModificarDato.setVisible(false);
+        cboSeleccionarDato.setVisible(false);
+        labelDigiteActualizacion.setVisible(false);
+        txtActualizarDato.setVisible(false);
+        cboEPS1.setVisible(false);
+        labelEpsPaciente1.setVisible(false);
+        labelEstadoCivil1.setVisible(false);
+        cboEstadoCivil1.setVisible(false);
+
+        cboTipoIdentificacion1.setVisible(false);
+        labelTipoIdentificación1.setVisible(false);
+
+        cboEPS1.setVisible(false);
+        labelEpsPaciente1.setVisible(false);
+        buttonActualizar.setVisible(false);
+        buttonCancelarModificacion.setVisible(false);
+        buttonEliminarPaciente.setVisible(false);
+    }
+    
+    
+    private void buttonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActualizarActionPerformed
+        IActualizarPaciente actualizacion = new ComandoActualizarPaciente();
+        String opcionSeleccionada = (String) cboSeleccionarDato.getSelectedItem();
+        String numeroDocumento = txtBuscarNumeroIdentificacion.getText();
+
+        try {
+
+            if ("Tipo de documento".equals(opcionSeleccionada)) {
+                String nuevoTipoID = cboTipoIdentificacion1.getSelectedItem().toString();
+                actualizacion.actualizarTipoDocumento(numeroDocumento, nuevoTipoID);
+
+                if (nuevoTipoID.equals("Seleccionar")) {
+                    JOptionPane.showMessageDialog(null, "Escoja una opción", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    actualizacion.actualizarTipoDocumento(numeroDocumento, nuevoTipoID);
+                    limpiarDespuesDeActualizar();
+                    cboTipoIdentificacion1.setSelectedIndex(0);
+                }
+            }
+
+            if ("Teléfono".equals(opcionSeleccionada)) {
+                String nuevoEmail = txtActualizarDato.getText();
+                actualizacion.actualizarTelefono(numeroDocumento, nuevoEmail);
+                limpiarDespuesDeActualizar();
+
+            }
+
+            if ("Dirección de residencia".equals(opcionSeleccionada)) {
+                String nuevaDireccion = txtActualizarDato.getText();
+                actualizacion.actualizarDireccion(numeroDocumento, nuevaDireccion);
+                limpiarDespuesDeActualizar();
+                txtActualizarDato.setText("");
+            }
+
+            if ("Estado civil".equals(opcionSeleccionada)) {
+                String nuevoEstado = cboEstadoCivil1.getSelectedItem().toString();
+
+                if (nuevoEstado.equals("Seleccionar")) {
+                    JOptionPane.showMessageDialog(null, "Escoja una opción", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    actualizacion.actualizarEstadoCivil(numeroDocumento, nuevoEstado);
+                    limpiarDespuesDeActualizar();
+                    cboEstadoCivil1.setSelectedIndex(0);
+                }
+
+            }
+
+            if ("Email".equals(opcionSeleccionada)) {
+                String nuevoEmail = txtActualizarDato.getText();
+                actualizacion.actualizarEmail(numeroDocumento, nuevoEmail);
+                limpiarDespuesDeActualizar();
+                txtActualizarDato.setText("");
+            }
+
+            if ("EPS".equals(opcionSeleccionada)) {
+                String nuevaEPS = cboEPS1.getSelectedItem().toString();
+
+                if (nuevaEPS.equals("Seleccionar")) {
+                    JOptionPane.showMessageDialog(null, "Escoja una opción", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    actualizacion.actualizarEPS(numeroDocumento, nuevaEPS);
+                    limpiarDespuesDeActualizar();
+                }
+
+            }
+
+            if ("Edad".equals(opcionSeleccionada)) {
+                String nuevaEdad = txtActualizarDato.getText();
+
+                int nuevaEdad1 = Integer.parseInt(nuevaEdad);
+
+                if (nuevaEdad1 > 0 && nuevaEdad1 < 100) {
+
+                    String edadDefinitiva = String.valueOf(nuevaEdad1);
+
+                    actualizacion.actualizarEdad(numeroDocumento, edadDefinitiva);
+                   limpiarDespuesDeActualizar();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }//GEN-LAST:event_buttonActualizarActionPerformed
 
     //Cambiar aparienia de la tabla
     DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer() {
@@ -2030,11 +2312,14 @@ public class Recepcionista extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboConsultorio;
     private javax.swing.JComboBox<String> cboDoctor;
     private javax.swing.JComboBox<String> cboEPS;
+    private javax.swing.JComboBox<String> cboEPS1;
     private javax.swing.JComboBox<String> cboEstadoCivil;
+    private javax.swing.JComboBox<String> cboEstadoCivil1;
     private javax.swing.JComboBox<String> cboGenero;
     private javax.swing.JComboBox<String> cboHoraCita;
     private javax.swing.JComboBox<String> cboSeleccionarDato;
     private javax.swing.JComboBox<String> cboTipoIdentificacion;
+    private javax.swing.JComboBox<String> cboTipoIdentificacion1;
     private javax.swing.JComboBox<String> cboTipoSangre;
     private com.toedter.calendar.JDateChooser dateChooserFechaCita;
     private com.toedter.calendar.JDateChooser dateChooserFechaNacimiento;
@@ -2077,8 +2362,10 @@ public class Recepcionista extends javax.swing.JFrame {
     private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelEncontrado;
     private javax.swing.JLabel labelEpsPaciente;
+    private javax.swing.JLabel labelEpsPaciente1;
     private javax.swing.JLabel labelEsAutomatico;
     private javax.swing.JLabel labelEstadoCivil;
+    private javax.swing.JLabel labelEstadoCivil1;
     private javax.swing.JLabel labelFechaNacimiento;
     private javax.swing.JLabel labelGeneroPaciente;
     private javax.swing.JLabel labelHoraCita;
@@ -2113,6 +2400,7 @@ public class Recepcionista extends javax.swing.JFrame {
     private javax.swing.JLabel labelTablaDeCita;
     private javax.swing.JLabel labelTelefono;
     private javax.swing.JLabel labelTipoIdentificación;
+    private javax.swing.JLabel labelTipoIdentificación1;
     private javax.swing.JLabel labelTipoSangre;
     private javax.swing.JLabel labelVerHistoriales;
     private javax.swing.JPanel panelAgendarCita;

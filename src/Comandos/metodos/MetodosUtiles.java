@@ -107,7 +107,7 @@ public class MetodosUtiles {
 
     public void cargarDatosPacientes(String numeroDocumento, String tipoDocumento, JTextField txtCargarEPS, JTextField txtCargarPrimerNombre, JTextField txtCargarPrimerApellido) throws Exception {
         ConexionBD con = new ConexionBD();
-        String sql = "SELECT EPS, primerNombre, segundoNombre FROM pacientes WHERE numeroDocumento = ? AND tipoDocumento = ?";
+        String sql = "SELECT EPS, primerNombre, primerApellido FROM pacientes WHERE numeroDocumento = ? AND tipoDocumento = ?";
 
         try (Connection conexion = con.conectar(); PreparedStatement pstmt = conexion.prepareStatement(sql)) {
 
@@ -130,7 +130,7 @@ public class MetodosUtiles {
     }
 
     public boolean verificarPaciente(String numeroDocumento, String tipoDocumento, String columnaSeleccionada1, String columnaSeleccionada2) {
-        String query = "SELECT 1 FROM barbers WHERE " + columnaSeleccionada1 + " = ? AND " + columnaSeleccionada2 + " = ?";
+        String query = "SELECT 1 FROM pacientes WHERE " + columnaSeleccionada1 + " = ? AND " + columnaSeleccionada2 + " = ?";
 
         try (Connection conexion = ConexionBD.conectar(); PreparedStatement ps = conexion.prepareStatement(query)) {
 
@@ -140,12 +140,12 @@ public class MetodosUtiles {
                 if (rs.next()) {
                     return true;
                 } else {
-                    JOptionPane.showMessageDialog(null, numeroDocumento + " no está registrado." + "Error de búsqueda" + JOptionPane.ERROR_MESSAGE);
+                    System.out.println(numeroDocumento + " no está registrado." + "Error de búsqueda" + JOptionPane.ERROR_MESSAGE);
                     return false;
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+            System.out.println("Error:" + e.getMessage());
             return false;
         }
     }
@@ -187,84 +187,36 @@ public class MetodosUtiles {
 
         try {
             Connection con = ConexionBD.conectar();
-            String sql = "SELECT * FROM doctores";
+            String sql = "SELECT * FROM medicos";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Identificacion");
             model.addColumn("Primer nombre");
             model.addColumn("Primer apellido");
             model.addColumn("Especialidad");
             model.addColumn("Años de experiencia");
 
             while (rs.next()) {
-                Object[] row = new Object[6];
-                row[0] = rs.getString("primerNombre");
-                row[1] = rs.getString("primerApellido");
-                row[2] = rs.getString("especialidad");
-                row[3] = rs.getString("AniosExperiencia");
+                Object[] row = new Object[5];
+                row[0] = rs.getString("identificacion");
+                row[1] = rs.getString("primerNombre");
+                row[2] = rs.getString("primerApellido");
+                row[3] = rs.getString("especialidad");
+                row[4] = rs.getString("añosExperiencia");
                 model.addRow(row);
-                tablaDoctores.setEnabled(false);
-            }
 
+            }
+            tablaDoctores.setModel(model);
+            tablaDoctores.setEnabled(false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al cargar doctores: " + e.getMessage());
         }
+
     }
-    
+
     public static boolean ExisteNumeroDocumento(String numeroDocumento) throws Exception {
-    if (numeroDocumento == null || numeroDocumento.trim().isEmpty()) {
-        throw new IllegalArgumentException("El número de documento no puede estar vacío.");
-    }
-
-    if (!ContieneSoloNumeros(numeroDocumento)) {
-        throw new IllegalArgumentException("El número de documento solo debe contener números.");
-    }
-
-    String sql = "SELECT 1 FROM pacientes WHERE numero_documento = ?";
-    
-    try (Connection con = ConexionBD.conectar();
-         PreparedStatement pstmt = con.prepareStatement(sql)) {
-
-        pstmt.setString(1, numeroDocumento);
-        ResultSet rs = pstmt.executeQuery();
-
-        return rs.next(); 
-    } catch (SQLException e) {
-        throw new Exception("No hay un paciente con ese número documento. " + e.getMessage());
-    }
-}
-    
-    public static String BuscarPacientePorDocumento(String numeroDocumento) throws Exception {
-   
-        if (numeroDocumento == null || numeroDocumento.trim().isEmpty()) {
-        throw new IllegalArgumentException("El número de documento no puede estar vacío.");
-    }
-
-    if (!ContieneSoloNumeros(numeroDocumento)) {
-        throw new IllegalArgumentException("El número de documento sólo debe contener números.");
-    }
-
-    String sql = "SELECT nombre FROM pacientes WHERE numero_documento = ?";
-    try (Connection con = ConexionBD.conectar();
-         PreparedStatement pstmt = con.prepareStatement(sql)) {
-
-        pstmt.setString(1, numeroDocumento);
-        ResultSet rs = pstmt.executeQuery();
-
-        if (rs.next()) {
-            return rs.getString("nombre");
-        } else {
-            return null;
-        }
-    } catch (SQLException e) {
-        throw new Exception("Error al buscar paciente: " + e.getMessage());
-    }
-}
-
-    public static void CargarNombrePaciente(String numeroDocumento, JTextField campoNombre) {
-    
-        try {
         if (numeroDocumento == null || numeroDocumento.trim().isEmpty()) {
             throw new IllegalArgumentException("El número de documento no puede estar vacío.");
         }
@@ -273,23 +225,73 @@ public class MetodosUtiles {
             throw new IllegalArgumentException("El número de documento solo debe contener números.");
         }
 
-        String nombre = BuscarPacientePorDocumento(numeroDocumento);
+        String sql = "SELECT 1 FROM pacientes WHERE numero_documento = ?";
 
-        if (nombre != null) {
-            campoNombre.setText(nombre);
-        } else {
-            JOptionPane.showMessageDialog(null, "No existe un paciente con ese número de documento.");
-            campoNombre.setText("");
+        try (Connection con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setString(1, numeroDocumento);
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next();
+        } catch (SQLException e) {
+            throw new Exception("No hay un paciente con ese número documento. " + e.getMessage());
+        }
+    }
+
+    public static String BuscarPacientePorDocumento(String numeroDocumento) throws Exception {
+
+        if (numeroDocumento == null || numeroDocumento.trim().isEmpty()) {
+            throw new IllegalArgumentException("El número de documento no puede estar vacío.");
         }
 
-    } catch (IllegalArgumentException ex) {
-        JOptionPane.showMessageDialog(null, ex.getMessage());
-        campoNombre.setText(""); // Limpiar si hay error
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(null, "Error al cargar el nombre del paciente: " + ex.getMessage());
-        campoNombre.setText(""); // Limpiar si hay error
+        if (!ContieneSoloNumeros(numeroDocumento)) {
+            throw new IllegalArgumentException("El número de documento sólo debe contener números.");
+        }
+
+        String sql = "SELECT nombre FROM pacientes WHERE numero_documento = ?";
+        try (Connection con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setString(1, numeroDocumento);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("nombre");
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new Exception("Error al buscar paciente: " + e.getMessage());
+        }
     }
-}
+
+    public static void CargarNombrePaciente(String numeroDocumento, JTextField campoNombre) {
+
+        try {
+            if (numeroDocumento == null || numeroDocumento.trim().isEmpty()) {
+                throw new IllegalArgumentException("El número de documento no puede estar vacío.");
+            }
+
+            if (!ContieneSoloNumeros(numeroDocumento)) {
+                throw new IllegalArgumentException("El número de documento solo debe contener números.");
+            }
+
+            String nombre = BuscarPacientePorDocumento(numeroDocumento);
+
+            if (nombre != null) {
+                campoNombre.setText(nombre);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe un paciente con ese número de documento.");
+                campoNombre.setText("");
+            }
+
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            campoNombre.setText(""); // Limpiar si hay error
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al cargar el nombre del paciente: " + ex.getMessage());
+            campoNombre.setText(""); // Limpiar si hay error
+        }
+    }
 
 
 ////////////////////////77

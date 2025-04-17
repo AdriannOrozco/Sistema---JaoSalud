@@ -1,12 +1,16 @@
 package View;
 
+import Comandos.metodos.MetodosUtiles;
 import java.awt.Toolkit;
 
 public class infoMedicos extends javax.swing.JFrame {
 
+    MetodosUtiles metodo = new MetodosUtiles();
+    
     public infoMedicos() {
         initComponents();
         ubicarFrame();
+        metodo.MostrarMedicos(tablaDoctores);
         
     }
     

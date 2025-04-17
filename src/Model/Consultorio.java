@@ -1,6 +1,6 @@
 package Model;
 public class Consultorio { 
-    private int numeroConsultorio;
+    private int idConsultorio;
     private String consultorio;
     
     

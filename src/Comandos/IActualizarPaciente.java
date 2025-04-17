@@ -1,15 +1,19 @@
 package Comandos;
 
 public interface IActualizarPaciente {
+
+    void actualizarTipoDocumento(String numeroDocumento, String nuevoTipoIdentificacion) throws Exception;
     
-   void ActualizarPaciente(  
-     String tipoDocumento,
-     String telefono,
-     String direccionResidencia,
-     String estadoCivil,
-     String email,
-     String EPS,
-     String edad,
-      String numeroDocumento
-    ) throws Exception;
+    void actualizarTelefono(String numeroDocumento, String nuevoTelefono) throws Exception;
+
+    void actualizarEmail(String numeroDocumento, String nuevoEmail) throws Exception;
+
+    void actualizarDireccion(String numeroDocumento, String nuevaDireccion) throws Exception;
+
+    void actualizarEstadoCivil(String numeroDocumento, String nuevoEstadoCivil) throws Exception;
+
+    void actualizarEdad(String numeroDocumento, String nuevaEdad) throws Exception;
+    
+    void actualizarEPS(String numeroDocumento, String nuevaEPS) throws Exception;
+    
 }

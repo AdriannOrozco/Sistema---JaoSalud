@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Cita{
     
-    private Consultorio consultorio; //Solicitado
-    private Medico medicoAsignado; //Solicitado
+    private int idConsultorio;
+    private String identificacion;
     private String motivo; //Solicitado
     private Date fechaCita;
     private String hora; //3
@@ -21,9 +21,9 @@ public class Cita{
 
    
     //Contructor con parámetros
-    public Cita(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, String hora, int idCita, Date fechaRegistro, String nombrePaciente,String numeroDocumento,boolean estado) {
-        this.consultorio = consultorio;
-        this.medicoAsignado = medicoAsignado;
+    public Cita(int consultorio, String identificacion, String motivo, Date fechaCita, String hora, int idCita, Date fechaRegistro, String nombrePaciente,String numeroDocumento,boolean estado) {
+        this.idConsultorio = idConsultorio;
+        this.identificacion = identificacion;
         this.motivo = motivo;
         this.fechaCita = fechaCita;
         this.hora = hora;
@@ -43,20 +43,20 @@ public class Cita{
     }
 
     //Getters y Setters
-    public Consultorio getConsultorio() {
-        return consultorio;
+    public int getIdConsultorio() {
+        return idConsultorio;
     }
 
-    public void setConsultorio(Consultorio consultorio) {
-        this.consultorio = consultorio;
+    public void setIdConsultorio(int idConsultorio) {
+        this.idConsultorio = idConsultorio;
     }
 
-    public Medico getMedicoAsignado() {
-        return medicoAsignado;
+    public String getIdentificacion() {
+        return identificacion;
     }
 
-    public void setMedicoAsignado(Medico medicoAsignado) {
-        this.medicoAsignado = medicoAsignado;
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
 
     public String getMotivo() {

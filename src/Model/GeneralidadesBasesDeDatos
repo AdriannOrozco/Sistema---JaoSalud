@@ -41,3 +41,48 @@ fechaNacimiento DATE NOT NULL,
 fechaRegistro DATE NOT NULL,
 edad VARCHAR(4) NOT NULL
 );
+
+
+------ 5. Creación de la tercera tabla -----
+
+Nombre: consultorios
+
+CREATE TABLE consultorios (
+ idConsultorio INT AUTO_INCREMENT PRIMARY KEY,
+ consultorio VARCHAR(25) NOT NULL);
+
+------ 6. Creación de la cuarta tabla ------
+
+Nombre: medicos
+
+CREATE TABLE medicos (
+primerNombre VARCHAR(30) NOT NULL,
+segundoNombre VARCHAR(30),
+primerApellido VARCHAR(30) NOT NULL,
+segundoApellido VARCHAR(30) NOT NULL,
+identificacion VARCHAR(15) NOT NULL UNIQUE PRIMARY KEY,
+especialidad VARCHAR(20) NOT NULL,
+salario DOUBLE NOT NULL,
+añosExperiencia INT NOT NULL
+);
+
+------ 7. Creación de la quinta tabla ------
+
+Nombre: citas
+
+CREATE TABLE citas (
+    idConsultorio INT NOT NULL,
+    identificacion VARCHAR(15) NOT NULL,
+    motivo VARCHAR(200) NOT NULL,
+    fechaCita DATE NOT NULL,
+    hora VARCHAR(12) NOT NULL,
+    idCita INT NOT NULL UNIQUE PRIMARY KEY,
+    fechaRegistro DATE NOT NULL,
+    nombrePaciente VARCHAR(100) NOT NULL,
+    numeroDocumento VARCHAR(15) NOT NULL,
+    estado BOOLEAN DEFAULT true,
+    FOREIGN KEY (idConsultorio) REFERENCES consultorios(idConsultorio),
+    FOREIGN KEY (identificacion) REFERENCES medicos(identificacion)
+);
+
+

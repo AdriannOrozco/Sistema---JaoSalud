@@ -19,7 +19,7 @@ public class ComandoObtenerCita implements IObtenerCita{
     public List<Cita> getCita(){
         
         List<Cita> listaCitas = new ArrayList<>();
-        String sql = "SELECT consultorio, medicoAsignado, motivo, fechaCita, hora, idCita, fechaRegistro, paciente, numeroDocumento ,estado FROM citas";
+        String sql = "SELECT idConsultorio, identificacion, motivo, fechaCita, hora, idCita, fechaRegistro, paciente, numeroDocumento ,estado FROM citas";
 
         try (Connection con = ConexionBD.conectar();
              PreparedStatement pstmt = con.prepareStatement(sql);
@@ -27,12 +27,10 @@ public class ComandoObtenerCita implements IObtenerCita{
 
             while (rs.next()) {
                 
-            String nombreConsultorio = rs.getString("consultorio");
-            Consultorio consultorio = new Consultorio(nombreConsultorio);
+            int idConsultorio = rs.getInt("idConsultorio");
             
-            String nombreMedicoAsignado = rs.getString("medicoAsignado");
-            Medico medicoAsignado = new Medico(nombreMedicoAsignado);
-            
+            String identificacion  = rs.getString("identificacion");
+                        
             String motivo = rs.getString("motivo");
             Date fechaCita = rs.getDate("fechaCita");
             String hora = rs.getString("hora");
@@ -49,7 +47,7 @@ public class ComandoObtenerCita implements IObtenerCita{
              
 
                 //Llenar paramétros del constructor.
-                Cita cita = new Cita(consultorio, medicoAsignado, motivo, fechaCita, hora, idCita, fechaRegistro, nombrePaciente, numeroDocumento, estado);
+                Cita cita = new Cita(idConsultorio, identificacion, motivo, fechaCita, hora, idCita, fechaRegistro, nombrePaciente, numeroDocumento, estado);
                 listaCitas.add(cita);
             }
 
