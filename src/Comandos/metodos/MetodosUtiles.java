@@ -5,9 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -167,7 +169,7 @@ public class MetodosUtiles {
     }
 
     public void CargarDoctores(JComboBox<String> cboDoctor, String value, String value2) {
-        String sql = "SELECT * FROM doctores";
+        String sql = "SELECT * FROM medicos";
 
         ConexionBD con = new ConexionBD();
         try (Connection connection = con.conectar(); PreparedStatement pst = connection.prepareStatement(sql)) {
@@ -200,7 +202,7 @@ public class MetodosUtiles {
 
             while (rs.next()) {
                 Object[] row = new Object[5];
-                row[0] = rs.getString("identificacion");
+                row[0] = rs.getString("identificacionDoctor");
                 row[1] = rs.getString("primerNombre");
                 row[2] = rs.getString("primerApellido");
                 row[3] = rs.getString("especialidad");
@@ -225,7 +227,7 @@ public class MetodosUtiles {
             throw new IllegalArgumentException("El número de documento solo debe contener números.");
         }
 
-        String sql = "SELECT 1 FROM pacientes WHERE numero_documento = ?";
+        String sql = "SELECT 1 FROM pacientes WHERE numeroDocumento = ?";
 
         try (Connection con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
 
@@ -238,6 +240,44 @@ public class MetodosUtiles {
         }
     }
 
+    public static String BuscarIdentificacionPorNombreDoctor(String nombre) {
+
+        String sql = "SELECT identificacionDoctor FROM medicos WHERE CONCAT(primerNombre, ' ', primerApellido) = ?";
+
+        try (Connection con = ConexionBD.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String identificacion = rs.getString("identificacionDoctor");
+                return identificacion;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar médico: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public static int BuscarIdConsultorioPorConsultorio(String consultorio) {
+
+        String sql = "SELECT idConsultorio FROM consultorios WHERE consultorio = ?";
+
+        try (Connection con = ConexionBD.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, consultorio);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int idConsultorio = rs.getInt("idConsultorio");
+                return idConsultorio;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar consultorio: " + e.getMessage());
+        }
+        return 0;
+    }
+
     public static String BuscarPacientePorDocumento(String numeroDocumento) throws Exception {
 
         if (numeroDocumento == null || numeroDocumento.trim().isEmpty()) {
@@ -248,14 +288,17 @@ public class MetodosUtiles {
             throw new IllegalArgumentException("El número de documento sólo debe contener números.");
         }
 
-        String sql = "SELECT nombre FROM pacientes WHERE numero_documento = ?";
+        String sql = "SELECT primerNombre, primerApellido, segundoApellido FROM pacientes WHERE numeroDocumento = ?";
         try (Connection con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
 
             pstmt.setString(1, numeroDocumento);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getString("nombre");
+                String primerNombre = rs.getString("primerNombre");
+                String primerApellido = rs.getString("primerApellido");
+                String segundoApellido = rs.getString("segundoApellido");
+                return primerNombre + " " + primerApellido + " " + " " + segundoApellido;
             } else {
                 return null;
             }
@@ -293,6 +336,213 @@ public class MetodosUtiles {
         }
     }
 
+    public void MostrarConsultorios(JTable tablaConsultorios) {
+        try {
+            Connection con = ConexionBD.conectar();
+            String sql = "SELECT * FROM consultorios";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
 
-////////////////////////77
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("N° Consultorio ");
+            model.addColumn("Consultorio");
+
+            while (rs.next()) {
+                Object[] row = new Object[5];
+                row[0] = rs.getString("idConsultorio");
+                row[1] = rs.getString("consultorio");
+                model.addRow(row);
+
+            }
+            tablaConsultorios.setModel(model);
+            tablaConsultorios.setEnabled(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar doctores: " + e.getMessage());
+        }
+    }
+
+    public void MostrarCitas(JTable tablaCitas) {
+        try {
+            Connection con = ConexionBD.conectar();
+            String sql = "SELECT idCita, motivo ,idConsultorio, identificacionDoctor, fechaCita, hora, nombrePaciente, numeroDocumento FROM citas WHERE estado = true";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("N° Cita");
+            model.addColumn("Consultorio");
+            model.addColumn("Doctor/a");
+            model.addColumn("Fecha");
+            model.addColumn("Hora");
+            model.addColumn("Paciente");
+            //model.addColumn("DNI paciente");
+
+            while (rs.next()) {
+                Object[] row = new Object[8];
+                row[0] = rs.getString("idCita");
+                row[1] = rs.getString("idConsultorio");
+                row[2] = rs.getString("identificacionDoctor");
+                row[3] = rs.getString("fechaCita");
+                row[4] = rs.getString("hora");
+                row[5] = rs.getString("nombrePaciente");
+                //row [6] = rs.getString("numeroDocumento");
+                model.addRow(row);
+
+            }
+            tablaCitas.setModel(model);
+            tablaCitas.setEnabled(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar doctores: " + e.getMessage());
+        }
+    }
+
+    public void filtrarConsultoriosPorDoctor(String nombreDoctor, String identificacionDoctor, JComboBox cboConsultorio) {
+        String sql = "SELECT especialidad FROM medicos WHERE CONCAT(primerNombre, ' ', primerApellido) = ? AND identificacionDoctor = ?";
+
+        try (Connection conn = ConexionBD.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, nombreDoctor);
+            pstmt.setString(2, identificacionDoctor);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String especialidad = rs.getString("especialidad");
+                cargarConsultoriosPorEspecialidad(especialidad, cboConsultorio);
+            } else {
+                cboConsultorio.removeAllItems();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
+
+    public void cargarNombreYEspecialidadDoctores(String identificacionDoctor, JTextField txtNombre, JTextField txtEspecialidad) {
+        String sql = "SELECT CONCAT(primerNombre, ' ', primerApellido) AS nombre, especialidad FROM medicos WHERE identificacionDoctor = ?";
+
+        if (identificacionDoctor == null) {
+            throw new IllegalArgumentException("El número de documento no puede estar vacío.");
+        }
+        if (!ContieneSoloNumeros(identificacionDoctor)) {
+            throw new IllegalArgumentException("El número de documento sólo contiene números..");
+        }
+
+        try (Connection conn = ConexionBD.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, identificacionDoctor);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String nombre = rs.getString("nombre");
+                String especialidad = rs.getString("especialidad");
+
+                txtNombre.setText(nombre);
+                txtEspecialidad.setText(especialidad);
+            } else {
+                throw new IllegalArgumentException("No existe un doctor con esa identificación..");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
+
+    public void cargarMotivoPorID(String idCitaStr, JTextArea area_motivo) {
+        String sql = "SELECT motivo FROM citas WHERE idCita = ?";
+
+        if (idCitaStr == null) {
+        throw new IllegalArgumentException("El número de la cita no puede estar vacío");
+        }
+        if (!ContieneSoloNumeros(idCitaStr)) {
+            throw new IllegalArgumentException("El número de la cita sólo contiene números.");
+        }
+
+        try (Connection conn = ConexionBD.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            int idCita;
+            idCita = Integer.parseInt(idCitaStr);
+            pstmt.setInt(1, idCita);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String motivo = rs.getString("motivo");
+                area_motivo.setText(motivo);
+            } else {
+                throw new IllegalArgumentException("No existe una cita con esa identificación..");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
+
+    public void cargarConsultoriosPorEspecialidad(String especialidad, JComboBox cboConsultorio) {
+        String sql = "SELECT consultorio FROM consultorios WHERE especialidad = ?";
+
+        try (Connection conn = ConexionBD.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            cboConsultorio.removeAllItems();
+            pstmt.setString(1, especialidad);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String nombreConsultorio = rs.getString("consultorio");
+                cboConsultorio.addItem(nombreConsultorio);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar consultorios: " + e.getMessage());
+        }
+    }
+
+    public static boolean VerificarDisponibilidadDoctor(String identificacion, Date fechaCita, String hora) {
+        boolean ocupado = false;
+
+        String sql = "SELECT COUNT(*) FROM citas WHERE identificacionDoctor = ? AND fechaCita = ? AND hora = ?";
+
+        try (Connection con = ConexionBD.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, identificacion);
+            ps.setDate(2, new java.sql.Date(fechaCita.getTime()));
+            ps.setString(3, hora);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                ocupado = count > 0;
+            }
+            rs.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al verificar disponibilidad del doctor: " + e.getMessage());
+        }
+
+        return ocupado;
+    }
+
+    public static boolean VerificarDisponibilidadConsultorio(int idConsultorio, Date fechaCita, String hora) {
+        boolean ocupado = false;
+
+        String sql = "SELECT COUNT(*) FROM citas WHERE idConsultorio = ? AND fechaCita = ? AND hora = ?";
+
+        try (Connection con = ConexionBD.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idConsultorio);
+            ps.setDate(2, new java.sql.Date(fechaCita.getTime()));
+            ps.setString(3, hora);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                ocupado = count > 0;
+            }
+
+            rs.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al verificar disponibilidad del consultorio: " + e.getMessage());
+        }
+
+        return ocupado;
+    }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

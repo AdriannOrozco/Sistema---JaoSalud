@@ -60,7 +60,7 @@ primerNombre VARCHAR(30) NOT NULL,
 segundoNombre VARCHAR(30),
 primerApellido VARCHAR(30) NOT NULL,
 segundoApellido VARCHAR(30) NOT NULL,
-identificacion VARCHAR(15) NOT NULL UNIQUE PRIMARY KEY,
+identificacionDoctor VARCHAR(15) NOT NULL UNIQUE PRIMARY KEY,
 especialidad VARCHAR(20) NOT NULL,
 salario DOUBLE NOT NULL,
 añosExperiencia INT NOT NULL
@@ -72,7 +72,7 @@ Nombre: citas
 
 CREATE TABLE citas (
     idConsultorio INT NOT NULL,
-    identificacion VARCHAR(15) NOT NULL,
+    identificacionDoctor VARCHAR(15) NOT NULL,
     motivo VARCHAR(200) NOT NULL,
     fechaCita DATE NOT NULL,
     hora VARCHAR(12) NOT NULL,
