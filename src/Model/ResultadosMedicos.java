@@ -1,7 +1,7 @@
 package Model;
 import java.util.ArrayList;
 
-public class HistorialMedico {
+public class ResultadosMedicos {
     
     private Paciente paciente;
     private ArrayList<Cita> citas;
@@ -10,7 +10,7 @@ public class HistorialMedico {
     private ArrayList<String> resultados;
     private ArrayList<Medicamentos> medicamento;
 
-    public HistorialMedico(Paciente paciente, ArrayList<Cita> citas, boolean alergia, String observaciones, ArrayList<String> resultados, ArrayList<Medicamentos> medicamento) {
+    public ResultadosMedicos(Paciente paciente, ArrayList<Cita> citas, boolean alergia, String observaciones, ArrayList<String> resultados, ArrayList<Medicamentos> medicamento) {
         this.paciente = paciente;
         this.citas = citas;
         this.alergia = alergia;

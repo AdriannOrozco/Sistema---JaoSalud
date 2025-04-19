@@ -83,7 +83,8 @@ if (!ContieneSoloNumeros(edad)) {
         }
 
        String sql = "INSERT INTO pacientes (primerNombre, segundoNombre, primerApellido, segundoApellido, tipoDocumento, numeroDocumento, telefono, direccionResidencia, estadoCivil, genero, email, EPS, tipoSangre, fechaNacimiento, fechaRegistro, edad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        try (Connection con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+        
+       try (Connection con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
 
             pstmt.setString(1, primerNombre);
             pstmt.setString(2, segundoNombre);

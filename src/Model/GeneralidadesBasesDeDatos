@@ -85,4 +85,16 @@ CREATE TABLE citas (
     FOREIGN KEY (identificacion) REFERENCES medicos(identificacion)
 );
 
+------ 8. Creación de la sexta tabla ------
+
+Nombre: medicamentos.
+
+CREATE TABLE medicamentos (
+idMedicamento INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(30) NOT NULL UNIQUE, 
+precio DOUBLE NOT NULL,
+dosisDiarias INT NOT NULL,
+disponible BOOLEAN NOT NULL
+);
+
 
