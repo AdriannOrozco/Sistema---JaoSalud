@@ -18,6 +18,8 @@ public class Administrador extends javax.swing.JFrame {
     public Administrador() {
         initComponents();
         this.setLocationRelativeTo(null);
+        txtEspecialidad.setVisible(false);
+        etiEspecialidad.setVisible(false);
 
     }
 
@@ -41,21 +43,23 @@ public class Administrador extends javax.swing.JFrame {
         jPanelContratar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        TextFieldPrimerNombre = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextFieldPrimerApellido = new javax.swing.JTextField();
+        txtPrimerApellido = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextFieldSegundoApellido = new javax.swing.JTextField();
+        txtSegundoApellido = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         RolComboBox = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        jTextFieldSegundoNombre = new javax.swing.JTextField();
+        txtSegundoNombre = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextFieldNumeroCedula = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jTextFieldEmail = new javax.swing.JTextField();
+        txtNumeroCedula = new javax.swing.JTextField();
+        btnContratar = new javax.swing.JButton();
+        txtEmail = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        etiEspecialidad = new javax.swing.JLabel();
+        txtEspecialidad = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
         jPanelMedicamentos = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -65,6 +69,14 @@ public class Administrador extends javax.swing.JFrame {
         txtCantidadMedicamentos = new javax.swing.JTextField();
         txtDosisMedicamento = new javax.swing.JTextField();
         btnAgregarMedicamento = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        jPanelConsultorio = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        txtNombreConsultorio = new javax.swing.JTextField();
+        cboEspecialidadConsultorio = new javax.swing.JComboBox<>();
+        btnAgregarConsultorio = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -75,6 +87,8 @@ public class Administrador extends javax.swing.JFrame {
         etiDespedirEmpleado = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         etiAgregarMedicamento = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        etiAgregarConsultorio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,6 +159,12 @@ public class Administrador extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 51, 102));
         jLabel5.setText("Nombre");
 
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 102));
         jLabel8.setText("Primer Apellido");
@@ -160,15 +180,20 @@ public class Administrador extends javax.swing.JFrame {
         RolComboBox.setBackground(new java.awt.Color(255, 255, 255));
         RolComboBox.setFont(new java.awt.Font("JetBrains Mono", 1, 18)); // NOI18N
         RolComboBox.setForeground(new java.awt.Color(0, 51, 102));
-        RolComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MEDICO", "RECEPCIONISTA", " " }));
+        RolComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Medico", "Recepcionista", " ", " " }));
+        RolComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RolComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 51, 102));
         jLabel11.setText("Segundo Nombre");
 
-        jTextFieldSegundoNombre.addActionListener(new java.awt.event.ActionListener() {
+        txtSegundoNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldSegundoNombreActionPerformed(evt);
+                txtSegundoNombreActionPerformed(evt);
             }
         });
 
@@ -176,14 +201,19 @@ public class Administrador extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(0, 51, 102));
         jLabel12.setText("N.Cedula");
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 102));
-        jButton1.setFont(new java.awt.Font("JetBrains Mono", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("CONTRATAR");
-
-        jTextFieldEmail.addActionListener(new java.awt.event.ActionListener() {
+        btnContratar.setBackground(new java.awt.Color(0, 51, 102));
+        btnContratar.setFont(new java.awt.Font("JetBrains Mono", 1, 18)); // NOI18N
+        btnContratar.setForeground(new java.awt.Color(255, 255, 255));
+        btnContratar.setText("CONTRATAR");
+        btnContratar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEmailActionPerformed(evt);
+                btnContratarActionPerformed(evt);
+            }
+        });
+
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
             }
         });
 
@@ -191,7 +221,17 @@ public class Administrador extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(0, 51, 102));
         jLabel13.setText("Email");
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/ContratarEmpleado.png"))); // NOI18N
+        etiEspecialidad.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
+        etiEspecialidad.setForeground(new java.awt.Color(0, 51, 102));
+        etiEspecialidad.setText("Especialidad");
+
+        txtEspecialidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEspecialidadActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/contratarPersonal.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelContratarLayout = new javax.swing.GroupLayout(jPanelContratar);
         jPanelContratar.setLayout(jPanelContratarLayout);
@@ -205,18 +245,18 @@ public class Administrador extends javax.swing.JFrame {
                             .addGroup(jPanelContratarLayout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldSegundoNombre)
+                                .addComponent(txtSegundoNombre)
                                 .addGap(51, 51, 51))
                             .addGroup(jPanelContratarLayout.createSequentialGroup()
                                 .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelContratarLayout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextFieldSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanelContratarLayout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelContratarLayout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelContratarLayout.createSequentialGroup()
@@ -227,70 +267,72 @@ public class Administrador extends javax.swing.JFrame {
                             .addGroup(jPanelContratarLayout.createSequentialGroup()
                                 .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelContratarLayout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanelContratarLayout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNumeroCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(130, Short.MAX_VALUE))))
+                                        .addComponent(txtNumeroCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelContratarLayout.createSequentialGroup()
+                                        .addGap(24, 24, 24)
+                                        .addComponent(etiEspecialidad)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelContratarLayout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(52, Short.MAX_VALUE))))
                     .addGroup(jPanelContratarLayout.createSequentialGroup()
-                        .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelContratarLayout.createSequentialGroup()
-                                .addGap(160, 160, 160)
-                                .addComponent(jLabel14)
-                                .addGap(58, 58, 58)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanelContratarLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(TextFieldPrimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                        .addGap(142, 142, 142)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel22)
+                        .addGap(102, 102, 102))
+                    .addGroup(jPanelContratarLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70))))
             .addGroup(jPanelContratarLayout.createSequentialGroup()
                 .addGap(328, 328, 328)
-                .addComponent(jButton1))
+                .addComponent(btnContratar))
         );
         jPanelContratarLayout.setVerticalGroup(
             jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelContratarLayout.createSequentialGroup()
-                .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelContratarLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelContratarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addGap(22, 22, 22)))
+                .addGap(21, 21, 21)
+                .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel22))
+                .addGap(38, 38, 38)
                 .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addGroup(jPanelContratarLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TextFieldPrimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13)
-                            .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
-                        .addComponent(jTextFieldSegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtSegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel10)
                         .addComponent(RolComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextFieldNumeroCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNumeroCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextFieldSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                    .addComponent(txtSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiEspecialidad)
+                    .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(btnContratar)
                 .addGap(38, 38, 38))
         );
 
@@ -324,60 +366,140 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/medicamento.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelMedicamentosLayout = new javax.swing.GroupLayout(jPanelMedicamentos);
         jPanelMedicamentos.setLayout(jPanelMedicamentosLayout);
         jPanelMedicamentosLayout.setHorizontalGroup(
             jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
-                .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel16)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNombreMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
-                            .addGap(324, 324, 324)
-                            .addComponent(jLabel15))
-                        .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
-                            .addGap(78, 78, 78)
-                            .addComponent(jLabel17)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtCantidadMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
-                            .addGap(78, 78, 78)
-                            .addComponent(jLabel18)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtDosisMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(306, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMedicamentosLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnAgregarMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(256, 256, 256))
+            .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
+                .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel16)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtNombreMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
+                            .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
+                                    .addGap(78, 78, 78)
+                                    .addComponent(jLabel17)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtCantidadMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
+                                    .addGap(78, 78, 78)
+                                    .addComponent(jLabel18)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtDosisMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(7, 7, 7)))
+                    .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel23)))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
         jPanelMedicamentosLayout.setVerticalGroup(
             jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel15)
-                .addGap(23, 23, 23)
+                .addGap(40, 40, 40)
                 .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombreMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel23))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(txtCantidadMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCantidadMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(txtDosisMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDosisMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addComponent(btnAgregarMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         TabbedPane.addTab("MEDICAMENTOS", jPanelMedicamentos);
+
+        jPanelConsultorio.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel19.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel19.setText("AÑADIR CONSULTORIO");
+
+        jLabel20.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel20.setText("Especialidad");
+
+        jLabel21.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel21.setText("Nombre");
+
+        cboEspecialidadConsultorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "General", "Odontología", "Oftalmología", "Pediatría", "Cardiología", "Neurología" }));
+        cboEspecialidadConsultorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEspecialidadConsultorioActionPerformed(evt);
+            }
+        });
+
+        btnAgregarConsultorio.setBackground(new java.awt.Color(0, 51, 102));
+        btnAgregarConsultorio.setFont(new java.awt.Font("JetBrains Mono", 1, 14)); // NOI18N
+        btnAgregarConsultorio.setText("AGREGAR CONSULTORIO");
+
+        javax.swing.GroupLayout jPanelConsultorioLayout = new javax.swing.GroupLayout(jPanelConsultorio);
+        jPanelConsultorio.setLayout(jPanelConsultorioLayout);
+        jPanelConsultorioLayout.setHorizontalGroup(
+            jPanelConsultorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelConsultorioLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addGroup(jPanelConsultorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelConsultorioLayout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNombreConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelConsultorioLayout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboEspecialidadConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(414, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelConsultorioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelConsultorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelConsultorioLayout.createSequentialGroup()
+                        .addComponent(btnAgregarConsultorio)
+                        .addGap(277, 277, 277))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelConsultorioLayout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(247, 247, 247))))
+        );
+        jPanelConsultorioLayout.setVerticalGroup(
+            jPanelConsultorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelConsultorioLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel19)
+                .addGap(28, 28, 28)
+                .addGroup(jPanelConsultorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(cboEspecialidadConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(jPanelConsultorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(txtNombreConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(btnAgregarConsultorio)
+                .addContainerGap(148, Short.MAX_VALUE))
+        );
+
+        TabbedPane.addTab("CONSULTORIOS", jPanelConsultorio);
 
         jPanel3.setBackground(new java.awt.Color(0, 51, 102));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
@@ -494,6 +616,40 @@ public class Administrador extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel8.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        jPanel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel8MouseClicked(evt);
+            }
+        });
+
+        etiAgregarConsultorio.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
+        etiAgregarConsultorio.setForeground(new java.awt.Color(255, 255, 255));
+        etiAgregarConsultorio.setText("AÑADIR CONSULTORIO");
+        etiAgregarConsultorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                etiAgregarConsultorioMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(etiAgregarConsultorio)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(etiAgregarConsultorio)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -505,9 +661,6 @@ public class Administrador extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                             .addGap(18, 18, 18)
@@ -515,10 +668,12 @@ public class Administrador extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addContainerGap()
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -529,13 +684,15 @@ public class Administrador extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(29, 29, 29)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(353, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(296, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -605,13 +762,13 @@ public class Administrador extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jPanel7MouseClicked
 
-    private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEmailActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void jTextFieldSegundoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSegundoNombreActionPerformed
+    private void txtSegundoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSegundoNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSegundoNombreActionPerformed
+    }//GEN-LAST:event_txtSegundoNombreActionPerformed
 
     private void jPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelMouseClicked
         // TODO add your handling code here:
@@ -627,7 +784,7 @@ public class Administrador extends javax.swing.JFrame {
 
     private void etiDespedirEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etiDespedirEmpleadoMouseClicked
         // TODO add your handling code here:
-         TabbedPane.removeAll();
+        TabbedPane.removeAll();
         TabbedPane.addTab("DESPEDIR", jPanelDespedir);
         TabbedPane.setVisible(true);
 
@@ -647,10 +804,84 @@ public class Administrador extends javax.swing.JFrame {
 
     private void btnAgregarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedicamentoActionPerformed
         // TODO add your handling code here:
-        if(txtNombreMedicamento.getText().isEmpty() || txtCantidadMedicamentos.getText().isEmpty() || txtDosisMedicamento.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "DEBE LLENAR TODOS LOS CAMPOS PARA AGREGAR EL MEDICAMENTO" +"Advertencia"+JOptionPane.WARNING_MESSAGE);
+        if (txtNombreMedicamento.getText().isEmpty() || txtCantidadMedicamentos.getText().isEmpty() || txtDosisMedicamento.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "DEBE LLENAR TODOS LOS CAMPOS PARA AGREGAR EL MEDICAMENTO" + "Advertencia" + JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnAgregarMedicamentoActionPerformed
+
+    private void etiAgregarConsultorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etiAgregarConsultorioMouseClicked
+        // TODO add your handling code here:
+        TabbedPane.removeAll();
+        TabbedPane.addTab("CONSULTORIOS", jPanelConsultorio);
+        TabbedPane.setVisible(true);
+
+    }//GEN-LAST:event_etiAgregarConsultorioMouseClicked
+
+    private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel8MouseClicked
+
+    private void txtEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEspecialidadActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtEspecialidadActionPerformed
+
+    private void RolComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RolComboBoxActionPerformed
+        // TODO add your handling code here:
+        String seleccionado = (String) RolComboBox.getSelectedItem();
+
+        if ("Medico".equalsIgnoreCase(seleccionado)) {
+            etiEspecialidad.setVisible(true);
+            txtEspecialidad.setVisible(true);
+            txtEspecialidad.setToolTipText("Ingrese la especialidad del médico");
+        } else {
+            etiEspecialidad.setVisible(false);
+            txtEspecialidad.setVisible(false);
+            txtEspecialidad.setToolTipText(null);
+        }
+    }//GEN-LAST:event_RolComboBoxActionPerformed
+
+    private void cboEspecialidadConsultorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEspecialidadConsultorioActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_cboEspecialidadConsultorioActionPerformed
+
+    private void btnContratarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratarActionPerformed
+       
+        String nombre = txtNombre.getText().trim();
+        String segundoNombre = txtSegundoNombre.getText().trim();
+        String primerApellido = txtPrimerApellido.getText().trim();
+        String segundoApellido = txtSegundoApellido.getText().trim();
+        String email = txtEmail.getText().trim();
+        String numeroCedula = txtNumeroCedula.getText().trim();
+        String especialidad = txtEspecialidad.getText().trim();
+        String rol = RolComboBox.getSelectedItem().toString();
+
+        // Validaciones
+        if (nombre.isEmpty() || segundoNombre.isEmpty() || primerApellido.isEmpty()
+                || segundoApellido.isEmpty() || email.isEmpty() || numeroCedula.isEmpty()
+                || rol.equals("Seleccionar") || (rol.equals("Medico") && especialidad.isEmpty())) {
+
+            JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos obligatorios.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+         if (nombre.length() < 3 || segundoNombre.length() < 3 || 
+        primerApellido.length() < 3 || segundoApellido.length() < 3 || numeroCedula.length()< 3 || email.length()<3) {
+        
+        JOptionPane.showMessageDialog(this, "Los nombres y apellidos deben tener mínimo 3 caracteres.", "Validación de texto", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+
+      
+        JOptionPane.showMessageDialog(this, "Registro Exitoso");
+
+    }//GEN-LAST:event_btnContratarActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -690,23 +921,30 @@ public class Administrador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> RolComboBox;
     private javax.swing.JTabbedPane TabbedPane;
-    private javax.swing.JTextField TextFieldPrimerNombre;
+    private javax.swing.JButton btnAgregarConsultorio;
     private javax.swing.JButton btnAgregarMedicamento;
+    private javax.swing.JButton btnContratar;
+    private javax.swing.JComboBox<String> cboEspecialidadConsultorio;
+    private javax.swing.JLabel etiAgregarConsultorio;
     private javax.swing.JLabel etiAgregarMedicamento;
     private javax.swing.JLabel etiContratarPersonal;
     private javax.swing.JLabel etiDespedirEmpleado;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel etiEspecialidad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -721,17 +959,22 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanelConsultorio;
     private javax.swing.JPanel jPanelContratar;
     private javax.swing.JPanel jPanelDespedir;
     private javax.swing.JPanel jPanelMedicamentos;
-    private javax.swing.JTextField jTextFieldEmail;
-    private javax.swing.JTextField jTextFieldNumeroCedula;
-    private javax.swing.JTextField jTextFieldPrimerApellido;
-    private javax.swing.JTextField jTextFieldSegundoApellido;
-    private javax.swing.JTextField jTextFieldSegundoNombre;
     private javax.swing.JTextField txtCantidadMedicamentos;
     private javax.swing.JTextField txtDosisMedicamento;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEspecialidad;
     private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreConsultorio;
     private javax.swing.JTextField txtNombreMedicamento;
+    private javax.swing.JTextField txtNumeroCedula;
+    private javax.swing.JTextField txtPrimerApellido;
+    private javax.swing.JTextField txtSegundoApellido;
+    private javax.swing.JTextField txtSegundoNombre;
     // End of variables declaration//GEN-END:variables
 }
