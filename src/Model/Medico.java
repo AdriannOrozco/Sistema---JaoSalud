@@ -7,24 +7,21 @@ public class Medico extends Usuarios {
     private String segundoApellido;
     private String identificacionDoctor;
     private String especialidad;
-    private double salario;
     private int añosExperiencia;
    
     public Medico(){
         
     }
     
-    public Medico(String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
-         String identificacionDoctor, String especialidad, double salario, int añosExperiencia) {
-   
-        super(usuario, contraseña);
+    public Medico(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
+         String identificacionDoctor, String especialidad, int añosExperiencia) {
+
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
         this.identificacionDoctor = identificacionDoctor;
         this.especialidad = especialidad;
-        this.salario = salario;
         this.añosExperiencia = añosExperiencia;
     }
 
@@ -47,15 +44,7 @@ public class Medico extends Usuarios {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        this.salario = salario;
-    }
-
+    
     public int getAñosExperiencia() {
         return añosExperiencia;
     }
