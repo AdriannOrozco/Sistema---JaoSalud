@@ -36,10 +36,6 @@ public class Administrador extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         TabbedPane = new javax.swing.JTabbedPane();
-        jPanelDespedir = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
         jPanelContratar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -60,6 +56,12 @@ public class Administrador extends javax.swing.JFrame {
         etiEspecialidad = new javax.swing.JLabel();
         txtEspecialidad = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
+        jPanelDespedir = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanelMedicamentos = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -77,6 +79,7 @@ public class Administrador extends javax.swing.JFrame {
         txtNombreConsultorio = new javax.swing.JTextField();
         cboEspecialidadConsultorio = new javax.swing.JComboBox<>();
         btnAgregarConsultorio = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -108,45 +111,6 @@ public class Administrador extends javax.swing.JFrame {
         );
 
         TabbedPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-
-        jPanelDespedir.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel4.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel4.setText("DESPEDIR");
-
-        jLabel7.setFont(new java.awt.Font("JetBrains Mono", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel7.setText("ID");
-
-        javax.swing.GroupLayout jPanelDespedirLayout = new javax.swing.GroupLayout(jPanelDespedir);
-        jPanelDespedir.setLayout(jPanelDespedirLayout);
-        jPanelDespedirLayout.setHorizontalGroup(
-            jPanelDespedirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDespedirLayout.createSequentialGroup()
-                .addContainerGap(346, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(340, 340, 340))
-            .addGroup(jPanelDespedirLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanelDespedirLayout.setVerticalGroup(
-            jPanelDespedirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDespedirLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(33, 33, 33)
-                .addGroup(jPanelDespedirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(287, Short.MAX_VALUE))
-        );
-
-        TabbedPane.addTab("DESPEDIR", jPanelDespedir);
 
         jPanelContratar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -281,16 +245,17 @@ public class Administrador extends javax.swing.JFrame {
                                         .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(52, Short.MAX_VALUE))))
                     .addGroup(jPanelContratarLayout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel22)
-                        .addGap(102, 102, 102))
-                    .addGroup(jPanelContratarLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70))))
+                        .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelContratarLayout.createSequentialGroup()
+                                .addGap(142, 142, 142)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel22))
+                            .addGroup(jPanelContratarLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
             .addGroup(jPanelContratarLayout.createSequentialGroup()
                 .addGap(328, 328, 328)
                 .addComponent(btnContratar))
@@ -338,6 +303,61 @@ public class Administrador extends javax.swing.JFrame {
 
         TabbedPane.addTab("CONTRATAR", jPanelContratar);
 
+        jPanelDespedir.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel4.setText("DESPEDIR");
+
+        jLabel7.setFont(new java.awt.Font("JetBrains Mono", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel7.setText("N.Cedula");
+
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/despedir.png"))); // NOI18N
+
+        jButton1.setBackground(new java.awt.Color(0, 51, 102));
+        jButton1.setFont(new java.awt.Font("JetBrains Mono", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("DESPEDIR");
+
+        javax.swing.GroupLayout jPanelDespedirLayout = new javax.swing.GroupLayout(jPanelDespedir);
+        jPanelDespedir.setLayout(jPanelDespedirLayout);
+        jPanelDespedirLayout.setHorizontalGroup(
+            jPanelDespedirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDespedirLayout.createSequentialGroup()
+                .addContainerGap(357, Short.MAX_VALUE)
+                .addGroup(jPanelDespedirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(jPanelDespedirLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel24)))
+                .addGap(265, 265, 265))
+            .addGroup(jPanelDespedirLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelDespedirLayout.setVerticalGroup(
+            jPanelDespedirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDespedirLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDespedirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel24))
+                .addGap(33, 33, 33)
+                .addGroup(jPanelDespedirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(63, 63, 63))
+        );
+
+        TabbedPane.addTab("DESPEDIR", jPanelDespedir);
+
         jPanelMedicamentos.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel15.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
@@ -378,25 +398,24 @@ public class Administrador extends javax.swing.JFrame {
                 .addGap(256, 256, 256))
             .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
                 .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel16)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtNombreMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
-                            .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
-                                    .addGap(78, 78, 78)
-                                    .addComponent(jLabel17)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtCantidadMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
-                                    .addGap(78, 78, 78)
-                                    .addComponent(jLabel18)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtDosisMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(7, 7, 7)))
+                    .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNombreMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
+                                .addGroup(jPanelMedicamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
+                                        .addComponent(jLabel17)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtCantidadMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
+                                        .addComponent(jLabel18)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtDosisMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(7, 7, 7))))
                     .addGroup(jPanelMedicamentosLayout.createSequentialGroup()
                         .addGap(260, 260, 260)
                         .addComponent(jLabel15)
@@ -453,7 +472,15 @@ public class Administrador extends javax.swing.JFrame {
 
         btnAgregarConsultorio.setBackground(new java.awt.Color(0, 51, 102));
         btnAgregarConsultorio.setFont(new java.awt.Font("JetBrains Mono", 1, 14)); // NOI18N
+        btnAgregarConsultorio.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarConsultorio.setText("AGREGAR CONSULTORIO");
+        btnAgregarConsultorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarConsultorioActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/consultorio.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelConsultorioLayout = new javax.swing.GroupLayout(jPanelConsultorio);
         jPanelConsultorio.setLayout(jPanelConsultorioLayout);
@@ -479,13 +506,17 @@ public class Administrador extends javax.swing.JFrame {
                         .addGap(277, 277, 277))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelConsultorioLayout.createSequentialGroup()
                         .addComponent(jLabel19)
-                        .addGap(247, 247, 247))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel14)
+                        .addGap(186, 186, 186))))
         );
         jPanelConsultorioLayout.setVerticalGroup(
             jPanelConsultorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelConsultorioLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel19)
+                .addGroup(jPanelConsultorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel14))
                 .addGap(28, 28, 28)
                 .addGroup(jPanelConsultorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
@@ -720,7 +751,7 @@ public class Administrador extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
+                        .addGap(70, 70, 70)
                         .addComponent(TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -804,9 +835,31 @@ public class Administrador extends javax.swing.JFrame {
 
     private void btnAgregarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedicamentoActionPerformed
         // TODO add your handling code here:
-        if (txtNombreMedicamento.getText().isEmpty() || txtCantidadMedicamentos.getText().isEmpty() || txtDosisMedicamento.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "DEBE LLENAR TODOS LOS CAMPOS PARA AGREGAR EL MEDICAMENTO" + "Advertencia" + JOptionPane.WARNING_MESSAGE);
+        if (txtNombreMedicamento.getText().isEmpty()
+                || txtCantidadMedicamentos.getText().isEmpty()
+                || txtDosisMedicamento.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Debes llenar todos los campos");
+            return;
         }
+
+        try {
+            int cantidad = Integer.parseInt(txtCantidadMedicamentos.getText());
+            int dosis = Integer.parseInt(txtDosisMedicamento.getText());
+
+            if (cantidad < 1 || dosis < 1) {
+                JOptionPane.showMessageDialog(this, "La cantidad y la dosis deben ser mayores o iguales a 1");
+                return;
+            }
+
+            // Aquí va el código para registrar el medicamento a la db
+            JOptionPane.showMessageDialog(this, "Medicamento registrado correctamente");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La cantidad y la dosis deben ser números válidos");
+        }
+
+
     }//GEN-LAST:event_btnAgregarMedicamentoActionPerformed
 
     private void etiAgregarConsultorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etiAgregarConsultorioMouseClicked
@@ -848,7 +901,7 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_cboEspecialidadConsultorioActionPerformed
 
     private void btnContratarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratarActionPerformed
-       
+
         String nombre = txtNombre.getText().trim();
         String segundoNombre = txtSegundoNombre.getText().trim();
         String primerApellido = txtPrimerApellido.getText().trim();
@@ -866,15 +919,13 @@ public class Administrador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos obligatorios.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
             return;
         }
-         if (nombre.length() < 3 || segundoNombre.length() < 3 || 
-        primerApellido.length() < 3 || segundoApellido.length() < 3 || numeroCedula.length()< 3 || email.length()<3) {
-        
-        JOptionPane.showMessageDialog(this, "Los nombres y apellidos deben tener mínimo 3 caracteres.", "Validación de texto", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        if (nombre.length() < 3 || segundoNombre.length() < 3
+                || primerApellido.length() < 3 || segundoApellido.length() < 3 || numeroCedula.length() < 3 || email.length() < 3) {
 
+            JOptionPane.showMessageDialog(this, "Los nombres y apellidos deben tener mínimo 3 caracteres.", "Validación de texto", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-      
         JOptionPane.showMessageDialog(this, "Registro Exitoso");
 
     }//GEN-LAST:event_btnContratarActionPerformed
@@ -882,6 +933,19 @@ public class Administrador extends javax.swing.JFrame {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void btnAgregarConsultorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarConsultorioActionPerformed
+        // TODO add your handling code here:
+        String Especialidad = cboEspecialidadConsultorio.getSelectedItem().toString();
+        String nombreConsultorio = txtNombreConsultorio.getText();
+        if (Especialidad.equals("Seleccionar") || nombreConsultorio.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debes seleccionar una especialidad y un nombre para el consultorio ", Especialidad, JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "El consultorio se ha registrado exitosamente");
+        }
+
+
+    }//GEN-LAST:event_btnAgregarConsultorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -930,11 +994,13 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel etiContratarPersonal;
     private javax.swing.JLabel etiDespedirEmpleado;
     private javax.swing.JLabel etiEspecialidad;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -945,6 +1011,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
