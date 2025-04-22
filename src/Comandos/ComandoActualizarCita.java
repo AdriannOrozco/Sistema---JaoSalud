@@ -1,5 +1,5 @@
 package Comandos;
-import Model.ConexionBD;
+import Persistencia.Database.ConexionBD;
 import Model.Consultorio;
 import Model.Medico;
 import java.sql.Connection;

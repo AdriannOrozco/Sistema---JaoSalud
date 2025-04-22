@@ -1,14 +1,26 @@
 package View;
 
+import Model.Paciente;
+import Comandos.ComandoCancelarCita;
 import Comandos.ComandoActualizarPaciente;
 import Comandos.ComandoAgendarCita;
 import Comandos.ComandoCrearPaciente;
 import Comandos.ComandoEliminarPaciente;
 import Comandos.IActualizarPaciente;
 import Comandos.IAgendarCita;
+import Comandos.ICancelarCita;
 import Comandos.ICrearPaciente;
 import Comandos.IEliminarPaciente;
-import Comandos.metodos.MetodosUtiles;
+import Persistencia.Citas.CargarDatosCitaId.CargarDatosCita;
+import Persistencia.Citas.CargarMotivo.CargarMotivo;
+import Persistencia.Citas.MostrarTablasCita.MostrarTablasCita;
+import Persistencia.Citas.VerificarCitaId.VerificarCitaId;
+import Persistencia.Consultorios.BuscarIdConsultorioPorConsultorio.BuscarIdConsultorioPorConsultorio;
+import Persistencia.Consultorios.CargarConsultoriosCbo.CargarConsultoriosCbo;
+import Persistencia.Consultorios.FiltrarConsultoriosPorDoctor.FiltrarConsultoriosPorDoctor;
+import Persistencia.Doctor.BuscarIdPorNombreDoctor.BuscarIdPorNombreDoctor;
+import Persistencia.Doctor.CargarDoctoresCbo.CargarDoctoresCbo;
+import Persistencia.Doctor.CargarNombreEspecialidad.CargarNombreEspecialidad;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.Calendar;
@@ -19,11 +31,33 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.util.Date;
 import java.util.Random;
+import Persistencia.Paciente.BuscarPacientePorID.BuscarPacientePorId;
+import Persistencia.Paciente.CargarDatosPaciente.CargarDatosPacientes;
+import Persistencia.Paciente.CargarNombreDelPaciente.CargarNombreDelPaciente;
+import Persistencia.Paciente.VerificarPaciente.VerificarPacienteEnSistema;
+import Persistencia.MetodosUtiles.MetodosCadenasDeTexto;
+
+import Persistencia.Paciente.PreguntarExisteDocumento.PreguntarExisteDocumento;
 
 public class Recepcionista extends javax.swing.JFrame {
 
+    //Persistencias
+    BuscarPacientePorId buscarID = new BuscarPacientePorId();
+    CargarNombreDelPaciente cargar2 = new CargarNombreDelPaciente();
+    VerificarPacienteEnSistema verificar = new VerificarPacienteEnSistema();
+    MetodosCadenasDeTexto metodo = new MetodosCadenasDeTexto();
+    CargarDoctoresCbo cargarCboDoctores = new CargarDoctoresCbo();
+    CargarConsultoriosCbo cargarCboConsulotios = new CargarConsultoriosCbo();
+    MostrarTablasCita mostrarCitasEnTabla = new MostrarTablasCita();
+    CargarDatosPacientes cargarDatosPacientes = new CargarDatosPacientes();
+    PreguntarExisteDocumento existe = new PreguntarExisteDocumento();
+    BuscarIdPorNombreDoctor buscarDoctorId = new BuscarIdPorNombreDoctor();
+    CargarNombreEspecialidad cargarEspecialidadNombreDoc = new CargarNombreEspecialidad();
+    VerificarCitaId verificarCita = new VerificarCitaId();
+    CargarDatosCita cargarADatosCita = new CargarDatosCita();
+    Paciente paciente = new Paciente();
+
     DefaultTableModel modeloC = new DefaultTableModel();
-    MetodosUtiles metodo = new MetodosUtiles();
 
     public Recepcionista() {
         initComponents();
@@ -31,9 +65,10 @@ public class Recepcionista extends javax.swing.JFrame {
         SeccionEditarDatoPaciente();
         ValidarCalendarioFechaNacimiento();
         validarCalendarioCitas();
-        metodo.CargarConsultorios(cboConsultorio, "consultorio");
-        metodo.CargarDoctores(cboDoctor, "primerNombre", "primerApellido");
-        metodo.MostrarCitas(tablaCitas);
+        ocultarSeccionEditarCita();
+        cargarCboConsulotios.CargarConsultorios(cboConsultorio, "consultorio");
+        cargarCboDoctores.CargarDoctores(cboDoctor, "primerNombre", "primerApellido");
+        mostrarCitasEnTabla.MostrarCitas(tablaCitas);
     }
 
     public void validarCalendarioCitas() {
@@ -244,7 +279,24 @@ public class Recepcionista extends javax.swing.JFrame {
         labelCitaIdentificacion = new javax.swing.JLabel();
         txtBuscarCita = new javax.swing.JTextField();
         labelObligatorioID = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        buttonBuscarCitaPorID = new javax.swing.JButton();
+        panelDiv = new javax.swing.JPanel();
+        lblDatosCitas = new javax.swing.JLabel();
+        txtDocPaciente = new javax.swing.JTextField();
+        txtCargarNPaciente = new javax.swing.JTextField();
+        lblPaciente = new javax.swing.JLabel();
+        lblDocPaciente = new javax.swing.JLabel();
+        txtHoraaCita = new javax.swing.JTextField();
+        txtFechaCitaV = new javax.swing.JTextField();
+        lblHoraCita = new javax.swing.JLabel();
+        lblFechaaCita = new javax.swing.JLabel();
+        lblNombreDoctor = new javax.swing.JLabel();
+        txtNomDoctor = new javax.swing.JTextField();
+        lblConsultorio = new javax.swing.JLabel();
+        txtConsultorioAsignadoo = new javax.swing.JTextField();
+        buttonCancelarCita = new javax.swing.JButton();
+        buttonConsultorios = new javax.swing.JButton();
+        buttonMedicos = new javax.swing.JButton();
         panelHistorialMédico = new javax.swing.JPanel();
         panelFondoBlancoHistorialMedico = new javax.swing.JPanel();
         labelTabbedHistorialMédico = new javax.swing.JLabel();
@@ -1883,10 +1935,112 @@ public class Recepcionista extends javax.swing.JFrame {
         labelObligatorioID.setForeground(new java.awt.Color(255, 0, 0));
         labelObligatorioID.setText("*");
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 201));
-        jButton1.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("BUSCAR");
+        buttonBuscarCitaPorID.setBackground(new java.awt.Color(0, 0, 201));
+        buttonBuscarCitaPorID.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 12)); // NOI18N
+        buttonBuscarCitaPorID.setForeground(new java.awt.Color(255, 255, 255));
+        buttonBuscarCitaPorID.setText("BUSCAR");
+        buttonBuscarCitaPorID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuscarCitaPorIDActionPerformed(evt);
+            }
+        });
+
+        panelDiv.setBackground(new java.awt.Color(242, 242, 242));
+
+        javax.swing.GroupLayout panelDivLayout = new javax.swing.GroupLayout(panelDiv);
+        panelDiv.setLayout(panelDivLayout);
+        panelDivLayout.setHorizontalGroup(
+            panelDivLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelDivLayout.setVerticalGroup(
+            panelDivLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 23, Short.MAX_VALUE)
+        );
+
+        lblDatosCitas.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 15)); // NOI18N
+        lblDatosCitas.setForeground(new java.awt.Color(0, 0, 0));
+        lblDatosCitas.setText("DATOS DE LA CITA");
+
+        txtDocPaciente.setEditable(false);
+        txtDocPaciente.setBackground(new java.awt.Color(225, 225, 225));
+        txtDocPaciente.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        txtDocPaciente.setForeground(new java.awt.Color(0, 0, 0));
+
+        txtCargarNPaciente.setEditable(false);
+        txtCargarNPaciente.setBackground(new java.awt.Color(225, 225, 225));
+        txtCargarNPaciente.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        txtCargarNPaciente.setForeground(new java.awt.Color(0, 0, 0));
+
+        lblPaciente.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        lblPaciente.setForeground(new java.awt.Color(0, 0, 0));
+        lblPaciente.setText("NOMBRE PACIENTE:");
+
+        lblDocPaciente.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        lblDocPaciente.setForeground(new java.awt.Color(0, 0, 0));
+        lblDocPaciente.setText("DOCUMENTO PACIENTE:");
+
+        txtHoraaCita.setEditable(false);
+        txtHoraaCita.setBackground(new java.awt.Color(225, 225, 225));
+        txtHoraaCita.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        txtHoraaCita.setForeground(new java.awt.Color(0, 0, 0));
+
+        txtFechaCitaV.setEditable(false);
+        txtFechaCitaV.setBackground(new java.awt.Color(225, 225, 225));
+        txtFechaCitaV.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        txtFechaCitaV.setForeground(new java.awt.Color(0, 0, 0));
+
+        lblHoraCita.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        lblHoraCita.setForeground(new java.awt.Color(0, 0, 0));
+        lblHoraCita.setText("HORA DE LA CITA:");
+
+        lblFechaaCita.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        lblFechaaCita.setForeground(new java.awt.Color(0, 0, 0));
+        lblFechaaCita.setText("FECHA DE LA CITA:");
+
+        lblNombreDoctor.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        lblNombreDoctor.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombreDoctor.setText("DOCUMENTO DOCTOR:");
+
+        txtNomDoctor.setEditable(false);
+        txtNomDoctor.setBackground(new java.awt.Color(225, 225, 225));
+        txtNomDoctor.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        txtNomDoctor.setForeground(new java.awt.Color(0, 0, 0));
+
+        lblConsultorio.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        lblConsultorio.setForeground(new java.awt.Color(0, 0, 0));
+        lblConsultorio.setText("CONSULTORIO:");
+
+        txtConsultorioAsignadoo.setEditable(false);
+        txtConsultorioAsignadoo.setBackground(new java.awt.Color(225, 225, 225));
+        txtConsultorioAsignadoo.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        txtConsultorioAsignadoo.setForeground(new java.awt.Color(0, 0, 0));
+
+        buttonCancelarCita.setBackground(new java.awt.Color(0, 0, 0));
+        buttonCancelarCita.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 14)); // NOI18N
+        buttonCancelarCita.setForeground(new java.awt.Color(255, 255, 255));
+        buttonCancelarCita.setText("CANCELAR CITA");
+        buttonCancelarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarCitaActionPerformed(evt);
+            }
+        });
+
+        buttonConsultorios.setBackground(new java.awt.Color(255, 255, 255));
+        buttonConsultorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/verMedicos.png"))); // NOI18N
+        buttonConsultorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonConsultoriosActionPerformed(evt);
+            }
+        });
+
+        buttonMedicos.setBackground(new java.awt.Color(255, 255, 255));
+        buttonMedicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/verMedicos.png"))); // NOI18N
+        buttonMedicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMedicosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelFondoBlancoEditarCitaLayout = new javax.swing.GroupLayout(panelFondoBlancoEditarCita);
         panelFondoBlancoEditarCita.setLayout(panelFondoBlancoEditarCitaLayout);
@@ -1894,25 +2048,69 @@ public class Recepcionista extends javax.swing.JFrame {
             panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
                 .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelDiv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
-                        .addGap(254, 254, 254)
-                        .addComponent(labelTabbedEditarCita))
-                    .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelInformaciónCita))
-                    .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelCitaIdentificacion)
+                        .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
-                                .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtBuscarCita, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(254, 254, 254)
+                                .addComponent(labelTabbedEditarCita))
+                            .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(labelInformaciónCita))
+                            .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                                .addGap(245, 245, 245)
+                                .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labelCitaIdentificacion)
                                     .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jButton1)))
+                                        .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtBuscarCita, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                                                .addGap(15, 15, 15)
+                                                .addComponent(buttonBuscarCitaPorID)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(labelObligatorioID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblDatosCitas))
+                            .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                                        .addComponent(lblNombreDoctor)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtNomDoctor))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                                        .addComponent(lblDocPaciente)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtDocPaciente))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                                        .addComponent(lblPaciente)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCargarNPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelObligatorioID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                                .addComponent(buttonMedicos)
+                                .addGap(19, 19, 19)
+                                .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                                        .addComponent(lblFechaaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtFechaCitaV, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                                            .addComponent(lblConsultorio)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtConsultorioAsignadoo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(buttonConsultorios))
+                                        .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                                            .addComponent(lblHoraCita)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtHoraaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                                .addGap(213, 213, 213)
+                                .addComponent(buttonCancelarCita)))
+                        .addGap(0, 31, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panelFondoBlancoEditarCitaLayout.setVerticalGroup(
             panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1928,15 +2126,50 @@ public class Recepcionista extends javax.swing.JFrame {
                     .addComponent(txtBuscarCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelObligatorioID))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addComponent(buttonBuscarCitaPorID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelDiv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblDatosCitas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonMedicos)
+                        .addGap(105, 105, 105)
+                        .addComponent(buttonCancelarCita)
+                        .addGap(65, 65, 65))
+                    .addGroup(panelFondoBlancoEditarCitaLayout.createSequentialGroup()
+                        .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFechaaCita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCargarNPaciente)
+                                .addComponent(txtFechaCitaV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDocPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDocPaciente)
+                            .addComponent(lblHoraCita, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtHoraaCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonConsultorios, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelFondoBlancoEditarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblNombreDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNomDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblConsultorio)
+                                .addComponent(txtConsultorioAsignadoo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(194, 194, 194))))
         );
 
         javax.swing.GroupLayout panelEditarLayout = new javax.swing.GroupLayout(panelEditar);
         panelEditar.setLayout(panelEditarLayout);
         panelEditarLayout.setHorizontalGroup(
             panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondoBlancoEditarCita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelEditarLayout.createSequentialGroup()
+                .addComponent(panelFondoBlancoEditarCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelEditarLayout.setVerticalGroup(
             panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2109,10 +2342,11 @@ public class Recepcionista extends javax.swing.JFrame {
                 return;
             }
 
-            if (metodo.verificarPaciente(numeroDocumento, tipoDocumento, "numeroDocumento", "tipoDocumento")) {
+            if (verificar.verificarPaciente(numeroDocumento, tipoDocumento, "numeroDocumento", "tipoDocumento")) {
 
                 //Cargar datos en labels
-                metodo.cargarDatosPacientes(numeroDocumento, tipoDocumento, txtCargarEPS, txtCargarPrimerNombre, txtCargarPrimerApellido);
+                cargarDatosPacientes.cargarDatosPacientes(numeroDocumento, tipoDocumento, txtCargarEPS, txtCargarPrimerNombre, txtCargarPrimerApellido);
+
                 //Cuando se encuentre el cliente, aparece la sección actualizar dato.
                 panelDivisionEditarPaciente.setVisible(true);
                 labelEncontrado.setVisible(true);
@@ -2288,9 +2522,15 @@ public class Recepcionista extends javax.swing.JFrame {
             Date fechaRegistro = new Date();
             String edad = txtEdad.getText();
 
-            ICrearPaciente agregarPaciente = new ComandoCrearPaciente();
-            agregarPaciente.CrearPaciente(primerNombre, segundoNombre, primerApellido, segundoApellido, tipoIdentificacion, numeroDocumento, telefono, direccionResidencia,
-                    estadoCivil, genero, email, EPS, tipoSangre, fechaNacimiento, fechaRegistro, edad);
+            Paciente nuevoPaciente = new Paciente(
+                    primerNombre, segundoNombre, primerApellido, segundoApellido,
+                    tipoIdentificacion, numeroDocumento, telefono, direccionResidencia,
+                    estadoCivil, genero, email, EPS, tipoSangre,
+                    fechaNacimiento, fechaRegistro, edad
+            );
+
+            ICrearPaciente comando = new ComandoCrearPaciente();
+            comando.CrearPaciente(nuevoPaciente);
 
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Validación", JOptionPane.WARNING_MESSAGE);
@@ -2351,82 +2591,85 @@ public class Recepcionista extends javax.swing.JFrame {
         String numeroDocumento = txtBuscarNumeroIdentificacion.getText();
 
         try {
+            // Validación básica
+            if (numeroDocumento == null || numeroDocumento.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar el número de documento para actualizar.", "Campo requerido", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
-            if ("Tipo de documento".equals(opcionSeleccionada)) {
-                String nuevoTipoID = cboTipoIdentificacion1.getSelectedItem().toString();
-                actualizacion.actualizarTipoDocumento(numeroDocumento, nuevoTipoID);
+            paciente.setNumeroDocumento(numeroDocumento);
 
-                if (nuevoTipoID.equals("Seleccionar")) {
-                    JOptionPane.showMessageDialog(null, "Escoja una opción", "Campo vacío", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    actualizacion.actualizarTipoDocumento(numeroDocumento, nuevoTipoID);
-                    limpiarDespuesDeActualizar();
+            switch (opcionSeleccionada) {
+                case "Tipo de documento":
+                    String nuevoTipoID = cboTipoIdentificacion1.getSelectedItem().toString();
+                    if (nuevoTipoID.equals("Seleccionar")) {
+                        JOptionPane.showMessageDialog(null, "Escoja una opción válida", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    paciente.setTipoDocumento(nuevoTipoID);
                     cboTipoIdentificacion1.setSelectedIndex(0);
-                }
-            }
+                    break;
 
-            if ("Teléfono".equals(opcionSeleccionada)) {
-                String nuevoEmail = txtActualizarDato.getText();
-                actualizacion.actualizarTelefono(numeroDocumento, nuevoEmail);
-                limpiarDespuesDeActualizar();
+                case "Teléfono":
+                    paciente.setTelefono(txtActualizarDato.getText());
+                    break;
 
-            }
+                case "Dirección de residencia":
+                    paciente.setDireccionResidencia(txtActualizarDato.getText());
+                    txtActualizarDato.setText("");
+                    break;
 
-            if ("Dirección de residencia".equals(opcionSeleccionada)) {
-                String nuevaDireccion = txtActualizarDato.getText();
-                actualizacion.actualizarDireccion(numeroDocumento, nuevaDireccion);
-                limpiarDespuesDeActualizar();
-                txtActualizarDato.setText("");
-            }
-
-            if ("Estado civil".equals(opcionSeleccionada)) {
-                String nuevoEstado = cboEstadoCivil1.getSelectedItem().toString();
-
-                if (nuevoEstado.equals("Seleccionar")) {
-                    JOptionPane.showMessageDialog(null, "Escoja una opción", "Campo vacío", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    actualizacion.actualizarEstadoCivil(numeroDocumento, nuevoEstado);
-                    limpiarDespuesDeActualizar();
+                case "Estado civil":
+                    String nuevoEstado = cboEstadoCivil1.getSelectedItem().toString();
+                    if (nuevoEstado.equals("Seleccionar")) {
+                        JOptionPane.showMessageDialog(null, "Escoja una opción válida", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    paciente.setEstadoCivil(nuevoEstado);
                     cboEstadoCivil1.setSelectedIndex(0);
-                }
+                    break;
 
+                case "Email":
+                    paciente.setEmail(txtActualizarDato.getText());
+                    txtActualizarDato.setText("");
+                    break;
+
+                case "EPS":
+                    String nuevaEPS = cboEPS1.getSelectedItem().toString();
+                    if (nuevaEPS.equals("Seleccionar")) {
+                        JOptionPane.showMessageDialog(null, "Escoja una opción válida", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    paciente.setEPS(nuevaEPS);
+                    break;
+
+                case "Edad":
+                    String nuevaEdad = txtActualizarDato.getText();
+                    try {
+                        int edad = Integer.parseInt(nuevaEdad);
+                        if (edad > 0 && edad < 100) {
+                            paciente.setEdad(String.valueOf(edad));
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Edad no válida", "Error", JOptionPane.WARNING_MESSAGE);
+                            return;
+                        }
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Edad inválida", "Error", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    break;
+
+                default:
+                    JOptionPane.showMessageDialog(null, "Seleccione un campo válido a actualizar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    return;
             }
 
-            if ("Email".equals(opcionSeleccionada)) {
-                String nuevoEmail = txtActualizarDato.getText();
-                actualizacion.actualizarEmail(numeroDocumento, nuevoEmail);
-                limpiarDespuesDeActualizar();
-                txtActualizarDato.setText("");
-            }
-
-            if ("EPS".equals(opcionSeleccionada)) {
-                String nuevaEPS = cboEPS1.getSelectedItem().toString();
-
-                if (nuevaEPS.equals("Seleccionar")) {
-                    JOptionPane.showMessageDialog(null, "Escoja una opción", "Campo vacío", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    actualizacion.actualizarEPS(numeroDocumento, nuevaEPS);
-                    limpiarDespuesDeActualizar();
-                }
-
-            }
-
-            if ("Edad".equals(opcionSeleccionada)) {
-                String nuevaEdad = txtActualizarDato.getText();
-
-                int nuevaEdad1 = Integer.parseInt(nuevaEdad);
-
-                if (nuevaEdad1 > 0 && nuevaEdad1 < 100) {
-
-                    String edadDefinitiva = String.valueOf(nuevaEdad1);
-
-                    actualizacion.actualizarEdad(numeroDocumento, edadDefinitiva);
-                    limpiarDespuesDeActualizar();
-                }
-            }
+            // Ejecutar actualización
+            actualizacion.actualizarPaciente(paciente);
+            limpiarDespuesDeActualizar();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al actualizar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
 
@@ -2437,13 +2680,13 @@ public class Recepcionista extends javax.swing.JFrame {
 
         try {
 
-            if (metodo.ExisteNumeroDocumento(numeroDocumento)) {
+            if (existe.ExisteNumeroDocumento(numeroDocumento)) {
 
-                if (metodo.BuscarPacientePorDocumento(numeroDocumento) == null) {
+                if (buscarID.BuscarPacientePorDocumento(numeroDocumento) == null) {
                     JOptionPane.showMessageDialog(null, "El número de identificación no concide con el nombre", "Error autentitación", JOptionPane.ERROR_MESSAGE);
                     return;
                 } else {
-                    metodo.CargarNombrePaciente(numeroDocumento, txtCampoNombre);
+                    cargar2.CargarNombrePaciente(numeroDocumento, txtCampoNombre);
                     setEnabledTrue();
                     JOptionPane.showMessageDialog(null, "Paciente cargado con éxito.", "Consulta exitosa", JOptionPane.DEFAULT_OPTION);
                 }
@@ -2460,25 +2703,26 @@ public class Recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCargarPacienteActionPerformed
 
     private void cboDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDoctorActionPerformed
+        FiltrarConsultoriosPorDoctor filtrarConsultoriosPorDoctor = new FiltrarConsultoriosPorDoctor();
         if (cboDoctor.getSelectedItem() != null) {
             String doctorSeleccionado = cboDoctor.getSelectedItem().toString();
-            String identificacionDoctor = metodo.BuscarIdentificacionPorNombreDoctor(doctorSeleccionado);
+            String identificacionDoctor = buscarDoctorId.BuscarIdentificacionPorNombreDoctor(doctorSeleccionado);
 
-            metodo.filtrarConsultoriosPorDoctor(doctorSeleccionado, identificacionDoctor, cboConsultorio);
+            filtrarConsultoriosPorDoctor.filtrarConsultoriosPorDoctor(doctorSeleccionado, identificacionDoctor, cboConsultorio);
         }
     }//GEN-LAST:event_cboDoctorActionPerformed
 
     private void buttonAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgendarActionPerformed
-
+        BuscarIdConsultorioPorConsultorio buscarIdDelConsultorio = new BuscarIdConsultorioPorConsultorio();
         try {
 
             IAgendarCita agendar = new ComandoAgendarCita();
             String nombre = cboDoctor.getSelectedItem().toString();
             String consultorio = cboConsultorio.getSelectedItem().toString();
 
-            int idConsultorio = metodo.BuscarIdConsultorioPorConsultorio(consultorio);
+            int idConsultorio = buscarIdDelConsultorio.BuscarIdConsultorio(consultorio);
 
-            String identificacion = metodo.BuscarIdentificacionPorNombreDoctor(nombre);
+            String identificacion = buscarDoctorId.BuscarIdentificacionPorNombreDoctor(nombre);
 
             String motivo = txtAreaMotivo.getText();
 
@@ -2504,11 +2748,12 @@ public class Recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAgendarActionPerformed
 
     private void buttonOkMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkMedicosActionPerformed
+
         try {
             JTableHeader header = tablaCitas.getTableHeader();
             header.setDefaultRenderer(headerRenderer);
             String id = txtBuscarMedicoId.getText();
-            metodo.cargarNombreYEspecialidadDoctores(id, txtCargarNombreMedico, txtCargarEspecialidad);
+            cargarEspecialidadNombreDoc.cargarNombreYEspecialidadDoctores(id, txtCargarNombreMedico, txtCargarEspecialidad);
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Validación", JOptionPane.WARNING_MESSAGE);
         } catch (Exception e) {
@@ -2527,11 +2772,12 @@ public class Recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaCitasMouseClicked
 
     private void buttonOkCargarMotivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkCargarMotivosActionPerformed
-     try {
+        CargarMotivo motivoCitaId = new CargarMotivo();
+        try {
             JTableHeader header = tablaCitas.getTableHeader();
             header.setDefaultRenderer(headerRenderer);
             String idCita = txtBuscarMotivoID.getText();
-            metodo.cargarMotivoPorID(idCita, txtCargarMotivo);
+            motivoCitaId.cargarMotivoPorID(idCita, txtCargarMotivo);
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Validación", JOptionPane.WARNING_MESSAGE);
         } catch (Exception e) {
@@ -2540,13 +2786,70 @@ public class Recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonOkCargarMotivosActionPerformed
 
     private void lblRealodInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRealodInicioMouseClicked
-     txtBuscarMotivoID.setText("");
-     txtCargarMotivo.setText("");
-     txtBuscarMedicoId.setText("");
-     txtCargarNombreMedico.setText("");
-     txtCargarEspecialidad.setText("");
-     JOptionPane.showMessageDialog(null, "Campos limpiados", "Limpieza", JOptionPane.INFORMATION_MESSAGE);
+        txtBuscarMotivoID.setText("");
+        txtCargarMotivo.setText("");
+        txtBuscarMedicoId.setText("");
+        txtCargarNombreMedico.setText("");
+        txtCargarEspecialidad.setText("");
+        mostrarCitasEnTabla.refrescarCitas(tablaCitas);
+        JOptionPane.showMessageDialog(null, "Campos recargados", "Limpieza", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_lblRealodInicioMouseClicked
+
+    private void buttonBuscarCitaPorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarCitaPorIDActionPerformed
+        try {
+
+            String idCita = txtBuscarCita.getText();
+
+            if (idCita == null) {
+                JOptionPane.showMessageDialog(null, "Hay campos sin específicar", "Datos sin marcas", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (!metodo.ContieneSoloNumeros(idCita)) {
+                JOptionPane.showMessageDialog(null, "El número de la cita sólo puede tener números.", "Datos incorrectos.", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int idCitaP = Integer.parseInt(idCita);
+
+            if (verificarCita.verificarCita(idCitaP)) {
+                mostrarSeccionEditarCita();
+
+                //String consultorio
+                //Cargamos
+                cargarADatosCita.cargarDatosCita(idCitaP, txtCargarNPaciente, txtDocPaciente, txtHoraaCita, txtFechaCitaV, txtNomDoctor, txtConsultorioAsignadoo);
+            } else {
+                JOptionPane.showMessageDialog(null, "Ese número de cita no está registrado en el sistema. ", "No encontrado", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }//GEN-LAST:event_buttonBuscarCitaPorIDActionPerformed
+
+    private void buttonCancelarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarCitaActionPerformed
+        try {
+            String idCitaStr = txtBuscarCita.getText();
+            int idCita = Integer.parseInt(idCitaStr);
+            ICancelarCita eliminar = new ComandoCancelarCita();
+            eliminar.CancelarCita(idCita);
+            ocultarSeccionEditarCita();
+            txtBuscarCita.setText("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage());
+        }
+
+    }//GEN-LAST:event_buttonCancelarCitaActionPerformed
+
+    private void buttonConsultoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConsultoriosActionPerformed
+        new infoConsultorios().setVisible(true);
+
+    }//GEN-LAST:event_buttonConsultoriosActionPerformed
+
+    private void buttonMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMedicosActionPerformed
+        new infoMedicos().setVisible(true);
+    }//GEN-LAST:event_buttonMedicosActionPerformed
 
     //Cambiar aparienia de la tabla
     DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer() {
@@ -2592,11 +2895,15 @@ public class Recepcionista extends javax.swing.JFrame {
     private javax.swing.JButton buttonAgendar;
     private javax.swing.JButton buttonAgregar;
     private javax.swing.JButton buttonBuscar;
+    private javax.swing.JButton buttonBuscarCitaPorID;
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonCancelarBusq;
+    private javax.swing.JButton buttonCancelarCita;
     private javax.swing.JButton buttonCancelarModificacion;
     private javax.swing.JButton buttonCargarPaciente;
+    private javax.swing.JButton buttonConsultorios;
     private javax.swing.JButton buttonEliminarPaciente;
+    private javax.swing.JButton buttonMedicos;
     private javax.swing.JButton buttonOkCargarMotivos;
     private javax.swing.JButton buttonOkMedicos;
     private javax.swing.JButton buttonReiniciar;
@@ -2625,7 +2932,6 @@ public class Recepcionista extends javax.swing.JFrame {
     private javax.swing.JLabel iconHistorial;
     private javax.swing.JLabel iconInicio;
     private javax.swing.JLabel iconRecepcinista;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -2701,6 +3007,13 @@ public class Recepcionista extends javax.swing.JFrame {
     private javax.swing.JLabel labelTipoIdentificación1;
     private javax.swing.JLabel labelTipoSangre;
     private javax.swing.JLabel labelVerHistoriales;
+    private javax.swing.JLabel lblConsultorio;
+    private javax.swing.JLabel lblDatosCitas;
+    private javax.swing.JLabel lblDocPaciente;
+    private javax.swing.JLabel lblFechaaCita;
+    private javax.swing.JLabel lblHoraCita;
+    private javax.swing.JLabel lblNombreDoctor;
+    private javax.swing.JLabel lblPaciente;
     private javax.swing.JLabel lblRealodInicio;
     private javax.swing.JPanel panelAgendarCita;
     private javax.swing.JPanel panelAgregarPaciente;
@@ -2714,6 +3027,7 @@ public class Recepcionista extends javax.swing.JFrame {
     private javax.swing.JPanel panelBtnInicio;
     private javax.swing.JPanel panelDeInicio;
     private javax.swing.JPanel panelDecoración;
+    private javax.swing.JPanel panelDiv;
     private javax.swing.JPanel panelDivisionEditarPaciente;
     private javax.swing.JPanel panelEditar;
     private javax.swing.JPanel panelEditarPaciente;
@@ -2737,14 +3051,20 @@ public class Recepcionista extends javax.swing.JFrame {
     private javax.swing.JTextField txtCargarEPS;
     private javax.swing.JTextField txtCargarEspecialidad;
     private javax.swing.JTextArea txtCargarMotivo;
+    private javax.swing.JTextField txtCargarNPaciente;
     private javax.swing.JTextField txtCargarNombreMedico;
     private javax.swing.JTextField txtCargarPrimerApellido;
     private javax.swing.JTextField txtCargarPrimerNombre;
+    private javax.swing.JTextField txtConsultorioAsignadoo;
     private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtDocPaciente;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtFechaCitaV;
+    private javax.swing.JTextField txtHoraaCita;
     private javax.swing.JTextField txtIdentificacionCita;
     private javax.swing.JTextField txtIdentificacionPaciente;
+    private javax.swing.JTextField txtNomDoctor;
     private javax.swing.JTextField txtNumeroDocumento;
     private javax.swing.JTextField txtPrimerApellido;
     private javax.swing.JTextField txtPrimerNombre;
@@ -2788,6 +3108,51 @@ public class Recepcionista extends javax.swing.JFrame {
         txtCampoNombre.setEnabled(false);
         txtIdentificacionPaciente.setEnabled(false);
         buttonReiniciar.setEnabled(true);
+    }
+
+    public void ocultarSeccionEditarCita() {
+        panelDiv.setVisible(false);
+
+        lblDatosCitas.setVisible(false);
+        lblPaciente.setVisible(false);
+        lblDocPaciente.setVisible(false);
+        lblHoraCita.setVisible(false);
+        lblNombreDoctor.setVisible(false);
+        lblConsultorio.setVisible(false);
+        lblFechaaCita.setVisible(false);
+
+        txtCargarNPaciente.setVisible(false);
+        txtDocPaciente.setVisible(false);
+        txtNomDoctor.setVisible(false);
+        txtFechaCitaV.setVisible(false);
+        txtHoraaCita.setVisible(false);
+        txtConsultorioAsignadoo.setVisible(false);
+        buttonCancelarCita.setVisible(false);
+        buttonConsultorios.setVisible(false);
+        buttonMedicos.setVisible(false);
+    }
+
+    public void mostrarSeccionEditarCita() {
+        panelDiv.setVisible(true);
+
+        lblDatosCitas.setVisible(true);
+        lblPaciente.setVisible(true);
+        lblDocPaciente.setVisible(true);
+        lblHoraCita.setVisible(true);
+        lblNombreDoctor.setVisible(true);
+        lblConsultorio.setVisible(true);
+        lblFechaaCita.setVisible(true);
+
+        txtCargarNPaciente.setVisible(true);
+        txtDocPaciente.setVisible(true);
+        txtNomDoctor.setVisible(true);
+        txtFechaCitaV.setVisible(true);
+        txtHoraaCita.setVisible(true);
+        txtConsultorioAsignadoo.setVisible(true);
+        buttonCancelarCita.setVisible(true);
+        buttonConsultorios.setVisible(true);
+        buttonMedicos.setVisible(true);
+        txtBuscarCita.setEnabled(false);
     }
 
 }

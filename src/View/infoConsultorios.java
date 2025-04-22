@@ -1,16 +1,15 @@
 package View;
-
-import Comandos.metodos.MetodosUtiles;
+import Persistencia.Consultorios.MostrarTablaConsultorios.MostrarTablaConsultorios;
 import java.awt.Toolkit;
 
 public class infoConsultorios extends javax.swing.JFrame {
 
-    MetodosUtiles metodo = new MetodosUtiles();
+    MostrarTablaConsultorios tabla = new MostrarTablaConsultorios();
     
     public infoConsultorios() {
         initComponents();
         ubicarFrame();
-        metodo.MostrarConsultorios(tablaConsultorios);
+        tabla.MostrarConsultorios(tablaConsultorios);
         
     }
     

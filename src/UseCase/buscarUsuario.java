@@ -1,4 +1,5 @@
-package Model;
+package UseCase;
+import Persistencia.Database.ConexionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

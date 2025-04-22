@@ -20,15 +20,14 @@ public class Paciente extends Usuarios {
     private Date fechaRegistro;
     private String edad;
 
-    public Paciente(String primerNombre) {
-        this.primerNombre = primerNombre;
+    public Paciente() {
+    
     }
 
-    public Paciente(String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
+    public Paciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
             String tipoDocumento, String numeroDocumento, String telefono, String direccionResidencia, String estadoCivil,
             String genero, String email, String EPS, String tipoSangre, Date fechaNacimiento, Date fechaRegistro, String edad) throws Exception {
 
-        super(usuario, contraseña);
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;

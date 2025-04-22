@@ -1,25 +1,26 @@
 package View;
 
 import Comandos.metodos.MetodosUtiles;
+import Persistencia.Doctor.MostrarTablaDoctores.MostrarTablaDoctores;
 import java.awt.Toolkit;
 
 public class infoMedicos extends javax.swing.JFrame {
 
-    MetodosUtiles metodo = new MetodosUtiles();
-    
+    MostrarTablaDoctores mostrarTabla = new MostrarTablaDoctores();
+
     public infoMedicos() {
         initComponents();
         ubicarFrame();
-        metodo.MostrarMedicos(tablaDoctores);
-        
+        mostrarTabla.MostrarMedicos(tablaDoctores);
+
     }
-    
-    public void ubicarFrame(){
+
+    public void ubicarFrame() {
         int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
         int x = screenWidth - this.getWidth();
         int y = 0;
-        this.setLocation(x,y);
-        
+        this.setLocation(x, y);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -156,7 +157,7 @@ public class infoMedicos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-    this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     public static void main(String args[]) {

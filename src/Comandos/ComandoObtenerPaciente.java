@@ -2,7 +2,7 @@
 package Comandos;
 import java.util.List;
 import Model.Paciente;
-import Model.ConexionBD;
+import Persistencia.Database.ConexionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -48,7 +48,7 @@ public class ComandoObtenerPaciente implements IObtenerPaciente {
                 String edad = rs.getString("edad");
 
                 //Llenar paramétros del constructor.
-               Paciente paciente = new Paciente(usuario, contraseña, primerNombre, segundoNombre, primerApellido, segundoApellido,
+               Paciente paciente = new Paciente(primerNombre, segundoNombre, primerApellido, segundoApellido,
                 tipoDocumento, numeroDocumento, telefono, direccionResidencia,estadoCivil ,genero, email, EPS, tipoSangre, fechaNacimiento, fechaRegistro, edad);
                 
                listaPacientes.add(paciente);

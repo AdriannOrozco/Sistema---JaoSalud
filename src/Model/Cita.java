@@ -1,19 +1,18 @@
 package Model;
-import java.time.LocalTime;
 import java.util.*;
 
 public class Cita{
     
     private int idConsultorio;
     private String identificacion;
-    private String motivo; //Solicitado
-    private Date fechaCita;
-    private String hora; //3
-    private int idCita; //4
+    private String motivo; 
+    private Date fechaCita; //Se puede cambiar
+    private String hora; //Se puede cambiar
+    private int idCita; 
     private Date fechaRegistro;
-    private String nombrePaciente; //2
-    private String numeroDocumento; //1
-    private boolean estado; //Automático
+    private String nombrePaciente;
+    private String numeroDocumento;
+    private boolean estado;
     
     public Cita(){
         

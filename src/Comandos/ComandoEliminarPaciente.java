@@ -1,7 +1,7 @@
 package Comandos;
 
 //Default imports
-import Model.ConexionBD;
+import Persistencia.Database.ConexionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ public class ComandoEliminarPaciente implements IEliminarPaciente {
         int confirmacion = JOptionPane.showConfirmDialog(null, "¿Desea eliminar al paciente?", "Seleccionar", JOptionPane.YES_NO_OPTION);
 
         if (confirmacion == JOptionPane.NO_OPTION) {
-            JOptionPane.showConfirmDialog(null, "Se ha cancelado el proceso.", "Proceso cancelado", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Se ha cancelado el proceso.", "Proceso cancelado", JOptionPane.OK_OPTION);
             return;
         }
 

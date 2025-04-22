@@ -1,6 +1,6 @@
 package View;
 
-import Model.buscarUsuario;
+import UseCase.buscarUsuario;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {

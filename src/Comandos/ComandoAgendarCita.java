@@ -1,7 +1,9 @@
 package Comandos;
 
 import static Comandos.metodos.MetodosUtiles.*;
-import Model.ConexionBD;
+import Persistencia.Database.ConexionBD;
+import Persistencia.Paciente.BuscarPacientePorID.BuscarPacientePorId;
+import Persistencia.Paciente.PreguntarExisteDocumento.PreguntarExisteDocumento;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -14,6 +16,9 @@ public class ComandoAgendarCita implements IAgendarCita {
     public void AgendarCita(int idConsultorio, String identificacionDoctor, String motivo, Date fechaCita, String hora,
             int idCita, Date fechaRegistro, String nombrePaciente, String numeroDocumento, boolean estado) throws Exception {
 
+        BuscarPacientePorId buscar = new BuscarPacientePorId();
+        PreguntarExisteDocumento existeDocumento = new PreguntarExisteDocumento();
+        
         // Validaciones iniciales
         if (identificacionDoctor == null || motivo == null || motivo.trim().isEmpty()
                 || fechaCita == null || idCita == 0 || fechaRegistro == null || nombrePaciente == null || numeroDocumento == null) {
@@ -28,11 +33,11 @@ public class ComandoAgendarCita implements IAgendarCita {
             throw new IllegalArgumentException("Seleccione una hora.");
         }
 
-        if (!ExisteNumeroDocumento(numeroDocumento)) {
+        if (!existeDocumento.ExisteNumeroDocumento(numeroDocumento)) {
             throw new IllegalArgumentException("No existe un número de documento registrado.");
         }
 
-        if (BuscarPacientePorDocumento(numeroDocumento) == null) {
+        if (buscar.BuscarPacientePorDocumento(numeroDocumento) == null) {
             throw new IllegalArgumentException("No existe un paciente con ese npumero de documento.");
         }
 
@@ -44,7 +49,7 @@ public class ComandoAgendarCita implements IAgendarCita {
             throw new IllegalArgumentException("Consultorio ocupado.");
         }
 
-        nombrePaciente = BuscarPacientePorDocumento(numeroDocumento);
+        nombrePaciente = buscar.BuscarPacientePorDocumento(numeroDocumento);
 
         String sql = "INSERT INTO citas (idConsultorio, identificacionDoctor, motivo, fechaCita, hora, fechaRegistro, idCita, nombrePaciente, numeroDocumento, estado) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

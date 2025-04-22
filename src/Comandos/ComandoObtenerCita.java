@@ -1,5 +1,5 @@
 package Comandos;
-import Model.ConexionBD;
+import Persistencia.Database.ConexionBD;
 import Model.Cita;
 import Model.Consultorio;
 import Model.Medico;
