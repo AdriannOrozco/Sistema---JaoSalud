@@ -1,0 +1,30 @@
+ if (identificacionDoctor == null || motivo == null || motivo.trim().isEmpty()
+                || fechaCita == null || idCita == 0 || fechaRegistro == null || nombrePaciente == null || numeroDocumento == null) {
+            throw new IllegalArgumentException("Campos obligatorios vacíos.");
+        }
+
+        if (motivo.length() < 10) {
+            throw new IllegalArgumentException("El motivo digitado es inválido.");
+        }
+
+        if (hora.equals("Seleccionar")) {
+            throw new IllegalArgumentException("Seleccione una hora.");
+        }
+
+        if (!existeDocumento.ExisteNumeroDocumento(numeroDocumento)) {
+            throw new IllegalArgumentException("No existe un número de documento registrado.");
+        }
+
+        if (buscar.BuscarPacientePorDocumento(numeroDocumento) == null) {
+            throw new IllegalArgumentException("No existe un paciente con ese npumero de documento.");
+        }
+
+        if (VerificarDisponibilidadDoctor(identificacionDoctor, fechaCita, hora)) {
+            throw new IllegalArgumentException("El doctor ya está reservado.");
+        }
+
+        if (VerificarDisponibilidadConsultorio(idConsultorio, fechaCita, hora)) {
+            throw new IllegalArgumentException("Consultorio ocupado.");
+        }
+
+        nombrePaciente = buscar.BuscarPacientePorDocumento(numeroDocumento);

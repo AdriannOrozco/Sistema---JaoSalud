@@ -11,6 +11,7 @@ import Comandos.IAgendarCita;
 import Comandos.ICancelarCita;
 import Comandos.ICrearPaciente;
 import Comandos.IEliminarPaciente;
+import Model.Cita;
 import Persistencia.Citas.CargarDatosCitaId.CargarDatosCita;
 import Persistencia.Citas.CargarMotivo.CargarMotivo;
 import Persistencia.Citas.MostrarTablasCita.MostrarTablasCita;
@@ -2493,6 +2494,7 @@ public class Recepcionista extends javax.swing.JFrame {
         try {
             String numeroDocumento = txtBuscarNumeroIdentificacion.getText();
             String tipoDocumento = cboBuscarNumeroIdentificacion.getSelectedItem().toString();
+            
             IEliminarPaciente eliminar = new ComandoEliminarPaciente();
             eliminar.EliminarPaciente(tipoDocumento, numeroDocumento);
             limpiarDespuesDeActualizar();
@@ -2737,7 +2739,12 @@ public class Recepcionista extends javax.swing.JFrame {
             String nombrePaciente = txtCampoNombre.getText();
             String numeroDocumento = txtIdentificacionPaciente.getText();
             boolean estado = true;
-            agendar.AgendarCita(idConsultorio, identificacion, motivo, fechaCita, hora, idCita, fechaRegistro, nombrePaciente, numeroDocumento, estado);
+            
+            Cita nuevaCita = new Cita(idConsultorio, identificacion,motivo,fechaCita, hora, idCita,
+            fechaRegistro, nombrePaciente, numeroDocumento,estado);
+            
+            IAgendarCita comando = new ComandoAgendarCita();
+            comando.AgendarCita(nuevaCita);
             txtIdentificacionCita.setText("" + idCita);
             limpiarCampos();
         } catch (IllegalArgumentException ex) {

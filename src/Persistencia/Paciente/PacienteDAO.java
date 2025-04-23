@@ -2,7 +2,6 @@ package Persistencia.Paciente;
 
 import Model.Paciente;
 import Persistencia.Database.ConexionBD;
-import com.sun.jdi.connect.spi.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 
@@ -107,6 +106,20 @@ public class PacienteDAO {
         }
     }
 
+     public boolean delete(String tipoDocumento, String numeroDocumento) throws Exception {
+        String sql = "DELETE FROM pacientes WHERE tipoDocumento = ? AND numeroDocumento = ?";
+        
+        try (var con = ConexionBD.conectar(); 
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            
+            pstmt.setString(1, tipoDocumento);
+            pstmt.setString(2, numeroDocumento);
+            
+            int filasAfectadas = pstmt.executeUpdate();
+            
+            return filasAfectadas > 0;
+        }
+    }
 
 ///
 }

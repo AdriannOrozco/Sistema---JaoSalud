@@ -1,82 +1,71 @@
 package Comandos;
-
-import static Comandos.metodos.MetodosUtiles.*;
-import Persistencia.Database.ConexionBD;
+import Model.Cita;
+import Persistencia.Citas.CitaDAO;
+import Persistencia.Consultorios.VerificarDisponibilidad.VerificarDisponibilidad;
+import Persistencia.Doctor.VerificarDisponibilidad.VerificarDisponibilidadDoc;
 import Persistencia.Paciente.BuscarPacientePorID.BuscarPacientePorId;
 import Persistencia.Paciente.PreguntarExisteDocumento.PreguntarExisteDocumento;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class ComandoAgendarCita implements IAgendarCita {
 
     @Override
-    public void AgendarCita(int idConsultorio, String identificacionDoctor, String motivo, Date fechaCita, String hora,
-            int idCita, Date fechaRegistro, String nombrePaciente, String numeroDocumento, boolean estado) throws Exception {
+    public void AgendarCita(Cita cita) throws Exception {
 
         BuscarPacientePorId buscar = new BuscarPacientePorId();
         PreguntarExisteDocumento existeDocumento = new PreguntarExisteDocumento();
-        
-        // Validaciones iniciales
-        if (identificacionDoctor == null || motivo == null || motivo.trim().isEmpty()
-                || fechaCita == null || idCita == 0 || fechaRegistro == null || nombrePaciente == null || numeroDocumento == null) {
+        VerificarDisponibilidadDoc vdDoctor = new VerificarDisponibilidadDoc();
+        VerificarDisponibilidad vdConsultorio = new VerificarDisponibilidad();
+
+        if (cita.getIdentificacion() == null
+                || cita.getMotivo() == null
+                || cita.getMotivo().trim().isEmpty()
+                || cita.getFechaCita() == null
+                || cita.getIdCita() == 0
+                || cita.getFechaRegistro() == null
+                || cita.getNombrePaciente() == null
+                || cita.getNumeroDocumento() == null) {
+
             throw new IllegalArgumentException("Campos obligatorios vacíos.");
         }
 
-        if (motivo.length() < 10) {
+        if (cita.getMotivo().length() < 10) {
             throw new IllegalArgumentException("El motivo digitado es inválido.");
         }
 
-        if (hora.equals("Seleccionar")) {
+        if (cita.getHora().equals("Seleccionar")) {
             throw new IllegalArgumentException("Seleccione una hora.");
         }
 
-        if (!existeDocumento.ExisteNumeroDocumento(numeroDocumento)) {
+        if (!existeDocumento.ExisteNumeroDocumento(cita.getNumeroDocumento())) {
             throw new IllegalArgumentException("No existe un número de documento registrado.");
         }
 
-        if (buscar.BuscarPacientePorDocumento(numeroDocumento) == null) {
-            throw new IllegalArgumentException("No existe un paciente con ese npumero de documento.");
+        if (buscar.BuscarPacientePorDocumento(cita.getNumeroDocumento()) == null) {
+            throw new IllegalArgumentException("No existe un paciente con ese número de documento.");
         }
 
-        if (VerificarDisponibilidadDoctor(identificacionDoctor, fechaCita, hora)) {
+        if (vdDoctor.VerificarDisponibilidadDoctor(cita.getIdentificacion(), cita.getFechaCita(), cita.getHora())) {
             throw new IllegalArgumentException("El doctor ya está reservado.");
         }
 
-        if (VerificarDisponibilidadConsultorio(idConsultorio, fechaCita, hora)) {
+        if (vdConsultorio.VerificarDisponibilidadConsultorio(cita.getIdConsultorio(), cita.getFechaCita(), cita.getHora())) {
             throw new IllegalArgumentException("Consultorio ocupado.");
         }
 
-        nombrePaciente = buscar.BuscarPacientePorDocumento(numeroDocumento);
+        String nombrePaciente = buscar.BuscarPacientePorDocumento(cita.getNumeroDocumento());
+        cita.setNombrePaciente(nombrePaciente);
 
-        String sql = "INSERT INTO citas (idConsultorio, identificacionDoctor, motivo, fechaCita, hora, fechaRegistro, idCita, nombrePaciente, numeroDocumento, estado) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-        try (Connection con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
-
-            pstmt.setInt(1, idConsultorio);
-            pstmt.setString(2, identificacionDoctor);
-            pstmt.setString(3, motivo);
-            pstmt.setDate(4, new java.sql.Date(fechaCita.getTime()));
-            pstmt.setString(5, hora);
-            pstmt.setDate(6, new java.sql.Date(fechaRegistro.getTime()));
-            pstmt.setInt(7, idCita);
-            pstmt.setString(8, nombrePaciente);
-            pstmt.setString(9, numeroDocumento);
-            pstmt.setBoolean(10, estado);
-
-            int filasAfectadas = pstmt.executeUpdate();
-
-            if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "La cita se agendó con éxito.", "Proceso completado", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo agendar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+        try {
+            CitaDAO create = CitaDAO.getInstancia();
+            create.create(cita);
+            JOptionPane.showMessageDialog(null, "La cita se agendo con éxito.",
+                    "Proceso completado", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (SQLException e) {
-            throw new Exception("Error al agendar cita: " + e.getMessage());
+            throw new Exception("Error al agendar cita paciente: " + e.getMessage());
         }
+
     }
 }

@@ -1,7 +1,6 @@
 package Persistencia.Doctor.CargarNombreEspecialidad;
-
-import static Comandos.metodos.MetodosUtiles.ContieneSoloNumeros;
 import Persistencia.Database.ConexionBD;
+import Persistencia.MetodosUtiles.MetodosCadenasDeTexto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +16,7 @@ public class CargarNombreEspecialidad {
         if (identificacionDoctor == null) {
             throw new IllegalArgumentException("El número de documento no puede estar vacío.");
         }
-        if (!ContieneSoloNumeros(identificacionDoctor)) {
+        if (!MetodosCadenasDeTexto.ContieneSoloNumeros(identificacionDoctor)) {
             throw new IllegalArgumentException("El número de documento sólo contiene números..");
         }
 

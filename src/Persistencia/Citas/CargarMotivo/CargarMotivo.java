@@ -1,7 +1,7 @@
 package Persistencia.Citas.CargarMotivo;
 
-import static Comandos.metodos.MetodosUtiles.ContieneSoloNumeros;
 import Persistencia.Database.ConexionBD;
+import Persistencia.MetodosUtiles.MetodosCadenasDeTexto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ public class CargarMotivo {
         if (idCitaStr == null) {
             throw new IllegalArgumentException("El número de la cita no puede estar vacío");
         }
-        if (!ContieneSoloNumeros(idCitaStr)) {
+        if (!MetodosCadenasDeTexto.ContieneSoloNumeros(idCitaStr)) {
             throw new IllegalArgumentException("El número de la cita sólo contiene números.");
         }
 

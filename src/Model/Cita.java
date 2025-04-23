@@ -98,11 +98,11 @@ public class Cita{
         this.fechaRegistro = fechaRegistro;
     }
 
-    public String getPaciente() {
+    public String getNombrePaciente() {
         return nombrePaciente;
     }
 
-    public void setPaciente(String nombrePaciente) {
+    public void setNombrePaciente(String nombrePaciente) {
         this.nombrePaciente = nombrePaciente;
     }
 
