@@ -1,45 +1,103 @@
 package Comandos;
-import Model.ConexionBD;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import Model.Paciente;
+import Persistencia.MetodosUtiles.MetodosCadenasDeTexto;
+import Persistencia.Paciente.PacienteDAO;
 import java.sql.SQLException;
-import java.util.Date;
 import javax.swing.JOptionPane;
+import Persistencia.Paciente.VerificarPacienteEmail.VerificarPacienteEmail;
+import Persistencia.Paciente.VerificarPacienteID.VerificarPacienteID;
 
 public class ComandoCrearPaciente implements ICrearPaciente {
-    
-   @Override
-   public void crearPaciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido
-           ,String tipoDocumento, String numeroDocumento,String telefono,  String direccionResidencia, String estadoCivil
-           ,String genero, String email, String EPS, String tipoSangre, Date fechaNacimiento, Date fechaRegistro, int edad){
-   
-    //Se crea la sentencia SQL
-    String sql = "INSERT INTO nombre tabla (atributos) VALUES (?)";
-    try (Connection con = ConexionBD.conectar();
-         PreparedStatement pstmt = con.prepareStatement(sql)) {
-        pstmt.setString(1, primerNombre);
-        pstmt.setString(2, segundoNombre);
-        pstmt.setString(3, primerApellido);
-        pstmt.setString(4, segundoApellido);
-        pstmt.setString(5, tipoDocumento);
-        pstmt.setString(6, numeroDocumento);
-        pstmt.setString(7, telefono);
-        pstmt.setString(8, direccionResidencia);
-        pstmt.setString(9, estadoCivil);
-        pstmt.setString(10, genero);
-        pstmt.setString(11, email);
-        pstmt.setString(12, EPS);
-        pstmt.setString(13, tipoSangre);
-        pstmt.setDate(14, new java.sql.Date(fechaNacimiento.getTime()));
-        pstmt.setDate(15, new java.sql.Date(fechaRegistro.getTime()));
-        pstmt.setInt(16, edad);
-        
-        pstmt.executeUpdate();
-        JOptionPane.showInternalInputDialog(null,"El paciente se agregó con éxito.", "Proceso completado", JOptionPane.OK_OPTION);
-        
-    } catch (SQLException e) {
-         JOptionPane.showInternalInputDialog(null,"Error al agregar paciente.", "Error", JOptionPane.ERROR);
+
+    @Override
+    public void CrearPaciente(Paciente paciente) throws Exception {
+        MetodosCadenasDeTexto metodo = new MetodosCadenasDeTexto();
+
+        if (paciente.getPrimerNombre() == null || paciente.getPrimerNombre().trim().isEmpty()
+                || paciente.getPrimerApellido() == null || paciente.getPrimerApellido().trim().isEmpty()
+                || paciente.getSegundoApellido() == null || paciente.getSegundoApellido().trim().isEmpty()
+                || paciente.getTipoDocumento() == null || paciente.getTipoDocumento().trim().isEmpty()
+                || paciente.getNumeroDocumento() == null || paciente.getNumeroDocumento().trim().isEmpty()
+                || paciente.getTelefono() == null || paciente.getTelefono().trim().isEmpty()
+                || paciente.getDireccionResidencia() == null || paciente.getDireccionResidencia().trim().isEmpty()
+                || paciente.getEstadoCivil() == null || paciente.getEstadoCivil().trim().isEmpty()
+                || paciente.getGenero() == null || paciente.getGenero().trim().isEmpty()
+                || paciente.getEPS() == null || paciente.getEPS().trim().isEmpty()
+                || paciente.getTipoSangre() == null || paciente.getTipoSangre().trim().isEmpty()
+                || paciente.getEdad() == null || paciente.getEdad().trim().isEmpty()) {
+
+            throw new IllegalArgumentException("Campos obligatorios vacíos.");
+        }
+
+        if (paciente.getPrimerNombre().length() < 3
+                || paciente.getPrimerApellido().length() < 3
+                || paciente.getSegundoApellido().length() < 3) {
+
+            throw new IllegalArgumentException("Nombres o apellidos demasiado cortos.");
+        }
+
+        if (!metodo.EsNombreValido(paciente.getPrimerNombre())
+                || !metodo.EsNombreValido(paciente.getSegundoNombre())
+                || !metodo.EsNombreValido(paciente.getPrimerApellido())
+                || !metodo.EsNombreValido(paciente.getSegundoApellido())) {
+
+            throw new IllegalArgumentException("Nombres inválidos.");
+        }
+
+        if (!metodo.ContieneSoloNumeros(paciente.getNumeroDocumento())) {
+            throw new IllegalArgumentException("Documento inválido.");
+        }
+
+        if (paciente.getNumeroDocumento().length() < 7 || paciente.getNumeroDocumento().length() > 13) {
+            throw new IllegalArgumentException("Longitud inválida del documento.");
+        }
+
+        if (!metodo.ContieneSoloNumeros(paciente.getTelefono()) || paciente.getTelefono().length() < 10) {
+            throw new IllegalArgumentException("Teléfono inválido.");
+        }
+
+        if (!metodo.EsNombreValido(paciente.getGenero())) {
+            throw new IllegalArgumentException("Estado civil o género inválido.");
+        }
+
+        if (!metodo.EsEmailValido(paciente.getEmail()) || paciente.getEmail().length() < 7) {
+            throw new IllegalArgumentException("Correo inválido.");
+        }
+
+        if (paciente.getDireccionResidencia().length() < 7) {
+            throw new IllegalArgumentException("Dirección inválida.");
+        }
+
+        if (paciente.getEPS().length() < 6) {
+            throw new IllegalArgumentException("EPS inválida.");
+        }
+
+        if (paciente.getTipoSangre().length() > 5 || metodo.ContieneNumeros(paciente.getTipoSangre())) {
+            throw new IllegalArgumentException("Tipo de sangre inválido.");
+        }
+
+        if (!metodo.ContieneSoloNumeros(paciente.getEdad())) {
+            throw new IllegalArgumentException("Edad inválida.");
+        }
+
+        if (VerificarPacienteID.VerificarPacientePorId(paciente.getNumeroDocumento())) {
+            JOptionPane.showMessageDialog(null, "Ya existe un paciente con ese número de documento.", "Número de documento existente.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (VerificarPacienteEmail.VerificarPacientePorEmail(paciente.getEmail())) {
+            JOptionPane.showMessageDialog(null, "Ya existe un paciente con ese email.", "Email existente.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            PacienteDAO create = PacienteDAO.getInstancia();
+            create.create(paciente);
+            JOptionPane.showMessageDialog(null, "El paciente se agregó con éxito.",
+                    "Proceso completado", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (SQLException e) {
+            throw new Exception("Error al agregar paciente: " + e.getMessage());
+        }
     }
-    
-   }
 }

@@ -1,55 +1,61 @@
 package Model;
-import java.time.LocalTime;
 import java.util.*;
 
 public class Cita{
     
-    private Consultorio consultorio; //Solicitado
-    private Medico medicoAsignado; //Solicitado
-    private String motivo; //Solicitado
-    private Date fechaCita;
-    private LocalTime hora; //Solicitado
-    private Random idCita; //Automático
+    private int idConsultorio;
+    private String identificacion;
+    private String motivo; 
+    private Date fechaCita; //Se puede cambiar
+    private String hora; //Se puede cambiar
+    private int idCita; 
     private Date fechaRegistro;
-    private Paciente paciente;
-    private String numeroDocumento; 
-    private boolean estado; //Automático
-
-    //Constructor por defecto
+    private String nombrePaciente;
+    private String numeroDocumento;
+    private boolean estado;
+    
     public Cita(){
         
     }
 
+   
     //Contructor con parámetros
-    public Cita(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, LocalTime hora, Random idCita, Date fechaRegistro,
-            Paciente paciente, String numeroDocumento, boolean estado) {
-        this.consultorio = consultorio;
-        this.medicoAsignado = medicoAsignado;
+    public Cita(int consultorio, String identificacion, String motivo, Date fechaCita, String hora, int idCita, Date fechaRegistro, String nombrePaciente,String numeroDocumento,boolean estado) {
+        this.idConsultorio = idConsultorio;
+        this.identificacion = identificacion;
         this.motivo = motivo;
         this.fechaCita = fechaCita;
         this.hora = hora;
         this.idCita = idCita;
         this.fechaRegistro = fechaRegistro;
-        this.paciente = paciente;
+        this.nombrePaciente = nombrePaciente;
         this.numeroDocumento = numeroDocumento;
         this.estado = estado;
     }
 
+    public String getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
+    }
+
     //Getters y Setters
-    public Consultorio getConsultorio() {
-        return consultorio;
+    public int getIdConsultorio() {
+        return idConsultorio;
     }
 
-    public void setConsultorio(Consultorio consultorio) {
-        this.consultorio = consultorio;
+    public void setIdConsultorio(int idConsultorio) {
+        this.idConsultorio = idConsultorio;
     }
 
-    public Medico getMedicoAsignado() {
-        return medicoAsignado;
+    public String getIdentificacion() {
+        return identificacion;
     }
 
-    public void setMedicoAsignado(Medico medicoAsignado) {
-        this.medicoAsignado = medicoAsignado;
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
 
     public String getMotivo() {
@@ -68,19 +74,19 @@ public class Cita{
         this.fechaCita = fechaCita;
     }
 
-    public LocalTime getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(LocalTime hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 
-    public Random getIdCita() {
+    public int getIdCita() {
         return idCita;
     }
 
-    public void setIdCita(Random idCita) {
+    public void setIdCita(int idCita) {
         this.idCita = idCita;
     }
 
@@ -92,21 +98,14 @@ public class Cita{
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public String getPaciente() {
+        return nombrePaciente;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setPaciente(String nombrePaciente) {
+        this.nombrePaciente = nombrePaciente;
     }
 
-    public String getNumeroDocumento() {
-        return numeroDocumento;
-    }
-
-    public void setNumeroDocumento(String numeroDocumento) {
-        this.numeroDocumento = numeroDocumento;
-    }
 
     public boolean isEstado() {
         return estado;

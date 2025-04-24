@@ -1,30 +1,38 @@
 package Model;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Random;
 
-public class HistorialMedico extends Cita {
+public class ResultadosMedicos {
     
+    private Paciente paciente;
+    private ArrayList<Cita> citas;
     private boolean alergia;
     private String observaciones;
     private ArrayList<String> resultados;
     private ArrayList<Medicamentos> medicamento;
-    
-    
-    public HistorialMedico(){
-        
+
+    public ResultadosMedicos(Paciente paciente, ArrayList<Cita> citas, boolean alergia, String observaciones, ArrayList<String> resultados, ArrayList<Medicamentos> medicamento) {
+        this.paciente = paciente;
+        this.citas = citas;
+        this.alergia = alergia;
+        this.observaciones = observaciones;
+        this.resultados = resultados;
+        this.medicamento = medicamento;
     }
-    
-    public HistorialMedico(Consultorio consultorio, Medico medicoAsignado, String motivo, Date fechaCita, LocalTime hora, Random idCita, Date fechaRegistro,
-            boolean alergia, String observaciones, ArrayList<String> resultados, ArrayList<Medicamentos> medicamento,
-            Paciente paciente, String numeroDocumento, boolean estado){
-       
-       super(consultorio, medicoAsignado, motivo, fechaCita, hora, idCita, fechaRegistro, paciente, numeroDocumento, estado);
-       this.alergia = alergia;
-       this.observaciones = observaciones;
-       this.resultados = new ArrayList<>(resultados);
-       this.medicamento = new ArrayList<>(medicamento);    
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public ArrayList<Cita> getCitas() {
+        return citas;
+    }
+
+    public void setCitas(ArrayList<Cita> citas) {
+        this.citas = citas;
     }
 
     public boolean isAlergia() {
@@ -57,5 +65,22 @@ public class HistorialMedico extends Cita {
 
     public void setMedicamento(ArrayList<Medicamentos> medicamento) {
         this.medicamento = medicamento;
-    }     
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
+
+
+    
