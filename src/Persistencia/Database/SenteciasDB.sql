@@ -12,10 +12,10 @@ Nombre: usuarios
 Código SQL:
 
 CREATE TABLE usuarios(
-identificador_usuario INT PRIMARY KEY,
-usuario VARCHAR(15) UNIQUE NOT NULL,
-contraseña VARCHAR(15) NOT NULL,
-rol VARCHAR(30) NOT NULL
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT, --PK--
+    usuario VARCHAR(15) UNIQUE NOT NULL,
+    contraseña VARCHAR(15) NOT NULL,
+    rol VARCHAR(30) NOT NULL
 );
 
 ------ 4. Creación de la segunda tabla ------
@@ -39,8 +39,13 @@ EPS VARCHAR(20) NOT NULL,
 tipoSangre VARCHAR(20) NOT NULL,
 fechaNacimiento DATE NOT NULL,
 fechaRegistro DATE NOT NULL,
-edad VARCHAR(4) NOT NULL
+edad VARCHAR(4) NOT NULL,
+id_usuario INT UNIQUE
 );
+
+ALTER TABLE pacientes 
+ADD CONSTRAINT fk_usuario_paciente 
+FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario);
 
 
 ------ 5. Creación de la tercera tabla -----
