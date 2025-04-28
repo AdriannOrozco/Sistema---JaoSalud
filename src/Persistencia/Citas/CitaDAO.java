@@ -1,4 +1,5 @@
 package Persistencia.Citas;
+
 import Model.Cita;
 import Persistencia.Database.ConexionBD;
 import java.sql.PreparedStatement;
@@ -8,6 +9,10 @@ import javax.swing.JOptionPane;
 public class CitaDAO {
 
     private static CitaDAO instancia;
+    
+    public CitaDAO(){
+        
+    }
 
     public static CitaDAO getInstancia() {
         if (instancia == null) {
@@ -20,7 +25,6 @@ public class CitaDAO {
         String sql = "INSERT INTO citas (idConsultorio, identificacionDoctor, motivo, fechaCita, hora, fechaRegistro, idCita, nombrePaciente, numeroDocumento, estado) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        
         try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
 
             pstmt.setInt(1, cita.getIdConsultorio());
@@ -37,13 +41,25 @@ public class CitaDAO {
             int filasAfectadas = pstmt.executeUpdate();
 
             if (filasAfectadas > 0) {
-                 throw new SQLException("La cita se agendó con éxito.");
+                throw new SQLException("La cita se agendó con éxito.");
             } else {
                 throw new SQLException("No se pudo agendar la cita.");
             }
 
         } catch (SQLException e) {
             throw new IllegalArgumentException("Error al agendar cita: " + e.getMessage());
+        }
+    }
+
+    public boolean delete(int idCita) throws Exception {
+
+        String sql = "DELETE FROM citas WHERE idCita = ?";
+        try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setInt(1, idCita);
+            int filasAfectadas = pstmt.executeUpdate();
+
+            return filasAfectadas > 0;
         }
     }
 

@@ -2793,6 +2793,8 @@ public class Recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonOkCargarMotivosActionPerformed
 
     private void lblRealodInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRealodInicioMouseClicked
+        
+        
         txtBuscarMotivoID.setText("");
         txtCargarMotivo.setText("");
         txtBuscarMedicoId.setText("");
@@ -2840,7 +2842,7 @@ public class Recepcionista extends javax.swing.JFrame {
             String idCitaStr = txtBuscarCita.getText();
             int idCita = Integer.parseInt(idCitaStr);
             ICancelarCita eliminar = new ComandoCancelarCita();
-            eliminar.CancelarCita(idCita);
+            eliminar.CancelarCita(idCitaStr);
             ocultarSeccionEditarCita();
             txtBuscarCita.setText("");
         } catch (Exception e) {
