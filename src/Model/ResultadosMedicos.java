@@ -1,38 +1,41 @@
 package Model;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ResultadosMedicos {
-    
-    private Paciente paciente;
-    private ArrayList<Cita> citas;
-    private boolean alergia;
-    private String observaciones;
-    private ArrayList<String> resultados;
-    private ArrayList<Medicamentos> medicamento;
 
-    public ResultadosMedicos(Paciente paciente, ArrayList<Cita> citas, boolean alergia, String observaciones, ArrayList<String> resultados, ArrayList<Medicamentos> medicamento) {
-        this.paciente = paciente;
-        this.citas = citas;
+    private int idCita; //Forean key
+    private int idDiagnostico; //Primary key
+    private String diagnostico;
+    private boolean alergia;
+    private boolean observaciones;
+    private ArrayList<Integer> idMedicamentos;
+    private Date fechaCreacion;
+
+    public ResultadosMedicos(int idCita, String diagnostico, boolean alergia, boolean observaciones, ArrayList<Integer> idMedicamentos, Date fechaCreacion) {
+        this.idCita = idCita;
+        this.diagnostico = diagnostico;
         this.alergia = alergia;
         this.observaciones = observaciones;
-        this.resultados = resultados;
-        this.medicamento = medicamento;
+        this.idMedicamentos = idMedicamentos;
+        this.fechaCreacion = fechaCreacion;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public int getIdCita() {
+        return idCita;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setIdCita(int idCita) {
+        this.idCita = idCita;
     }
 
-    public ArrayList<Cita> getCitas() {
-        return citas;
+    public String getDiagnostico() {
+        return diagnostico;
     }
 
-    public void setCitas(ArrayList<Cita> citas) {
-        this.citas = citas;
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
     }
 
     public boolean isAlergia() {
@@ -43,44 +46,36 @@ public class ResultadosMedicos {
         this.alergia = alergia;
     }
 
-    public String getObservaciones() {
+    public boolean isObservaciones() {
         return observaciones;
     }
 
-    public void setObservaciones(String observaciones) {
+    public void setObservaciones(boolean observaciones) {
         this.observaciones = observaciones;
     }
 
-    public ArrayList<String> getResultados() {
-        return resultados;
+    public ArrayList<Integer> getIdMedicamentos() {
+        return idMedicamentos;
     }
 
-    public void setResultados(ArrayList<String> resultados) {
-        this.resultados = resultados;
+    public void setIdMedicamentos(ArrayList<Integer> idMedicamentos) {
+        this.idMedicamentos = idMedicamentos;
     }
 
-    public ArrayList<Medicamentos> getMedicamento() {
-        return medicamento;
+    public Date getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setMedicamento(ArrayList<Medicamentos> medicamento) {
-        this.medicamento = medicamento;
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    public ResultadosMedicos(int idDiagnostico) {
+        this.idDiagnostico = idDiagnostico;
+    }
+
+    public int getIdDiagnostico() {
+        return idDiagnostico;
+    }
+
 }
-
-
-    

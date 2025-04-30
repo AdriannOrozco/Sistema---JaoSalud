@@ -101,3 +101,16 @@ precio DOUBLE NOT NULL,
 dosisDiarias INT NOT NULL,
 disponible BOOLEAN NOT NULL
 );
+
+
+------ 9. Creación de la séptima tabla ------
+
+CREATE TABLE resultadosmedicos (
+    idDiagnostico INT PRIMARY KEY AUTO_INCREMENT,
+    idCita INT NOT NULL UNIQUE,
+    diagnostico VARCHAR(305) NOT NULL,
+    alergia BOOLEAN NOT NULL,
+    observaciones BOOLEAN NOT NULL,
+    fechaCreacion DATE NOT NULL,
+    FOREIGN KEY (idCita) REFERENCES citas(idCita)
+);
