@@ -4,14 +4,15 @@ import Model.Cita;
 import Persistencia.Database.ConexionBD;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 public class CitaDAO {
 
     private static CitaDAO instancia;
-    
-    public CitaDAO(){
-        
+
+    public CitaDAO() {
+
     }
 
     public static CitaDAO getInstancia() {
@@ -61,6 +62,45 @@ public class CitaDAO {
 
             return filasAfectadas > 0;
         }
+    }
+
+    public void update(Cita cita) throws Exception {
+        String campo = null;
+        String valor = null;
+
+        if (cita.getMotivo() != null) {
+            campo = "motivo";
+            valor = cita.getMotivo();
+        } else if (cita.getHora() != null) {
+            campo = "hora";
+            valor = cita.getHora();
+        } else if (cita.getFechaCita() != null) {
+            campo = "fechaCita";
+            SimpleDateFormat fechaCita = new SimpleDateFormat("yyyy-MM-dd");
+            valor = fechaCita.format(cita.getFechaCita());
+        }
+
+        if (campo == null || valor == null) {
+            throw new IllegalArgumentException("No se encontró ningún campo válido para actualizar.");
+        }
+        
+        String sql = "UPDATE citas SET " + campo + " = ? WHERE idCita = ?";
+        
+        try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setString(1, valor);
+            pstmt.setInt(2, cita.getIdCita());
+
+            int filasAfectadas = pstmt.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "El campo '" + campo + "' se actualizó correctamente.", "Actualización exitosa", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró la cita para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            throw new Exception("Error al actualizar cita: " + e.getMessage());
+        }
+
     }
 
 }

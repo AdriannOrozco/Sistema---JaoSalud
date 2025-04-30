@@ -6,8 +6,8 @@ public class Cita{
     private int idConsultorio;
     private String identificacion;
     private String motivo; 
-    private Date fechaCita; //Se puede cambiar
-    private String hora; //Se puede cambiar
+    private Date fechaCita;
+    private String hora;
     private int idCita; 
     private Date fechaRegistro;
     private String nombrePaciente;

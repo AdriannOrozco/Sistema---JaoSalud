@@ -51,37 +51,34 @@ public class MostrarTablasCita {
     
     
      public static void refrescarCitas(JTable tabla) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("N° Cita");
-        modelo.addColumn("Consultorio");
-        modelo.addColumn("Doctor/a");
-        modelo.addColumn("Fecha");
-        modelo.addColumn("Hora");
-        modelo.addColumn("Paciente");
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.addColumn("N° Cita");
+    modelo.addColumn("Consultorio");
+    modelo.addColumn("Doctor/a");
+    modelo.addColumn("Fecha");
+    modelo.addColumn("Hora");
+    modelo.addColumn("Paciente");
 
-        String sql = "SELECT * FROM citas";
+    String sql = "SELECT idCita, idConsultorio, identificacionDoctor, fechaCita, hora, nombrePaciente FROM citas WHERE estado = true";
 
-        try (Connection con = ConexionBD.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
+    try (Connection con = ConexionBD.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
+        ResultSet rs = ps.executeQuery();
 
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Object[] fila = {
-                    rs.getInt("idCita"),
-                    rs.getInt("idConsultorio"),
-                    rs.getString("identificacionDoctor"),
-                    rs.getString("fechaCita"),
-                    rs.getDate("fechaCita"),
-                    rs.getString("hora"),
-                    rs.getDate("Paciente"),
-                };
-                modelo.addRow(fila);
-            }
-
-            tabla.setModel(modelo);
-
-        } catch (SQLException e) {
-            System.out.println("Error al cargar citas: " + e.getMessage());
+        while (rs.next()) {
+            Object[] fila = {
+                rs.getInt("idCita"),
+                rs.getInt("idConsultorio"),
+                rs.getString("identificacionDoctor"),
+                rs.getDate("fechaCita"),   // Solo una vez
+                rs.getString("hora"),
+                rs.getString("nombrePaciente") // Cambiado de 'Paciente' a 'nombrePaciente'
+            };
+            modelo.addRow(fila);
         }
+
+        tabla.setModel(modelo);
+    } catch (SQLException e) {
+        System.out.println("Error al cargar citas: " + e.getMessage());
     }
+}
 }

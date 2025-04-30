@@ -27,7 +27,6 @@ public class PacienteDAO {
     String sqlPaciente = "INSERT INTO pacientes (primerNombre, segundoNombre, primerApellido, segundoApellido, tipoDocumento, numeroDocumento, telefono, direccionResidencia, estadoCivil, genero, email, EPS, tipoSangre, fechaNacimiento, fechaRegistro, edad, id_usuario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     
     try (var con = ConexionBD.conectar()) {
-        // Primero crear el usuario y obtener su ID generado
         PreparedStatement pstmtUsuario = con.prepareStatement(sqlUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
         pstmtUsuario.setString(1, paciente.getNumeroDocumento());
         pstmtUsuario.setString(2, paciente.getNumeroDocumento());
@@ -41,8 +40,7 @@ public class PacienteDAO {
         } else {
             throw new Exception("No se pudo obtener el ID del usuario");
         }
-        
-        // Ahora crear el paciente con la referencia al usuario
+       
         PreparedStatement pstmtPaciente = con.prepareStatement(sqlPaciente);
         pstmtPaciente.setString(1, paciente.getPrimerNombre());
         pstmtPaciente.setString(2, paciente.getSegundoNombre());
@@ -82,6 +80,7 @@ public class PacienteDAO {
         if (paciente.getTipoDocumento() != null) {
             campo = "tipoDocumento";
             valor = paciente.getTipoDocumento();
+            
         } else if (paciente.getTelefono() != null) {
             campo = "telefono";
             valor = paciente.getTelefono();

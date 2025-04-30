@@ -1,0 +1,86 @@
+ IActualizarPaciente actualizacion = new ComandoActualizarPaciente();
+        String opcionSeleccionada = (String) cboSeleccionarDato.getSelectedItem();
+        String numeroDocumento = txtBuscarNumeroIdentificacion.getText();
+
+        try {
+            // Validación básica
+            if (numeroDocumento == null || numeroDocumento.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar el número de documento para actualizar.", "Campo requerido", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            paciente.setNumeroDocumento(numeroDocumento);
+
+            switch (opcionSeleccionada) {
+                case "Tipo de documento":
+                    String nuevoTipoID = cboTipoIdentificacion1.getSelectedItem().toString();
+                    if (nuevoTipoID.equals("Seleccionar")) {
+                        JOptionPane.showMessageDialog(null, "Escoja una opción válida", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    paciente.setTipoDocumento(nuevoTipoID);
+                    cboTipoIdentificacion1.setSelectedIndex(0);
+                    break;
+
+                case "Teléfono":
+                    paciente.setTelefono(txtActualizarDato.getText());
+                    break;
+
+                case "Dirección de residencia":
+                    paciente.setDireccionResidencia(txtActualizarDato.getText());
+                    txtActualizarDato.setText("");
+                    break;
+
+                case "Estado civil":
+                    String nuevoEstado = cboEstadoCivil1.getSelectedItem().toString();
+                    if (nuevoEstado.equals("Seleccionar")) {
+                        JOptionPane.showMessageDialog(null, "Escoja una opción válida", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    paciente.setEstadoCivil(nuevoEstado);
+                    cboEstadoCivil1.setSelectedIndex(0);
+                    break;
+
+                case "Email":
+                    paciente.setEmail(txtActualizarDato.getText());
+                    txtActualizarDato.setText("");
+                    break;
+
+                case "EPS":
+                    String nuevaEPS = cboEPS1.getSelectedItem().toString();
+                    if (nuevaEPS.equals("Seleccionar")) {
+                        JOptionPane.showMessageDialog(null, "Escoja una opción válida", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    paciente.setEPS(nuevaEPS);
+                    break;
+
+                case "Edad":
+                    String nuevaEdad = txtActualizarDato.getText();
+                    try {
+                        int edad = Integer.parseInt(nuevaEdad);
+                        if (edad > 0 && edad < 100) {
+                            paciente.setEdad(String.valueOf(edad));
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Edad no válida", "Error", JOptionPane.WARNING_MESSAGE);
+                            return;
+                        }
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Edad inválida", "Error", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    break;
+
+                default:
+                    JOptionPane.showMessageDialog(null, "Seleccione un campo válido a actualizar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    return;
+            }
+
+            // Ejecutar actualización
+            actualizacion.actualizarPaciente(paciente);
+            limpiarDespuesDeActualizar();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
