@@ -1,34 +1,33 @@
 package Model;
 import java.util.Date;
+
 public class Paciente extends Usuarios {
-    
-    private String primerNombre; //
-    private String segundoNombre; //
-    private String primerApellido; //
-    private String segundoApellido; //
-    private String tipoDocumento; //(Modificable)
-    private String numeroDocumento; 
-    private String telefono; //(Modificable)
-    private String direccionResidencia; //(Modificable)
-    private String estadoCivil; //(Modificable)
-    private String genero; //
-    private String email; //(Modificable)
-    private String EPS; //(Modificable)
+
+    private String primerNombre;
+    private String segundoNombre;
+    private String primerApellido;
+    private String segundoApellido;
+    private String tipoDocumento;
+    private String numeroDocumento;
+    private String telefono;
+    private String direccionResidencia; 
+    private String estadoCivil;
+    private String genero;
+    private String email;
+    private String EPS;
     private String tipoSangre;
     private Date fechaNacimiento;
     private Date fechaRegistro;
-    private int edad; //Solicitado (Modificable)
+    private String edad;
+
+    public Paciente() {
     
-  
-    public Paciente(){
     }
-    
-    public Paciente(String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
+
+    public Paciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
             String tipoDocumento, String numeroDocumento, String telefono, String direccionResidencia, String estadoCivil,
-            String genero, String email, String EPS, String tipoSangre, Date fechaNacimiento, Date fechaRegistro, int edad){
-     
-        
-        super(usuario, contraseña);
+            String genero, String email, String EPS, String tipoSangre, Date fechaNacimiento, Date fechaRegistro, String edad) throws Exception {
+
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
@@ -45,7 +44,6 @@ public class Paciente extends Usuarios {
         this.fechaNacimiento = fechaNacimiento;
         this.fechaRegistro = fechaRegistro;
         this.edad = edad;
-
     }
 
     public String getTipoDocumento() {
@@ -166,15 +164,13 @@ public class Paciente extends Usuarios {
 
     public void setSegundoApellido(String segundoApellido) {
         this.segundoApellido = segundoApellido;
-    } 
+    }
 
-    public int getEdad() {
+    public String getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(String edad) {
         this.edad = edad;
     }
-    
-    
 }

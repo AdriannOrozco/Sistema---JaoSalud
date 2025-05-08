@@ -57,7 +57,7 @@
                               <Component id="labelUsuario" max="32767" attributes="0"/>
                               <Component id="txtUsuario" alignment="0" max="32767" attributes="0"/>
                               <Component id="labelUsuario1" max="32767" attributes="0"/>
-                              <Component id="pdwUsuario" max="32767" attributes="0"/>
+                              <Component id="txtContraseña" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="buttonEntrar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
@@ -93,7 +93,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="labelUsuario1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pdwUsuario" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="txtContraseña" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="buttonEntrar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -256,9 +256,9 @@
             <Property name="text" type="java.lang.String" value="3. DIGITE SU CONTRASE&#xd1;A:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="pdwUsuario">
+        <Component class="javax.swing.JPasswordField" name="txtContrase&#xf1;a">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pdwUsuarioActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtContrase&#xf1;aActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonAtr&#xe1;s">
@@ -284,6 +284,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&#xa1;ENTRAR!"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEntrarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

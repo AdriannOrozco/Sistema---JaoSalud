@@ -4,8 +4,12 @@
  */
 package Comandos;
 
-import Model.ConexionBD;
 import Model.Consultorio;
+import Model.Medico;
+import Persistencia.Database.ConexionBD;
+import Persistencia.Doctor.MedicoDAO;
+import Persistencia.MetodosUtiles.MetodosCadenasDeTexto;
+import Persistencia.Paciente.PacienteDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -18,33 +22,61 @@ import javax.swing.JOptionPane;
  */
 public class ComandoCrearMedico implements ICrearMedico {
 
-    @Override
-    public void crearMedico(String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
-            String identificacionDoctor, String especialidad, double salario, int añosExperiencia, Consultorio consultorio) {
-        
+    public void crearMedico(Medico medico) throws Exception {
 
-        //Se crea la sentencia SQL
-        String sql = "INSERT INTO medicos (primerNombre, segundoNombre, primerApellido, segundoApellido, "
-                + "identificacionDoctor, especialidad, salario, añosExperiencia) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        MetodosCadenasDeTexto metodo = new MetodosCadenasDeTexto();
 
-        try (Connection con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+        // Validación de campos obligatorios
+        if (medico.getPrimerNombre() == null || medico.getPrimerNombre().trim().isEmpty()
+                || medico.getPrimerApellido() == null || medico.getPrimerApellido().trim().isEmpty()
+                || medico.getSegundoApellido() == null || medico.getSegundoApellido().trim().isEmpty()
+                || medico.getIdentificacionDoctor() == null || medico.getIdentificacionDoctor().trim().isEmpty()
+                || medico.getEspecialidad() == null || medico.getEspecialidad().trim().isEmpty()
+                || medico.getAñosExperiencia() == null || medico.getAñosExperiencia().trim().isEmpty()) {
 
-            pstmt.setString(1, primerNombre);
-            pstmt.setString(2, segundoNombre);
-            pstmt.setString(3, primerApellido);
-            pstmt.setString(4, segundoApellido);
-            pstmt.setString(5, identificacionDoctor);
-            pstmt.setString(6, especialidad);
-            pstmt.setDouble(7, salario);
-            pstmt.setInt(8, añosExperiencia);
+            throw new IllegalArgumentException("Campos obligatorios vacíos.");
+        }
 
-            pstmt.executeUpdate();
+        if (medico.getPrimerNombre().length() < 3
+                || medico.getPrimerApellido().length() < 3
+                || medico.getSegundoApellido().length() < 3) {
+            throw new IllegalArgumentException("Nombres o apellidos demasiado cortos.");
+        }
+
+        if (!metodo.EsNombreValido(medico.getPrimerNombre())
+                || !metodo.EsNombreValido(medico.getSegundoNombre())
+                || !metodo.EsNombreValido(medico.getPrimerApellido())
+                || !metodo.EsNombreValido(medico.getSegundoApellido())) {
+            throw new IllegalArgumentException("Nombres o apellidos inválidos.");
+        }
+
+        if (!metodo.ContieneSoloNumeros(medico.getIdentificacionDoctor())
+                || medico.getIdentificacionDoctor().length() < 7
+                || medico.getIdentificacionDoctor().length() > 13) {
+            throw new IllegalArgumentException("Identificación del doctor inválida.");
+        }
+
+        if (!metodo.ContieneSoloNumeros(medico.getAñosExperiencia())) {
+            throw new IllegalArgumentException("Años de experiencia inválidos.");
+        }
+
+        try {
+
+            MedicoDAO create = MedicoDAO.getInstancia();
+            create.create(medico);
+            JOptionPane.showMessageDialog(null, "El Medico se agregó con éxito.",
+                    "Proceso completado", JOptionPane.INFORMATION_MESSAGE);
+
             JOptionPane.showInternalMessageDialog(null, "El médico se agregó con éxito.", "Proceso completado", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (SQLException e) {
             JOptionPane.showInternalMessageDialog(null, "Error al agregar médico: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }
+
+    @Override
+    public void crearMedico(String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String identificacionDoctor, String especialidad, String añosExperiencia, Consultorio consultorio) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

@@ -1,9 +1,13 @@
 package View;
+
+import UseCase.buscarUsuario;
+import javax.swing.JOptionPane;
+
 public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -22,7 +26,7 @@ public class Login extends javax.swing.JFrame {
         labelUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         labelUsuario1 = new javax.swing.JLabel();
-        pdwUsuario = new javax.swing.JPasswordField();
+        txtContraseña = new javax.swing.JPasswordField();
         buttonAtrás = new javax.swing.JButton();
         buttonEntrar = new javax.swing.JButton();
 
@@ -99,9 +103,9 @@ public class Login extends javax.swing.JFrame {
         labelUsuario1.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 18)); // NOI18N
         labelUsuario1.setText("3. DIGITE SU CONTRASEÑA:");
 
-        pdwUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pdwUsuarioActionPerformed(evt);
+                txtContraseñaActionPerformed(evt);
             }
         });
 
@@ -116,6 +120,11 @@ public class Login extends javax.swing.JFrame {
         buttonEntrar.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 14)); // NOI18N
         buttonEntrar.setForeground(new java.awt.Color(255, 255, 255));
         buttonEntrar.setText("¡ENTRAR!");
+        buttonEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEntrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout fondoBlancoLayout = new javax.swing.GroupLayout(fondoBlanco);
         fondoBlanco.setLayout(fondoBlancoLayout);
@@ -134,7 +143,7 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(labelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtUsuario)
                             .addComponent(labelUsuario1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pdwUsuario)
+                            .addComponent(txtContraseña)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoBlancoLayout.createSequentialGroup()
                                 .addComponent(buttonEntrar)
                                 .addGap(81, 81, 81))))
@@ -163,7 +172,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(labelUsuario1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pdwUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonEntrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -183,14 +192,37 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pdwUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdwUsuarioActionPerformed
+    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pdwUsuarioActionPerformed
+    }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void buttonAtrásActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAtrásActionPerformed
-          new Bienvenida().setVisible(true);
-          this.dispose();
+        new Bienvenida().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_buttonAtrásActionPerformed
+
+    private void buttonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEntrarActionPerformed
+        buscarUsuario buscar = new buscarUsuario();
+        String usuario = txtUsuario.getText();
+        String contraseña = txtContraseña.getText();
+        String rol = cboRol.getSelectedItem().toString();
+
+        if (usuario == null || contraseña == null || rol.equalsIgnoreCase("Seleccionar")) {
+            JOptionPane.showMessageDialog(null, "Hay datos sin completar.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else {
+
+            if (buscar.accesoUsuario(usuario, contraseña, rol)) {
+                new Recepcionista().setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Credenciales incorrectas.", "Error de login", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+
+
+    }//GEN-LAST:event_buttonEntrarActionPerformed
 
     public static void main(String args[]) {
 
@@ -240,7 +272,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JLabel labelUsuario1;
     private javax.swing.JPanel lineaNegra;
-    private javax.swing.JPasswordField pdwUsuario;
+    private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

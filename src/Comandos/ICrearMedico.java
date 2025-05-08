@@ -12,5 +12,5 @@ import Model.Consultorio;
  */
 public interface ICrearMedico {
     void crearMedico(String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
-         String identificacionDoctor, String especialidad, double salario, int añosExperiencia, Consultorio consultorio) throws Exception;
+         String identificacionDoctor, String especialidad,  String añosExperiencia, Consultorio consultorio) throws Exception;
 }
