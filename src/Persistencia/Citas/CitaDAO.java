@@ -71,6 +71,7 @@ public class CitaDAO {
         if (cita.getMotivo() != null) {
             campo = "motivo";
             valor = cita.getMotivo();
+            
         } else if (cita.getHora() != null) {
             campo = "hora";
             valor = cita.getHora();

@@ -7,17 +7,12 @@ import java.sql.ResultSet;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Adrian
- */
 public class VerificarFechaYHora {
 
     public static boolean VerificarDisponibilidad(Date fechaCita, String hora) {
-        // Validación defensiva para evitar errores por nulos
+        // Si no hay datos suficientes para verificar, no hay colisión
         if (fechaCita == null || hora == null || hora.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Fecha u hora no válidas para verificar disponibilidad.");
-            return false; // O puedes retornar true si quieres bloquear por seguridad
+            return false;
         }
 
         boolean ocupado = false;
