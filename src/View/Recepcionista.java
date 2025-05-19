@@ -423,7 +423,7 @@ public class Recepcionista extends javax.swing.JFrame {
             .addGroup(panelBtnEditarPacienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(iconEditarPaciente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(labelEditarPaciente)
                 .addGap(31, 31, 31))
         );
@@ -633,7 +633,7 @@ public class Recepcionista extends javax.swing.JFrame {
                 .addGap(60, 60, 60))
         );
 
-        fondoBlancoPrincipal.add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 660));
+        fondoBlancoPrincipal.add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 660));
 
         jPanel1.setBackground(new java.awt.Color(242, 242, 242));
         jPanel1.setForeground(new java.awt.Color(0, 51, 102));
@@ -815,7 +815,7 @@ public class Recepcionista extends javax.swing.JFrame {
         panelFondoBlancoInicioLayout.setVerticalGroup(
             panelFondoBlancoInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFondoBlancoInicioLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(panelFondoBlancoInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFondoBlancoInicioLayout.createSequentialGroup()
                         .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1541,7 +1541,7 @@ public class Recepcionista extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(buttonCancelarModificacion))
                                     .addComponent(buttonEliminarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 12, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelFondoBlancoEditarPacienteLayout.setVerticalGroup(
@@ -1610,7 +1610,7 @@ public class Recepcionista extends javax.swing.JFrame {
                         .addComponent(labelTipoIdentificación1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboTipoIdentificacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelEditarPacienteLayout = new javax.swing.GroupLayout(panelEditarPaciente);
@@ -1809,7 +1809,7 @@ public class Recepcionista extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(cboConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(labelTabbedAgendarCita))
-                        .addContainerGap(63, Short.MAX_VALUE))
+                        .addContainerGap(55, Short.MAX_VALUE))
                     .addGroup(panelFondoBlancoAgendarCitaLayout.createSequentialGroup()
                         .addGroup(panelFondoBlancoAgendarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFondoBlancoAgendarCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -2186,14 +2186,14 @@ public class Recepcionista extends javax.swing.JFrame {
             .addGroup(panelFondoBlancoHistorialMedicoLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(labelTabbedHistorialMédico)
-                .addContainerGap(514, Short.MAX_VALUE))
+                .addContainerGap(501, Short.MAX_VALUE))
         );
         panelFondoBlancoHistorialMedicoLayout.setVerticalGroup(
             panelFondoBlancoHistorialMedicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFondoBlancoHistorialMedicoLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(labelTabbedHistorialMédico)
-                .addContainerGap(453, Short.MAX_VALUE))
+                .addContainerGap(451, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelHistorialMédicoLayout = new javax.swing.GroupLayout(panelHistorialMédico);

@@ -1,7 +1,9 @@
 package View;
 
 import UseCase.buscarUsuario;
+import infraestructura.sesion.SesionUsuario;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class Login extends javax.swing.JFrame {
 
@@ -90,7 +92,12 @@ public class Login extends javax.swing.JFrame {
         labelInicioSesión.setText("INICIO DE SESIÓN");
 
         cboRol.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 18)); // NOI18N
-        cboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---------------", "Administrador", "Recepcionista", "Médico" }));
+        cboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---------------", "Administrador", "Recepcionista", "Medico" }));
+        cboRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboRolActionPerformed(evt);
+            }
+        });
 
         labelSeleccione.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 18)); // NOI18N
         labelSeleccione.setText("1. SELECCIONE SU ROL:");
@@ -207,22 +214,76 @@ public class Login extends javax.swing.JFrame {
         String contraseña = txtContraseña.getText();
         String rol = cboRol.getSelectedItem().toString();
 
-        if (usuario == null || contraseña == null || rol.equalsIgnoreCase("Seleccionar")) {
+        if (usuario.isEmpty() || contraseña.isEmpty() || rol.equals("---------------")) {
             JOptionPane.showMessageDialog(null, "Hay datos sin completar.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
             return;
-        } else {
-
-            if (buscar.accesoUsuario(usuario, contraseña, rol)) {
-                new Recepcionista().setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Credenciales incorrectas.", "Error de login", JOptionPane.ERROR_MESSAGE);
-            }
-
         }
 
+        if (buscar.accesoUsuario(usuario, contraseña, rol)) {
+            if (rol.equals("Medico")) {
+                try {
+                    // Verificar si existe el médico en la base de datos
+                if (!SesionUsuario.verificarMedicoExiste(usuario)) {
+                    JOptionPane.showMessageDialog(this,
+                        "El médico no está registrado en el sistema",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                    // Establecer el ID del médico antes de crear la ventana
+                    SesionUsuario.setIdMedico(usuario);
 
+                    // Crear y mostrar MenuDoctor en el EDT
+                    SwingUtilities.invokeLater(() -> {
+                        try {
+                            Doctor Doctor = new Doctor();
+                            Doctor.setVisible(true);
+                            this.dispose();
+                        } catch (Exception e) {
+                            e.printStackTrace(); // Para ver el error en consola
+                            JOptionPane.showMessageDialog(this,
+                                    "Error al abrir el menú del doctor: " + e.getMessage(),
+                                    "Error",
+                                    JOptionPane.ERROR_MESSAGE);
+                            SesionUsuario.cerrarSesion();
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(this,
+                            "Error al establecer la sesión: " + e.getMessage(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+            if (rol.equals("Recepcionista")) {
+                new Recepcionista().setVisible(true);
+                this.dispose();
+                SesionUsuario.setIdRecepcionista(usuario);
+            }
+
+            if (rol.equals("Paciente")) {
+                //Frame paciente
+                this.dispose();
+                SesionUsuario.setIdPaciente(usuario);
+
+            }
+
+            if (rol.equals("Administrador")) {
+                //Frame adminstrador
+                this.dispose();
+                SesionUsuario.setIdAdministrador(usuario);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Credenciales incorrectas.", "Error de login", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_buttonEntrarActionPerformed
+
+    private void cboRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboRolActionPerformed
 
     public static void main(String args[]) {
 

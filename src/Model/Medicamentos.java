@@ -1,23 +1,22 @@
-
 package Model;
 
 public class Medicamentos {
-    
+
     private String nombre;
     private double precio;
     private int dosisDiarias;
     private boolean disponible;
-    
-    public Medicamentos(){
-        
+
+    public Medicamentos() {
+
     }
-    
-    public Medicamentos(String nombre, double precio, int dosisDiarias, boolean disponible){
+
+    public Medicamentos(String nombre, double precio, int dosisDiarias, boolean disponible) {
         this.nombre = nombre;
         this.precio = precio;
         this.dosisDiarias = dosisDiarias;
         this.disponible = disponible;
-        
+
     }
 
     public String getNombre() {
@@ -43,10 +42,9 @@ public class Medicamentos {
     public void setDosisDiarias(int dosisDiarias) {
         this.dosisDiarias = dosisDiarias;
     }
-    
-    public boolean getDisponible(){
-    return disponible;
-}
-    
-    
+
+    public boolean getDisponible() {
+        return disponible;
+    }
+
 }

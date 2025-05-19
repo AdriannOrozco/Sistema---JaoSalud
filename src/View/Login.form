@@ -217,10 +217,13 @@
                 <StringItem index="0" value="---------------"/>
                 <StringItem index="1" value="Administrador"/>
                 <StringItem index="2" value="Recepcionista"/>
-                <StringItem index="3" value="M&#xe9;dico"/>
+                <StringItem index="3" value="Medico"/>
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboRolActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
