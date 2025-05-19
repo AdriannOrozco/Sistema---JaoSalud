@@ -3,14 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package Comandos;
-
-import Model.Consultorio;
 import Model.Medico;
+import java.util.List;
 
 /**
  *
  * @author JABER
  */
-public interface ICrearMedico {
-    void crearMedico(Medico medico) throws Exception;
+public interface IObtenerMedico {
+    List<Medico> getMedico() throws Exception;
 }

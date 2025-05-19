@@ -1,17 +1,18 @@
 package Persistencia.Database;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class ConexionBD {
-   
-    private static final String URL = "jdbc:mysql://localhost:3306/jaosalud?characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
-    private static final String USER = "root"; 
-    private static final String PASS = "root2006";     
-    
+
+    private static final String URL = "jdbc:mysql://localhost:3306/jaosalud";
+    private static final String USER = "root";
+    private static final String PASS = "JaberVargas2006";
+
     public static Connection conectar() {
-        Connection con = null; 
+        Connection con = null;
         try {
             con = DriverManager.getConnection(URL, USER, PASS);
             System.out.println("Conexion establecida con exito.");

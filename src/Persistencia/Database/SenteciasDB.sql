@@ -62,7 +62,6 @@ primerApellido VARCHAR(30) NOT NULL,
 segundoApellido VARCHAR(30) NOT NULL,
 identificacionDoctor VARCHAR(15) NOT NULL UNIQUE PRIMARY KEY,
 especialidad VARCHAR(20) NOT NULL,
-salario DOUBLE NOT NULL,
 añosExperiencia INT NOT NULL
 );
 

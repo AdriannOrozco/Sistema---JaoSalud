@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author JABER
  */
 public class ComandoEliminarMedico implements IEliminarMedico {
-    public void eliminarMedico(String identificacionDoctor){
+    public void EliminarMedico(String identificacionDoctor){
         int confirmacion = JOptionPane.showConfirmDialog(null, "¿Desea despedir al medico?", "Seleccionar", JOptionPane.YES_NO_OPTION);
 
         if (confirmacion == JOptionPane.NO_OPTION) {
@@ -34,7 +34,7 @@ public class ComandoEliminarMedico implements IEliminarMedico {
                 int affectedRows = pstmt.executeUpdate();
 
                 if (affectedRows > 0) {
-                    JOptionPane.showMessageDialog(null, "El medico ha sido despedido", "Proceso completado", JOptionPane.OK_OPTION);
+                    JOptionPane.showMessageDialog(null, "El medico ha sido despedido", "Proceso completado", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "No hay un medico con cédula " + identificacionDoctor, "No encontrado", JOptionPane.ERROR);
                 }
@@ -45,8 +45,7 @@ public class ComandoEliminarMedico implements IEliminarMedico {
         }
     }
 
-    @Override
-    public void EliminarMedico(String identificacionDoctor) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
+
+    
 }

@@ -1,29 +1,31 @@
 package Model;
 public class Consultorio { 
-    private String idConsultorio;
+    
     private String especialidad;
+    private String consultorio;
     
     
     //Constructor por defecto
-    public Consultorio(){
-        
-    }
+   
     
     //Constructor con paramétros 
-    public Consultorio(String idConsultorio, String especialidad){
-        this.idConsultorio = idConsultorio;
+    public Consultorio(String consultorio, String especialidad){
+        this.consultorio = consultorio;   
         this.especialidad = especialidad;
+        
     }
+
+   
     
     //Getters y Setters
-
-    public String getIdConsultorio() {
-        return idConsultorio;
+     public String getConsultorio() {
+        return consultorio;
     }
 
-    public void setIdConsultorio(String idConsultorio) {
-        this.idConsultorio = idConsultorio;
+    public void setConsultorio(String consultorio) {
+        this.consultorio = consultorio;
     }
+
 
     public String getEspecialidad() {
         return especialidad;

@@ -22,53 +22,53 @@ public class MedicoDAO {
     }
 
     public void create(Medico medico) throws Exception {
-        String sql = "INSERT INTO medicos (primerNombre, segundoNombre,  primerApellido, String segundoApellido,identificacionDoctor,  especialidad,  añosExperiencia) VALUES (?,?,?,?,?,?,?)";
-        try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
-
-            pstmt.setString(1, medico.getPrimerNombre());
-            pstmt.setString(2, medico.getSegundoNombre());
-            pstmt.setString(3, medico.getPrimerApellido());
-            pstmt.setString(4, medico.getSegundoApellido());
-            pstmt.setString(5, medico.getIdentificacionDoctor());
-            pstmt.setString(6, medico.getEspecialidad());
-            pstmt.setString(7, medico.getAñosExperiencia());
-            pstmt.executeUpdate();
-
-            int filasAfectadas = pstmt.executeUpdate();
+       String sql = "INSERT INTO medicos (primerNombre, segundoNombre, primerApellido, segundoApellido, identificacionDoctor, especialidad, añosExperiencia) VALUES (?,?,?,?,?,?,?)";
+       
+       try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)){
+           pstmt.setString(1, medico.getPrimerNombre());
+           pstmt.setString(2, medico.getSegundoNombre());
+           pstmt.setString(3, medico.getPrimerApellido());
+           pstmt.setString(4, medico.getSegundoApellido());
+           pstmt.setString(5, medico.getIdentificacionDoctor());
+           pstmt.setString(6, medico.getEspecialidad());
+           pstmt.setString(7, medico.getAñosExperiencia());
+           
+           int filasAfectadas = pstmt.executeUpdate();
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "El medico se agregó con éxito.", "Proceso completado", JOptionPane.INFORMATION_MESSAGE);
+                System.out.println("Se agregó correctamente");
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo agregar el medico.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
-        } catch (Exception e) {
+            
+       }catch (Exception e) {
             throw new Exception("Error" + e.getMessage());
         }
+
     }
 
     public void update(Medico medico) throws Exception {
         String campo = null;
         String valor = null;
         if (medico.getPrimerNombre() != null) {
-            campo = "PrimerNombre";
+            campo = "primerNombre";
             valor = medico.getPrimerNombre();
         } else if (medico.getSegundoNombre() != null) {
-            campo = "SegundoNombre";
+            campo = "segundoNombre";
             valor = medico.getSegundoNombre();
         } else if (medico.getPrimerApellido() != null) {
-            campo = "PrimerApellido";
+            campo = "primerApellido";
             valor = medico.getPrimerApellido();
         } else if (medico.getSegundoApellido() != null) {
-            campo = "SegundoApellido";
+            campo = "segundoApellido";
             valor = medico.getSegundoApellido();
         } else if (medico.getIdentificacionDoctor() != null) {
-            campo = "IdentificadorDoctor";
+            campo = "identificadorDoctor";
             valor = medico.getIdentificacionDoctor();
         } else if (medico.getEspecialidad() != null) {
-            campo = "Especialidad";
+            campo = "especialidad";
             valor = medico.getEspecialidad();
         } else if (medico.getAñosExperiencia() != null) {
-            campo = "AñosExperiencia";
+            campo = "añosExperiencia";
             valor = medico.getAñosExperiencia();
         }
 
@@ -76,7 +76,7 @@ public class MedicoDAO {
             throw new IllegalArgumentException("No se encontró ningún campo válido para actualizar.");
         }
 
-        String sql = "UPDATE medicos SET " + campo + " = ? WHERE IdentificacionDoctor = ?";
+        String sql = "UPDATE medicos SET " + campo + " = ? WHERE identificacionDoctor = ?";
 
         try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, valor);
@@ -95,13 +95,13 @@ public class MedicoDAO {
     }
 
     public void delete(String identificacionDoctor) throws Exception {
-        String sql = "DELETE FROM medicos WHERE IdentificacionDoctor = ?";
+        String sql = "DELETE FROM medicos WHERE identificacionDoctor = ?";
 
         try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, identificacionDoctor);
 
             int filasAfectadas = pstmt.executeUpdate();
-
+            
             if (filasAfectadas > 0) {
                 JOptionPane.showMessageDialog(null, "El médico se eliminó correctamente.", "Proceso completado", JOptionPane.INFORMATION_MESSAGE);
             } else {

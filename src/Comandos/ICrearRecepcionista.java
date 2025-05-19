@@ -4,13 +4,12 @@
  */
 package Comandos;
 
-import Model.Consultorio;
-import Model.Medico;
+import Model.Recepcionista;
 
 /**
  *
  * @author JABER
  */
-public interface ICrearMedico {
-    void crearMedico(Medico medico) throws Exception;
+public interface ICrearRecepcionista {
+    void crearRecepcionista(Recepcionista recepcionista) throws Exception;
 }

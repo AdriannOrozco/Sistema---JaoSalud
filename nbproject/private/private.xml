@@ -3,28 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/IEliminarConsultorio.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/ComandoActualizarMedico.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Model/Consultorio.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/ICrearConsultorio.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/ICrearMedico.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/ComandoCrearConsultorio.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/IActualizarMedico.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/ComandoCrearPaciente.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Persistencia/Doctor/MedicoDAO.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/ComandoEliminarMedico.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Persistencia/Consultorios/ConsultorioDAO.java</file>
             <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/View/Administrador.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/IActualizarConsultorio.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Model/Paciente.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Model/Medico.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/ComandoEliminarPaciente.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Model/Medicamentos.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Model/GeneralidadesBasesDeDatos</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/ComandoCrearMedico.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/ComandoActualizarConsultorio.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/ComandoEliminarConsultorio.java</file>
-            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/ComandoActualizarPaciente.java</file>
+            <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/View/Recepcionista.java</file>
         </group>
     </open-files>
 </project-private>

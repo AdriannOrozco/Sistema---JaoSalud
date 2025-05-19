@@ -1,24 +1,31 @@
-
 package Model;
 
 public class Medicamentos {
-    
+
     private String nombre;
-    private double precio;
-    private int dosisDiarias;
+    private Double precio;
+    private Integer dosisDiarias;
     private boolean disponible;
-    
-    public Medicamentos(){
-        
+ 
+    public Medicamentos() {
+
     }
-    
-    public Medicamentos(String nombre, double precio, int dosisDiarias, boolean disponible){
+
+    public Medicamentos(String nombre, double precio, int dosisDiarias, boolean disponible) {
         this.nombre = nombre;
         this.precio = precio;
         this.dosisDiarias = dosisDiarias;
         this.disponible = disponible;
-        
+
     }
+     public Medicamentos(String nombre, double precio, int dosisDiarias) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.dosisDiarias = dosisDiarias;
+
+    }
+    
+   
 
     public String getNombre() {
         return nombre;
@@ -28,25 +35,28 @@ public class Medicamentos {
         this.nombre = nombre;
     }
 
-    public double getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
-    public int getDosisDiarias() {
+    public Integer getDosisDiarias() {
         return dosisDiarias;
     }
 
-    public void setDosisDiarias(int dosisDiarias) {
+    public void setDosisDiarias(Integer dosisDiarias) {
         this.dosisDiarias = dosisDiarias;
     }
-    
-    public boolean getDisponible(){
-    return disponible;
-}
-    
-    
+
+    public boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
 }

@@ -12,6 +12,7 @@ public class ComandoCrearPaciente implements ICrearPaciente {
     @Override
     public void CrearPaciente(Paciente paciente) throws Exception {
         MetodosCadenasDeTexto metodo = new MetodosCadenasDeTexto();
+        
 
         if (paciente.getPrimerNombre() == null || paciente.getPrimerNombre().trim().isEmpty()
                 || paciente.getPrimerApellido() == null || paciente.getPrimerApellido().trim().isEmpty()
@@ -51,7 +52,8 @@ public class ComandoCrearPaciente implements ICrearPaciente {
         if (paciente.getNumeroDocumento().length() < 7 || paciente.getNumeroDocumento().length() > 13) {
             throw new IllegalArgumentException("Longitud inválida del documento.");
         }
-
+        
+       
         if (!metodo.ContieneSoloNumeros(paciente.getTelefono()) || paciente.getTelefono().length() < 10) {
             throw new IllegalArgumentException("Teléfono inválido.");
         }

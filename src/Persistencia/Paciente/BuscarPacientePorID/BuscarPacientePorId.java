@@ -40,5 +40,5 @@ public class BuscarPacientePorId {
         } catch (SQLException e) {
             throw new Exception("Error al buscar paciente: " + e.getMessage());
         }
-    }
+    }       
 }

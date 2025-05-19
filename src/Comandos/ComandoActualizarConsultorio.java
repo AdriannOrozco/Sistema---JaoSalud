@@ -18,7 +18,7 @@ public class ComandoActualizarConsultorio implements IActualizarConsultorio {
     public void ActualizarConsultorio(Consultorio consultorio) throws Exception {
 
         // Validaciones usando getters
-        if (consultorio.getIdConsultorio() == null || consultorio.getIdConsultorio().trim().isEmpty()) {
+        if (consultorio.getConsultorio() == null || consultorio.getConsultorio().trim().isEmpty()) {
             throw new IllegalArgumentException("El ID del consultorio es obligatorio.");
         }
 

@@ -9,5 +9,5 @@ import Model.Consultorio;
  * @author JABER
  */
 public interface ICrearConsultorio {
-    void CrearConsultorio(String idConsultorio, String especialidad) throws Exception;
+    void CrearConsultorio(Consultorio consultorio) throws Exception;
 }
