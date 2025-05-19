@@ -70,6 +70,7 @@ public class Recepcionista extends javax.swing.JFrame {
         ValidarCalendarioFechaNacimiento();
         validarCalendarioCitas();
         ocultarSeccionEditarCita();
+        ValidarCalendarioActuaizarCita();
         cargarCboConsulotios.CargarConsultorios(cboConsultorio, "consultorio");
         cargarCboDoctores.CargarDoctores(cboDoctor, "primerNombre", "primerApellido");
         mostrarCitasEnTabla.MostrarCitas(tablaCitas);
@@ -93,6 +94,17 @@ public class Recepcionista extends javax.swing.JFrame {
         Calendar maxDate = Calendar.getInstance();
         maxDate.set(2025, Calendar.DECEMBER, 31, 23, 59, 59);
         dateChooserFechaNacimiento.setMaxSelectableDate(maxDate.getTime());
+    }
+
+    public void ValidarCalendarioActuaizarCita() {
+        Calendar minCal = Calendar.getInstance();
+        minCal.set(2025, Calendar.JANUARY, 1);
+
+        Calendar maxCal = Calendar.getInstance();
+        maxCal.set(2026, Calendar.DECEMBER, 31);
+
+        dateChooserActualizarCita.setMinSelectableDate(minCal.getTime());
+        dateChooserActualizarCita.setMaxSelectableDate(maxCal.getTime());
     }
 
     public void SeccionEditarDatoPaciente() {
@@ -611,10 +623,10 @@ public class Recepcionista extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
         );
 
-        fondoBlancoPrincipal.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 690, 90));
+        fondoBlancoPrincipal.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 690, 40));
 
         panelFondoBlancoInicio.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -686,7 +698,6 @@ public class Recepcionista extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelFondoBlancoInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondoBlancoInicioLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addGap(21, 21, 21))
                     .addGroup(panelFondoBlancoInicioLayout.createSequentialGroup()
@@ -2706,7 +2717,7 @@ public class Recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAgendarActionPerformed
 
     private void tablaCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCitasMouseClicked
-     
+
 
     }//GEN-LAST:event_tablaCitasMouseClicked
 
@@ -2884,7 +2895,6 @@ public class Recepcionista extends javax.swing.JFrame {
             txtBuscarCita.setText("");
             txtBuscarCita.setEnabled(true);
             buttonBuscarCitaPorID.setEnabled(true);
-            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
