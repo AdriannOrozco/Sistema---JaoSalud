@@ -1,6 +1,6 @@
 package Persistencia.Paciente.BuscarPacientePorID;
 
-import static Comandos.metodos.MetodosUtiles.ContieneSoloNumeros;
+import Persistencia.MetodosUtiles.MetodosCadenasDeTexto;
 import Persistencia.Database.ConexionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ public class BuscarPacientePorId {
             throw new IllegalArgumentException("El número de documento no puede estar vacío.");
         }
 
-        if (!ContieneSoloNumeros(numeroDocumento)) {
+        if (!MetodosCadenasDeTexto.ContieneSoloNumeros(numeroDocumento)) {
             throw new IllegalArgumentException("El número de documento sólo debe contener números.");
         }
 

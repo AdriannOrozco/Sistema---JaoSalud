@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Persistencia/Consultorios/ConsultorioDAO.java</file>
             <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/View/Administrador.java</file>
             <file>file:/C:/Users/JABER/OneDrive/Documentos/Sistema---JaoSalud/src/Comandos/ComandoEliminarMedico.java</file>
+=======
+            <file>file:/C:/Users/Adrian/Documents/NetBeansProjects/JaoSalud/src/View/Recepcionista.java</file>
+>>>>>>> 38737a9a7ab6f89291b4f50395a2f611c3a6bb29
         </group>
     </open-files>
 </project-private>

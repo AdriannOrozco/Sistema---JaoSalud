@@ -18,27 +18,25 @@ public class MostrarTablasCita {
     public void MostrarCitas(JTable tablaCitas) {
         try {
             Connection con = ConexionBD.conectar();
-            String sql = "SELECT idCita, motivo ,idConsultorio, identificacionDoctor, fechaCita, hora, nombrePaciente, numeroDocumento FROM citas WHERE estado = true";
+            String sql = "SELECT idCita, motivo ,idConsultorio,fechaCita, hora, nombrePaciente, numeroDocumento FROM citas WHERE estado = true";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             DefaultTableModel model = new DefaultTableModel();
             model.addColumn("N° Cita");
             model.addColumn("Consultorio");
-            model.addColumn("Doctor/a");
             model.addColumn("Fecha");
             model.addColumn("Hora");
             model.addColumn("Paciente");
    
 
             while (rs.next()) {
-                Object[] row = new Object[8];
+                Object[] row = new Object[5];
                 row[0] = rs.getString("idCita");
                 row[1] = rs.getString("idConsultorio");
-                row[2] = rs.getString("identificacionDoctor");
-                row[3] = rs.getString("fechaCita");
-                row[4] = rs.getString("hora");
-                row[5] = rs.getString("nombrePaciente");
+                row[2] = rs.getString("fechaCita");
+                row[3] = rs.getString("hora");
+                row[4] = rs.getString("nombrePaciente");
                 model.addRow(row);
 
             }
@@ -51,37 +49,32 @@ public class MostrarTablasCita {
     
     
      public static void refrescarCitas(JTable tabla) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("N° Cita");
-        modelo.addColumn("Consultorio");
-        modelo.addColumn("Doctor/a");
-        modelo.addColumn("Fecha");
-        modelo.addColumn("Hora");
-        modelo.addColumn("Paciente");
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.addColumn("N° Cita");
+    modelo.addColumn("Consultorio");
+    modelo.addColumn("Fecha");
+    modelo.addColumn("Hora");
+    modelo.addColumn("Paciente");
 
-        String sql = "SELECT * FROM citas";
+    String sql = "SELECT idCita, idConsultorio,fechaCita, hora, nombrePaciente FROM citas WHERE estado = true";
 
-        try (Connection con = ConexionBD.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
+    try (Connection con = ConexionBD.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
+        ResultSet rs = ps.executeQuery();
 
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Object[] fila = {
-                    rs.getInt("idCita"),
-                    rs.getInt("idConsultorio"),
-                    rs.getString("identificacionDoctor"),
-                    rs.getString("fechaCita"),
-                    rs.getDate("fechaCita"),
-                    rs.getString("hora"),
-                    rs.getDate("Paciente"),
-                };
-                modelo.addRow(fila);
-            }
-
-            tabla.setModel(modelo);
-
-        } catch (SQLException e) {
-            System.out.println("Error al cargar citas: " + e.getMessage());
+        while (rs.next()) {
+            Object[] fila = {
+                rs.getInt("idCita"),
+                rs.getInt("idConsultorio"),
+                rs.getDate("fechaCita"),
+                rs.getString("hora"),
+                rs.getString("nombrePaciente")
+            };
+            modelo.addRow(fila);
         }
+
+        tabla.setModel(modelo);
+    } catch (SQLException e) {
+        System.out.println("Error al cargar citas: " + e.getMessage());
     }
+}
 }

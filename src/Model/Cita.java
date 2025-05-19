@@ -6,8 +6,8 @@ public class Cita{
     private int idConsultorio;
     private String identificacion;
     private String motivo; 
-    private Date fechaCita; //Se puede cambiar
-    private String hora; //Se puede cambiar
+    private Date fechaCita;
+    private String hora;
     private int idCita; 
     private Date fechaRegistro;
     private String nombrePaciente;
@@ -98,11 +98,11 @@ public class Cita{
         this.fechaRegistro = fechaRegistro;
     }
 
-    public String getPaciente() {
+    public String getNombrePaciente() {
         return nombrePaciente;
     }
 
-    public void setPaciente(String nombrePaciente) {
+    public void setNombrePaciente(String nombrePaciente) {
         this.nombrePaciente = nombrePaciente;
     }
 

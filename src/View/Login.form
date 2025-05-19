@@ -213,11 +213,12 @@
               <Font name="JetBrains Mono ExtraBold" size="18" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="---------------"/>
+              <StringArray count="5">
+                <StringItem index="0" value="Seleccionar"/>
                 <StringItem index="1" value="Administrador"/>
                 <StringItem index="2" value="Recepcionista"/>
                 <StringItem index="3" value="M&#xe9;dico"/>
+                <StringItem index="4" value="Paciente"/>
               </StringArray>
             </Property>
           </Properties>

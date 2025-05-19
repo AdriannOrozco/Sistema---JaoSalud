@@ -90,7 +90,7 @@ public class Login extends javax.swing.JFrame {
         labelInicioSesión.setText("INICIO DE SESIÓN");
 
         cboRol.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 18)); // NOI18N
-        cboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---------------", "Administrador", "Recepcionista", "Médico" }));
+        cboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Administrador", "Recepcionista", "Médico", "Paciente" }));
 
         labelSeleccione.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 18)); // NOI18N
         labelSeleccione.setText("1. SELECCIONE SU ROL:");
@@ -206,6 +206,10 @@ public class Login extends javax.swing.JFrame {
         String usuario = txtUsuario.getText();
         String contraseña = txtContraseña.getText();
         String rol = cboRol.getSelectedItem().toString();
+        String val1 = "Recepcionista";
+        String val2 = "Paciente";
+        String val3 = "Medico";
+        String val4 = "Administrador";
 
         if (usuario == null || contraseña == null || rol.equalsIgnoreCase("Seleccionar")) {
             JOptionPane.showMessageDialog(null, "Hay datos sin completar.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
@@ -213,15 +217,32 @@ public class Login extends javax.swing.JFrame {
         } else {
 
             if (buscar.accesoUsuario(usuario, contraseña, rol)) {
-                new Recepcionista().setVisible(true);
-                this.dispose();
+
+                if (rol.equals(val1)) {
+                    new Recepcionista().setVisible(true);
+                    this.dispose();
+                }
+
+                if (rol.equals(val2)) {
+                    //Frame paciente
+                    this.dispose();
+                }
+
+                if (rol.equals(val3)) {
+                    //Frame médico
+                    this.dispose();
+                }
+
+                if (rol.equals(val4)) {
+                    //Frame adminstrador
+                    this.dispose();
+                }
+
             } else {
                 JOptionPane.showMessageDialog(null, "Credenciales incorrectas.", "Error de login", JOptionPane.ERROR_MESSAGE);
             }
 
         }
-
-
     }//GEN-LAST:event_buttonEntrarActionPerformed
 
     public static void main(String args[]) {

@@ -43,5 +43,7 @@ public class ComandoActualizarPaciente implements IActualizarPaciente {
         }
 
         PacienteDAO.getInstancia().update(paciente);
+       // PacienteDAO crearPaciente = new PacienteDAO();
+        //crearPaciente.update(paciente);
     }
 }
