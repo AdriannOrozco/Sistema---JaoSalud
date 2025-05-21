@@ -62,7 +62,7 @@ public class ConsultorioDAO {
             throw new IllegalArgumentException("No se encontró ningún campo válido para actualizar.");
         }
 
-        String sql = "UPDATE consultorio SET " + campo + " = ? WHERE idConsultorio = ?";
+        String sql = "UPDATE consultorios SET " + campo + " = ? WHERE consultorio = ?";
         try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, valor);
             pstmt.setString(2, consultorio.getEspecialidad());
@@ -82,7 +82,7 @@ public class ConsultorioDAO {
     }
     
     public void delete(Consultorio consultorio) throws Exception {
-    String sql = "DELETE FROM consultorio WHERE idConsultorio = ?";
+    String sql = "DELETE FROM consultorios WHERE consultorio = ?";
 
     try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
         pstmt.setString(1, consultorio.getConsultorio());

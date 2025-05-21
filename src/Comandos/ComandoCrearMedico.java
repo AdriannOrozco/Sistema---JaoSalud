@@ -32,7 +32,7 @@ public class ComandoCrearMedico implements ICrearMedico {
             throw new IllegalArgumentException("Nombres o apellidos demasiado cortos.");
         }
 
-        if (!metodo.EsNombreValido(medico.getPrimerNombre())
+            if (!metodo.EsNombreValido(medico.getPrimerNombre())
                 || (medico.getSegundoNombre() != null && !medico.getSegundoNombre().isEmpty() && !metodo.EsNombreValido(medico.getSegundoNombre()))
                 || !metodo.EsNombreValido(medico.getPrimerApellido())
                 || !metodo.EsNombreValido(medico.getSegundoApellido())) {

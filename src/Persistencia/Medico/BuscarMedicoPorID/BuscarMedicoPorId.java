@@ -4,8 +4,8 @@
  */
 package Persistencia.Medico.BuscarMedicoPorID;
 
-import static Comandos.metodos.MetodosUtiles.ContieneSoloNumeros;
 import Persistencia.Database.ConexionBD;
+import static Persistencia.MetodosUtiles.MetodosCadenasDeTexto.ContieneSoloNumeros;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

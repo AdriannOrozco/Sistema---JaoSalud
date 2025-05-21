@@ -4,10 +4,12 @@
  */
 package Comandos;
 
+import Model.Medicamentos;
+
 /**
  *
  * @author JABER
  */
-public interface IEliminarRecepcionista {
-    void EliminarRecepcionista(String identificacionRecepcionista) throws Exception;
+public interface IEliminarMedicamento {
+    void EliminarMedicamento(String nombre) throws Exception;
 }

@@ -4,10 +4,12 @@
  */
 package Comandos;
 
+import Model.Medicamentos;
+
 /**
  *
  * @author JABER
  */
 public interface IActualizarMedicamento {
-    
+    void ActualizarMedicamento(Medicamentos medicamento) throws Exception;
 }

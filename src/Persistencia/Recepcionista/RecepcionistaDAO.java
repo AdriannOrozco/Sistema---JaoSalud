@@ -39,11 +39,11 @@ public class RecepcionistaDAO {
             pstmt.setString(4, recepcionista.getSegundoApellido());
             pstmt.setString(5, recepcionista.getId());
 
-            pstmt.executeUpdate();
+            
 
             int filasAfectadas = pstmt.executeUpdate();
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Recepcionista agregado con éxito.", "Proceso completado", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Recepcionista agregado con éxito.");
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo agregar al recepcionista", "Error", JOptionPane.ERROR_MESSAGE);
             }
