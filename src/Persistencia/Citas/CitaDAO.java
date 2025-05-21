@@ -42,9 +42,9 @@ public class CitaDAO {
             int filasAfectadas = pstmt.executeUpdate();
 
             if (filasAfectadas > 0) {
-                throw new SQLException("La cita se agendó con éxito.");
+                System.out.println("La cita se agendó con éxito.");
             } else {
-                throw new SQLException("No se pudo agendar la cita.");
+                System.out.println("No se pudo agendar la cita.");
             }
 
         } catch (SQLException e) {
