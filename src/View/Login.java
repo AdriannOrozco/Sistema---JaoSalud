@@ -234,7 +234,7 @@ public class Login extends javax.swing.JFrame {
                 }
 
                 if (rol.equals(val4)) {
-                    //Frame adminstrador
+                    new Administrador().setVisible(true);
                     this.dispose();
                 }
 

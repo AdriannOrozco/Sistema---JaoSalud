@@ -623,10 +623,10 @@ public class Recepcionista extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGap(0, 90, Short.MAX_VALUE)
         );
 
-        fondoBlancoPrincipal.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 690, 40));
+        fondoBlancoPrincipal.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 690, 90));
 
         panelFondoBlancoInicio.setBackground(new java.awt.Color(255, 255, 255));
 

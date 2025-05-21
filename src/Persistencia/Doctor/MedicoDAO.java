@@ -2,9 +2,9 @@ package Persistencia.Doctor;
 
 import Model.Medico;
 import Persistencia.Database.ConexionBD;
-import com.sun.jdi.connect.spi.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
 
 public class MedicoDAO {
 
@@ -21,30 +21,47 @@ public class MedicoDAO {
         return instancia;
     }
 
-    public void create(Medico medico) throws Exception {
-       String sql = "INSERT INTO medicos (primerNombre, segundoNombre, primerApellido, segundoApellido, identificacionDoctor, especialidad, añosExperiencia) VALUES (?,?,?,?,?,?,?)";
+public void create(Medico medico) throws Exception {
+    String sqlUsuario = "INSERT INTO usuarios (usuario, contraseña, rol) VALUES (?, ?, ?)";
+    String sqlMedico = "INSERT INTO medicos (primerNombre, segundoNombre, primerApellido, segundoApellido, identificacionDoctor, especialidad, añosExperiencia, id_usuario) VALUES (?,?,?,?,?,?,?,?)";
+    
+    try (var con = ConexionBD.conectar()) {
+   
+        PreparedStatement pstmtUsuario = con.prepareStatement(sqlUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
+        pstmtUsuario.setString(1, medico.getIdentificacionDoctor());
+        pstmtUsuario.setString(2, medico.getIdentificacionDoctor());
+        pstmtUsuario.setString(3, "Medico");
+        pstmtUsuario.executeUpdate();
        
-       try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)){
-           pstmt.setString(1, medico.getPrimerNombre());
-           pstmt.setString(2, medico.getSegundoNombre());
-           pstmt.setString(3, medico.getPrimerApellido());
-           pstmt.setString(4, medico.getSegundoApellido());
-           pstmt.setString(5, medico.getIdentificacionDoctor());
-           pstmt.setString(6, medico.getEspecialidad());
-           pstmt.setString(7, medico.getAñosExperiencia());
-           
-           int filasAfectadas = pstmt.executeUpdate();
-            if (filasAfectadas > 0) {
-                System.out.println("Se agregó correctamente");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo agregar el medico.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            
-       }catch (Exception e) {
-            throw new Exception("Error" + e.getMessage());
+        int idUsuario = 0;
+        ResultSet rs = pstmtUsuario.getGeneratedKeys();
+        if (rs.next()) {
+            idUsuario = rs.getInt(1);
+        } else {
+            throw new Exception("No se pudo obtener el ID del usuario");
         }
-
+  
+        PreparedStatement pstmtMedico = con.prepareStatement(sqlMedico);
+        pstmtMedico.setString(1, medico.getPrimerNombre());
+        pstmtMedico.setString(2, medico.getSegundoNombre());
+        pstmtMedico.setString(3, medico.getPrimerApellido());
+        pstmtMedico.setString(4, medico.getSegundoApellido());
+        pstmtMedico.setString(5, medico.getIdentificacionDoctor());
+        pstmtMedico.setString(6, medico.getEspecialidad());
+        pstmtMedico.setString(7, medico.getAñosExperiencia());
+        pstmtMedico.setInt(8, idUsuario);  
+        
+        int filasAfectadas = pstmtMedico.executeUpdate();
+        if (filasAfectadas > 0) {
+            System.out.println("El médico se creó con éxito.");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo agregar el médico.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        throw new Exception("Error al crear médico y usuario: " + e.getMessage());
     }
+}
 
     public void update(Medico medico) throws Exception {
         String campo = null;

@@ -27,7 +27,7 @@ public class BuscarRecepcionistaPorId {
             throw new IllegalArgumentException("El número de documento sólo debe contener números.");
         }
        
-        String sql = "SELECT primerNombre, segundoNombre , primerApellido , segundoApellido FROM recepcionistas " + " WHERE identificacionRecepcionista = ?";
+        String sql = "SELECT primerNombre, segundoNombre , primerApellido , segundoApellido FROM recepcionistas " + " WHERE id = ?";
         try (Connection con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
 
             pstmt.setString(1, identificacionRecepcionista);

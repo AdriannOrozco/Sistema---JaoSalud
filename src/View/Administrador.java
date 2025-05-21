@@ -213,6 +213,7 @@ public class Administrador extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 51, 102));
         jLabel5.setText("Primer Nombre");
 
+        txtNombre.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -223,14 +224,19 @@ public class Administrador extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 51, 102));
         jLabel8.setText("Primer Apellido");
 
-        jLabel9.setFont(new java.awt.Font("JetBrains Mono", 0, 24)); // NOI18N
+        txtPrimerApellido.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 51, 102));
         jLabel9.setText("Segundo Apellido");
+
+        txtSegundoApellido.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 51, 102));
         jLabel11.setText("Segundo Nombre");
 
+        txtSegundoNombre.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
         txtSegundoNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSegundoNombreActionPerformed(evt);
@@ -239,7 +245,9 @@ public class Administrador extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel12.setText("N.Cedula");
+        jLabel12.setText("Cédula");
+
+        txtNumeroCedula.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
 
         btnContratar.setBackground(new java.awt.Color(0, 51, 102));
         btnContratar.setFont(new java.awt.Font("JetBrains Mono", 1, 18)); // NOI18N
@@ -261,6 +269,7 @@ public class Administrador extends javax.swing.JFrame {
         etiAñosExperiencia.setForeground(new java.awt.Color(0, 51, 102));
         etiAñosExperiencia.setText("Años experiencia");
 
+        txtAñosExperiencia.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
         txtAñosExperiencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAñosExperienciaActionPerformed(evt);
@@ -268,8 +277,8 @@ public class Administrador extends javax.swing.JFrame {
         });
 
         cboEspecialidadMedico.setFont(new java.awt.Font("JetBrains Mono", 1, 14)); // NOI18N
-        cboEspecialidadMedico.setForeground(new java.awt.Color(255, 255, 255));
-        cboEspecialidadMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "General", "Odontología", "Oftalmología", "Pediatría", "Cardiología", "Neurología", " " }));
+        cboEspecialidadMedico.setForeground(new java.awt.Color(0, 0, 0));
+        cboEspecialidadMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "General", "Odontología", "Oftalmología", "Pediatría", "Cardiología", "Neurología" }));
 
         javax.swing.GroupLayout jPanelContratarLayout = new javax.swing.GroupLayout(jPanelContratar);
         jPanelContratar.setLayout(jPanelContratarLayout);
@@ -356,7 +365,7 @@ public class Administrador extends javax.swing.JFrame {
                 .addGroup(jPanelContratarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(btnContratar)
                 .addGap(38, 38, 38))
         );
@@ -371,7 +380,9 @@ public class Administrador extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel7.setText("N.Cedula");
+        jLabel7.setText("Cédula");
+
+        jTextFieldCedula.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/despedir.png"))); // NOI18N
 
@@ -398,21 +409,25 @@ public class Administrador extends javax.swing.JFrame {
         jLabel28.setText("Segundo Apellido");
 
         jTextFieldSegundoNombre.setEditable(false);
+        jTextFieldSegundoNombre.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
 
         jLabel29.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(0, 51, 102));
         jLabel29.setText("Primer Nombre");
 
         jTextFieldPrimerNombre.setEditable(false);
+        jTextFieldPrimerNombre.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
 
         jTextFieldPrimerApellido.setEditable(false);
+        jTextFieldPrimerApellido.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
 
         jTextFieldSegundoApellido.setEditable(false);
+        jTextFieldSegundoApellido.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
 
         btnBuscarDoctor.setBackground(new java.awt.Color(0, 51, 102));
-        btnBuscarDoctor.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
+        btnBuscarDoctor.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 14)); // NOI18N
         btnBuscarDoctor.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscarDoctor.setText("Buscar");
+        btnBuscarDoctor.setText("BUSCAR");
         btnBuscarDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarDoctorActionPerformed(evt);
@@ -486,7 +501,7 @@ public class Administrador extends javax.swing.JFrame {
                     .addComponent(jTextFieldSegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel28)
                     .addComponent(jTextFieldSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addComponent(btnDespedirMedico)
                 .addGap(45, 45, 45))
         );
@@ -507,7 +522,10 @@ public class Administrador extends javax.swing.JFrame {
         jLabel21.setForeground(new java.awt.Color(0, 51, 102));
         jLabel21.setText("Nombre");
 
+        txtNombreConsultorio.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
+
         cboEspecialidadConsultorio.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
+        cboEspecialidadConsultorio.setForeground(new java.awt.Color(0, 0, 0));
         cboEspecialidadConsultorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "General", "Odontología", "Oftalmología", "Pediatría", "Cardiología", "Neurología" }));
         cboEspecialidadConsultorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -573,7 +591,7 @@ public class Administrador extends javax.swing.JFrame {
                     .addComponent(txtNombreConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAgregarConsultorio)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         TabbedPane.addTab("Consultorio", jPanelConsultorio);
@@ -592,6 +610,10 @@ public class Administrador extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(0, 51, 102));
         jLabel18.setText("Dosis diarias");
 
+        txtNombreMedicamento.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
+
+        txtDosisMedicamento.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
+
         btnAgregarMedicamento.setBackground(new java.awt.Color(0, 0, 102));
         btnAgregarMedicamento.setFont(new java.awt.Font("JetBrains Mono", 1, 14)); // NOI18N
         btnAgregarMedicamento.setForeground(new java.awt.Color(255, 255, 255));
@@ -607,6 +629,8 @@ public class Administrador extends javax.swing.JFrame {
         etiPrecioMedicamento.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
         etiPrecioMedicamento.setForeground(new java.awt.Color(0, 51, 102));
         etiPrecioMedicamento.setText("Precio");
+
+        txtPrecioMedicamento.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanelMedicamentosLayout = new javax.swing.GroupLayout(jPanelMedicamentos);
         jPanelMedicamentos.setLayout(jPanelMedicamentosLayout);
@@ -672,7 +696,7 @@ public class Administrador extends javax.swing.JFrame {
 
         jLabel30.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel30.setText("N. Cedula");
+        jLabel30.setText("Cédula");
 
         jLabel31.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(0, 51, 102));
@@ -691,17 +715,21 @@ public class Administrador extends javax.swing.JFrame {
         jLabel34.setText("Segundo Apellido");
 
         txtPrimerNombreRecepcionista.setEditable(false);
+        txtPrimerNombreRecepcionista.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
 
         txtSegundoNombreRecepcionista.setEditable(false);
+        txtSegundoNombreRecepcionista.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
 
         txtPrimerApellidoRecepcionista.setEditable(false);
+        txtPrimerApellidoRecepcionista.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
 
         txtSegundoApellidoRecepcionista.setEditable(false);
+        txtSegundoApellidoRecepcionista.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
 
         btnBuscarRecepcionista.setBackground(new java.awt.Color(0, 51, 102));
         btnBuscarRecepcionista.setFont(new java.awt.Font("JetBrains Mono", 1, 14)); // NOI18N
         btnBuscarRecepcionista.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscarRecepcionista.setText("Buscar");
+        btnBuscarRecepcionista.setText("BUSCAR");
         btnBuscarRecepcionista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarRecepcionistaActionPerformed(evt);
@@ -717,6 +745,8 @@ public class Administrador extends javax.swing.JFrame {
                 btnDespedirRecepcionistaActionPerformed(evt);
             }
         });
+
+        txtCedulaRecepcionista.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanelDespedirRecepcionistaLayout = new javax.swing.GroupLayout(jPanelDespedirRecepcionista);
         jPanelDespedirRecepcionista.setLayout(jPanelDespedirRecepcionistaLayout);
@@ -786,7 +816,7 @@ public class Administrador extends javax.swing.JFrame {
                     .addComponent(txtSegundoApellidoRecepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addComponent(btnDespedirRecepcionista)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         TabbedPane.addTab("Despedir Recepcionista", jPanelDespedirRecepcionista);
@@ -901,7 +931,7 @@ public class Administrador extends javax.swing.JFrame {
                     .addComponent(jLabel38))
                 .addGap(18, 18, 18)
                 .addComponent(btnContratarRecepcionista)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         TabbedPane.addTab("Contratar recepcionista", jPanelContratarRecepcionista);
@@ -1176,7 +1206,7 @@ public class Administrador extends javax.swing.JFrame {
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+            .addGap(0, 425, Short.MAX_VALUE)
             .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel13Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1203,9 +1233,9 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
-        etiContratarPersonal.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
+        etiContratarPersonal.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 1, 24)); // NOI18N
         etiContratarPersonal.setForeground(new java.awt.Color(255, 255, 255));
-        etiContratarPersonal.setText("   CONTRATAR MEDICO");
+        etiContratarPersonal.setText("   CONTRATAR MÉDICO");
         etiContratarPersonal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 etiContratarPersonalMouseClicked(evt);
@@ -1231,7 +1261,7 @@ public class Administrador extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("JetBrains Mono", 3, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("  MENU DE OPCIONES");
+        jLabel6.setText("  MENÚ DE OPCIONES");
 
         jPanel.setBackground(new java.awt.Color(0, 51, 102));
         jPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
@@ -1241,9 +1271,9 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
-        etiDespedirEmpleado.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
+        etiDespedirEmpleado.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 1, 24)); // NOI18N
         etiDespedirEmpleado.setForeground(new java.awt.Color(255, 255, 255));
-        etiDespedirEmpleado.setText("   DESPEDIR MEDICO ");
+        etiDespedirEmpleado.setText("   DESPEDIR MÉDICO ");
         etiDespedirEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 etiDespedirEmpleadoMouseClicked(evt);
@@ -1275,7 +1305,7 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
-        etiAgregarMedicamento.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
+        etiAgregarMedicamento.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 1, 24)); // NOI18N
         etiAgregarMedicamento.setForeground(new java.awt.Color(255, 255, 255));
         etiAgregarMedicamento.setText("   AÑADIR MEDICAMENTO");
         etiAgregarMedicamento.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1309,7 +1339,7 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
-        etiAgregarConsultorio.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
+        etiAgregarConsultorio.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 1, 24)); // NOI18N
         etiAgregarConsultorio.setForeground(new java.awt.Color(255, 255, 255));
         etiAgregarConsultorio.setText("   AÑADIR CONSULTORIO");
         etiAgregarConsultorio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1343,7 +1373,7 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
-        etiContratarRecepcionista.setFont(new java.awt.Font("JetBrains Mono", 1, 24)); // NOI18N
+        etiContratarRecepcionista.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 1, 24)); // NOI18N
         etiContratarRecepcionista.setForeground(new java.awt.Color(255, 255, 255));
         etiContratarRecepcionista.setText(" CONTRATAR RECEPCIONISTA");
         etiContratarRecepcionista.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1358,7 +1388,7 @@ public class Administrador extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(etiContratarRecepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                .addComponent(etiContratarRecepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -1406,7 +1436,7 @@ public class Administrador extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(0, 51, 102));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        etiEliminarMedicamento.setFont(new java.awt.Font("JetBrains Mono", 0, 24)); // NOI18N
+        etiEliminarMedicamento.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 24)); // NOI18N
         etiEliminarMedicamento.setForeground(new java.awt.Color(255, 255, 255));
         etiEliminarMedicamento.setText(" ELIMINAR MEDICAMENTO");
         etiEliminarMedicamento.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1426,15 +1456,13 @@ public class Administrador extends javax.swing.JFrame {
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addComponent(etiEliminarMedicamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(etiEliminarMedicamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel15.setBackground(new java.awt.Color(0, 51, 102));
         jPanel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        jLabel47.setFont(new java.awt.Font("JetBrains Mono", 0, 24)); // NOI18N
+        jLabel47.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 24)); // NOI18N
         jLabel47.setForeground(new java.awt.Color(255, 255, 255));
         jLabel47.setText("  ELIMINAR CONSULTORIO");
         jLabel47.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1514,10 +1542,10 @@ public class Administrador extends javax.swing.JFrame {
                 .addContainerGap(239, Short.MAX_VALUE))
         );
 
-        btnVolverLogin.setBackground(new java.awt.Color(0, 51, 102));
-        btnVolverLogin.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
+        btnVolverLogin.setBackground(new java.awt.Color(204, 0, 0));
+        btnVolverLogin.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 14)); // NOI18N
         btnVolverLogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolverLogin.setText("Volver al Login");
+        btnVolverLogin.setText("CERRAR");
         btnVolverLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverLoginActionPerformed(evt);

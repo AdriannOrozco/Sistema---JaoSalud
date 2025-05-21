@@ -45,7 +45,7 @@ public class ComandoEliminarRecepcionista implements IEliminarRecepcionista{
         }
         if (confirmacion == JOptionPane.YES_OPTION) {
 
-            String sql = "DELETE FROM recepcionistas WHERE identificacionRecepcionista = ?";
+            String sql = "DELETE FROM recepcionistas WHERE id = ?";
             try (Connection con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
 
                 pstmt.setString(1,identificacionRecepcionista);

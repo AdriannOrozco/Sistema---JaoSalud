@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Persistencia.Recepcionista;
 import Persistencia.Database.ConexionBD;
-import com.sun.jdi.connect.spi.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import Model.Recepcionista;
+import java.sql.ResultSet;
 
 /**
  *
@@ -27,31 +24,45 @@ public class RecepcionistaDAO {
         return instancia;
     }
     
-    public void create(Recepcionista recepcionista) throws Exception{
+    public void create(Recepcionista recepcionista) throws Exception {
+    String sqlUsuario = "INSERT INTO usuarios (usuario, contraseña, rol) VALUES (?, ?, ?)";
+    String sqlRecepcionista = "INSERT INTO recepcionistas (id, primerNombre, segundoNombre, primerApellido, segundoApellido, id_usuario) VALUES (?,?,?,?,?,?)";
+    
+    try (var con = ConexionBD.conectar()) {
+        // Insertar en la tabla de usuarios
+        PreparedStatement pstmtUsuario = con.prepareStatement(sqlUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
+        pstmtUsuario.setString(1, recepcionista.getId());
+        pstmtUsuario.setString(2, recepcionista.getId());
+        pstmtUsuario.setString(3, "Recepcionista");
+        pstmtUsuario.executeUpdate();
         
-        String sql = "INSERT INTO recepcionistas (primerNombre, segundoNombre, primerApellido, segundoApellido, identificacionRecepcionista) VALUES (?,?,?,?,?)";
-        
-        try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
-
-            pstmt.setString(1, recepcionista.getPrimerNombre());
-            pstmt.setString(2,recepcionista.getSegundoNombre());
-            pstmt.setString(3, recepcionista.getPrimerApellido());
-            pstmt.setString(4, recepcionista.getSegundoApellido());
-            pstmt.setString(5, recepcionista.getId());
-
-            
-
-            int filasAfectadas = pstmt.executeUpdate();
-            if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Recepcionista agregado con éxito.");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo agregar al recepcionista", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-        } catch (Exception e) {
-            throw new Exception("Error" + e.getMessage());
+        int idUsuario = 0;
+        ResultSet rs = pstmtUsuario.getGeneratedKeys();
+        if (rs.next()) {
+            idUsuario = rs.getInt(1);
+        } else {
+            throw new Exception("No se pudo obtener el ID del usuario");
         }
+        
+        PreparedStatement pstmtRecepcionista = con.prepareStatement(sqlRecepcionista);
+        pstmtRecepcionista.setString(1, recepcionista.getId());
+        pstmtRecepcionista.setString(2, recepcionista.getPrimerNombre());
+        pstmtRecepcionista.setString(3, recepcionista.getSegundoNombre());
+        pstmtRecepcionista.setString(4, recepcionista.getPrimerApellido());
+        pstmtRecepcionista.setString(5, recepcionista.getSegundoApellido());
+        pstmtRecepcionista.setInt(6, idUsuario); 
+        
+        int filasAfectadas = pstmtRecepcionista.executeUpdate();
+        if (filasAfectadas > 0) {
+            System.out.println("\"Recepcionista agregado con éxito.\"");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo agregar al recepcionista", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        throw new Exception("Error al crear recepcionista y usuario: " + e.getMessage());
     }
+}
     
     public void uptdate (Recepcionista recepcionista) throws Exception{
         String campo = null;
@@ -74,7 +85,7 @@ public class RecepcionistaDAO {
             valor = recepcionista.getId().toString();
         }
         
-        String sql = "UPDATE recepcionistas SET " + campo + " = ? WHERE identificacionRecepcionista = ?";
+        String sql = "UPDATE recepcionistas SET " + campo + " = ? WHERE id = ?";
          try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, valor);
             pstmt.setString(2, recepcionista.getId());
@@ -93,7 +104,7 @@ public class RecepcionistaDAO {
     }
     
     public void delete(Recepcionista recepcionista) throws Exception{
-        String sql = "DELETE FROM recepcionistas WHERE identificacionRecepcionista = ?";
+        String sql = "DELETE FROM recepcionistas WHERE id = ?";
         
           try (var con = ConexionBD.conectar(); PreparedStatement pstmt = con.prepareStatement(sql)) {
         pstmt.setString(1, recepcionista.getPrimerNombre());
@@ -105,7 +116,7 @@ public class RecepcionistaDAO {
         int filasAfectadas = pstmt.executeUpdate();
 
         if (filasAfectadas > 0) {
-            JOptionPane.showMessageDialog(null, "El recepcionista se eliminó correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("\"El recepcionista se eliminó correctamente.\"");
         } else {
             JOptionPane.showMessageDialog(null, "No se encontró el recepcionista para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
         }

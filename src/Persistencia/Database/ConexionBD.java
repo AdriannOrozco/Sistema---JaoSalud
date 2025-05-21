@@ -9,7 +9,7 @@ public class ConexionBD {
 
     private static final String URL = "jdbc:mysql://localhost:3306/jaosalud";
     private static final String USER = "root";
-    private static final String PASS = "JaberVargas2006";
+    private static final String PASS = "root2006";
 
     public static Connection conectar() {
         Connection con = null;

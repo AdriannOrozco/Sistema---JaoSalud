@@ -12,7 +12,7 @@ public class PacienteDAO {
     private static PacienteDAO instancia;
 
     public PacienteDAO() {
-        // Constructor privado (patrón Singleton)
+
     }
 
     public static PacienteDAO getInstancia() {

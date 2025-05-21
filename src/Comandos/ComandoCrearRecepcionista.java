@@ -48,7 +48,7 @@ public class ComandoCrearRecepcionista implements ICrearRecepcionista {
             throw new IllegalArgumentException("Documento inválido.");
         }
 
-        if (recepcionista.getId().length() < 10 || recepcionista.getId().length() > 10) {
+        if (recepcionista.getId().length() < 7 || recepcionista.getId().length() > 12) {
             throw new IllegalArgumentException("Longitud inválida del documento.");
         }
 

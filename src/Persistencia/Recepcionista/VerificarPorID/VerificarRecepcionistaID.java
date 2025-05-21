@@ -22,7 +22,7 @@ public class VerificarRecepcionistaID {
         boolean existe = false;
         Connection con = ConexionBD.conectar();
         PreparedStatement ps;
-        String sql = "SELECT COUNT(*) FROM recepcionistas WHERE identificacionRecepcionista = ?";
+        String sql = "SELECT COUNT(*) FROM recepcionistas WHERE id = ?";
 
         try {
             ps = con.prepareStatement(sql);
