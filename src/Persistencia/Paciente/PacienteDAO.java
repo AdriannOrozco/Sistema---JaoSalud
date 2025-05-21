@@ -62,8 +62,7 @@ public class PacienteDAO {
         
         int filasAfectadas = pstmtPaciente.executeUpdate();
         if (filasAfectadas > 0) {
-            JOptionPane.showMessageDialog(null, "El paciente se creó con éxito.",
-                    "Proceso completado", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("El paciente se creó con éxito.");
         } else {
             JOptionPane.showMessageDialog(null, "No se pudo agregar el paciente.",
                     "Error", JOptionPane.ERROR_MESSAGE);

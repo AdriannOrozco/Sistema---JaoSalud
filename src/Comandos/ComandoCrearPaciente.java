@@ -38,7 +38,6 @@ public class ComandoCrearPaciente implements ICrearPaciente {
         }
 
         if (!metodo.EsNombreValido(paciente.getPrimerNombre())
-                || !metodo.EsNombreValido(paciente.getSegundoNombre())
                 || !metodo.EsNombreValido(paciente.getPrimerApellido())
                 || !metodo.EsNombreValido(paciente.getSegundoApellido())) {
 
