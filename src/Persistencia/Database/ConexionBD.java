@@ -14,7 +14,6 @@ public class ConexionBD {
 
     public static Connection conectar() {
         Connection con = null;
-        Connection con = null;
         try {
             con = DriverManager.getConnection(URL, USER, PASS);
             System.out.println("Conexion establecida con exito.");
