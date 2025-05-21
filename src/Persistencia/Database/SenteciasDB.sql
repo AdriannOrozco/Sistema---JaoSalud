@@ -12,10 +12,10 @@ Nombre: usuarios
 Código SQL:
 
 CREATE TABLE usuarios(
-identificador_usuario INT PRIMARY KEY,
-usuario VARCHAR(15) UNIQUE NOT NULL,
-contraseña VARCHAR(15) NOT NULL,
-rol VARCHAR(30) NOT NULL
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT, --PK--
+    usuario VARCHAR(15) UNIQUE NOT NULL,
+    contraseña VARCHAR(15) NOT NULL,
+    rol VARCHAR(30) NOT NULL
 );
 
 ------ 4. Creación de la segunda tabla ------
@@ -39,8 +39,13 @@ EPS VARCHAR(20) NOT NULL,
 tipoSangre VARCHAR(20) NOT NULL,
 fechaNacimiento DATE NOT NULL,
 fechaRegistro DATE NOT NULL,
-edad VARCHAR(4) NOT NULL
+edad VARCHAR(4) NOT NULL,
+id_usuario INT UNIQUE
 );
+
+ALTER TABLE pacientes 
+ADD CONSTRAINT fk_usuario_paciente 
+FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario);
 
 
 ------ 5. Creación de la tercera tabla -----
@@ -62,7 +67,6 @@ primerApellido VARCHAR(30) NOT NULL,
 segundoApellido VARCHAR(30) NOT NULL,
 identificacionDoctor VARCHAR(15) NOT NULL UNIQUE PRIMARY KEY,
 especialidad VARCHAR(20) NOT NULL,
-salario DOUBLE NOT NULL,
 añosExperiencia INT NOT NULL
 );
 
@@ -95,4 +99,17 @@ nombre VARCHAR(30) NOT NULL UNIQUE,
 precio DOUBLE NOT NULL,
 dosisDiarias INT NOT NULL,
 disponible BOOLEAN NOT NULL
+);
+
+
+------ 9. Creación de la séptima tabla ------
+
+CREATE TABLE resultadosmedicos (
+    idDiagnostico INT PRIMARY KEY AUTO_INCREMENT,
+    idCita INT NOT NULL UNIQUE,
+    diagnostico VARCHAR(305) NOT NULL,
+    alergia BOOLEAN NOT NULL,
+    observaciones BOOLEAN NOT NULL,
+    fechaCreacion DATE NOT NULL,
+    FOREIGN KEY (idCita) REFERENCES citas(idCita)
 );

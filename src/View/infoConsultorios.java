@@ -1,6 +1,7 @@
 package View;
 import Persistencia.Consultorios.MostrarTablaConsultorios.MostrarTablaConsultorios;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 public class infoConsultorios extends javax.swing.JFrame {
 
@@ -34,6 +35,7 @@ public class infoConsultorios extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        lblRealodInicio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,27 +102,35 @@ public class infoConsultorios extends javax.swing.JFrame {
             .addGap(0, 28, Short.MAX_VALUE)
         );
 
+        lblRealodInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/reiniciarInicio.png"))); // NOI18N
+        lblRealodInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRealodInicioMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout fondoBlancoLayout = new javax.swing.GroupLayout(fondoBlanco);
         fondoBlanco.setLayout(fondoBlancoLayout);
         fondoBlancoLayout.setHorizontalGroup(
             fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(fondoBlancoLayout.createSequentialGroup()
-                .addGroup(fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(fondoBlancoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(iconJaoSalud)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelJaoSalud)
-                        .addGap(59, 59, 59)
-                        .addGroup(fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)))
-                    .addGroup(fondoBlancoLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(iconJaoSalud)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelJaoSalud)
+                .addGap(59, 59, 59)
+                .addGroup(fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addContainerGap(37, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(fondoBlancoLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblRealodInicio)
+                .addGap(18, 18, 18))
         );
         fondoBlancoLayout.setVerticalGroup(
             fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +147,9 @@ public class infoConsultorios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRealodInicio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -160,6 +172,13 @@ public class infoConsultorios extends javax.swing.JFrame {
     this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void lblRealodInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRealodInicioMouseClicked
+
+        
+        tabla.refrescarConsultorios(tablaConsultorios);
+        JOptionPane.showMessageDialog(null, "Campos actualizados", "Limpieza", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_lblRealodInicioMouseClicked
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -178,6 +197,7 @@ public class infoConsultorios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelJaoSalud;
+    private javax.swing.JLabel lblRealodInicio;
     private javax.swing.JTable tablaConsultorios;
     // End of variables declaration//GEN-END:variables
 }

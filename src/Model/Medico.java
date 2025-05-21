@@ -7,14 +7,14 @@ public class Medico extends Usuarios {
     private String segundoApellido;
     private String identificacionDoctor;
     private String especialidad;
-    private int añosExperiencia;
-   
+    private String añosExperiencia; 
+
     public Medico(){
-        
+
     }
-    
+
     public Medico(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
-         String identificacionDoctor, String especialidad, int añosExperiencia) {
+         String identificacionDoctor, String especialidad, String añosExperiencia) {
 
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
@@ -28,13 +28,9 @@ public class Medico extends Usuarios {
     public Medico(String primerNombre) {
     this.primerNombre = primerNombre;
 }
-    
+
     public String getIdentificacionDoctor() {
         return identificacionDoctor;
-    }
-
-    public void setIdentificacion(String identificacion) {
-        this.identificacionDoctor = identificacion;
     }
 
     public String getEspecialidad() {
@@ -44,15 +40,20 @@ public class Medico extends Usuarios {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-    
-    public int getAñosExperiencia() {
+
+    public String getAñosExperiencia() {
         return añosExperiencia;
     }
 
-    public void setAñosExperiencia(int añosExperiencia) {
+    public void setIdentificacionDoctor(String identificacionDoctor) {
+        this.identificacionDoctor = identificacionDoctor;
+    }
+
+    public void setAñosExperiencia(String añosExperiencia) {
         this.añosExperiencia = añosExperiencia;
     }
     
+
     public String getPrimerNombre() {
         return primerNombre;
     }
@@ -85,5 +86,5 @@ public class Medico extends Usuarios {
         this.segundoApellido = segundoApellido;
     }
     
-    
+
 }

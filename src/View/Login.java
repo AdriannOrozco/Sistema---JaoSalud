@@ -92,7 +92,7 @@ public class Login extends javax.swing.JFrame {
         labelInicioSesión.setText("INICIO DE SESIÓN");
 
         cboRol.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 18)); // NOI18N
-        cboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---------------", "Administrador", "Recepcionista", "Medico" }));
+        cboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Administrador", "Recepcionista", "Medico", "Paciente" }));
         cboRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboRolActionPerformed(evt);
@@ -213,6 +213,10 @@ public class Login extends javax.swing.JFrame {
         String usuario = txtUsuario.getText();
         String contraseña = txtContraseña.getText();
         String rol = cboRol.getSelectedItem().toString();
+        String val1 = "Recepcionista";
+        String val2 = "Paciente";
+        String val3 = "Medico";
+        String val4 = "Administrador";
 
         if (usuario.isEmpty() || contraseña.isEmpty() || rol.equals("---------------")) {
             JOptionPane.showMessageDialog(null, "Hay datos sin completar.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);

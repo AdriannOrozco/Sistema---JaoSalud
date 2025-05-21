@@ -1,30 +1,59 @@
 package Model;
 
-public class Recepcionista extends Usuarios {
-   
+public class Recepcionista {
+
     private String primerNombre;
     private String segundoNombre;
     private String primerApellido;
     private String segundoApellido;
     private String id;
-    private String email;
-    private double sueldo;
-    
+
     //Constructor por defecto
-    public Recepcionista(){
-        
+    public Recepcionista() {
+
     }
-    
+
     //Constructor con paramétros
-    public Recepcionista(String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String nombreCompletos, String id, String email, double sueldo) {
-        super(usuario, contraseña);
+    public Recepcionista(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String id) {
+
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
         this.id = id;
-        this.email = email;
-        this.sueldo = sueldo;
+
+    }
+
+    public String getPrimerNombre() {
+        return primerNombre;
+    }
+
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = primerNombre;
+    }
+
+    public String getSegundoNombre() {
+        return segundoNombre;
+    }
+
+    public void setSegundoNombre(String segundoNombre) {
+        this.segundoNombre = segundoNombre;
+    }
+
+    public String getPrimerApellido() {
+        return primerApellido;
+    }
+
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
+    }
+
+    public String getSegundoApellido() {
+        return segundoApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
     }
 
     public String getId() {
@@ -35,19 +64,4 @@ public class Recepcionista extends Usuarios {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public double getSueldo() {
-        return sueldo;
-    }
-
-    public void setSueldo(double sueldo) {
-        this.sueldo = sueldo;
-    }
-  }
+}

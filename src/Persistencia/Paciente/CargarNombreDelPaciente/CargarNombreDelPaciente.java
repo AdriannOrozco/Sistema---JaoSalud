@@ -1,6 +1,5 @@
 package Persistencia.Paciente.CargarNombreDelPaciente;
-
-import static Comandos.metodos.MetodosUtiles.ContieneSoloNumeros;
+import Persistencia.MetodosUtiles.MetodosCadenasDeTexto;
 import Persistencia.Paciente.BuscarPacientePorID.BuscarPacientePorId;
 
 import javax.swing.JOptionPane;
@@ -15,10 +14,10 @@ public class CargarNombreDelPaciente {
                 throw new IllegalArgumentException("El número de documento no puede estar vacío.");
             }
 
-            if (!ContieneSoloNumeros(numeroDocumento)) {
+            if (!MetodosCadenasDeTexto.ContieneSoloNumeros(numeroDocumento)) {
                 throw new IllegalArgumentException("El número de documento solo debe contener números.");
             }
-
+            
             BuscarPacientePorId buscador = new BuscarPacientePorId();
             String nombre = buscador.BuscarPacientePorDocumento(numeroDocumento);
 

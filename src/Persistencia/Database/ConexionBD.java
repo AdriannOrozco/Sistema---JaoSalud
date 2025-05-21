@@ -1,5 +1,6 @@
 package Persistencia.Database;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ public class ConexionBD {
     private static final String PASS = "2407";
 
     public static Connection conectar() {
+        Connection con = null;
         Connection con = null;
         try {
             con = DriverManager.getConnection(URL, USER, PASS);
