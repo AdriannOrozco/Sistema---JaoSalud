@@ -181,6 +181,7 @@ public class Administrador extends javax.swing.JFrame {
         etiEliminarMedicamento = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jLabel47 = new javax.swing.JLabel();
+        btnVolverLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1513,6 +1514,16 @@ public class Administrador extends javax.swing.JFrame {
                 .addContainerGap(239, Short.MAX_VALUE))
         );
 
+        btnVolverLogin.setBackground(new java.awt.Color(0, 51, 102));
+        btnVolverLogin.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
+        btnVolverLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverLogin.setText("Volver al Login");
+        btnVolverLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverLoginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1527,7 +1538,9 @@ public class Administrador extends javax.swing.JFrame {
                         .addGap(0, 17, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1002, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1002, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnVolverLogin))
                         .addGap(1007, 1007, 1007))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -1538,7 +1551,9 @@ public class Administrador extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnVolverLogin)
+                        .addGap(29, 29, 29)
                         .addComponent(TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1984,6 +1999,13 @@ public class Administrador extends javax.swing.JFrame {
         TabbedPane.setVisible(true);
     }//GEN-LAST:event_jLabel47MouseClicked
 
+    private void btnVolverLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverLoginActionPerformed
+        // TODO add your handling code here:
+         new Login().setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnVolverLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2033,6 +2055,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton btnDespedirRecepcionista;
     private javax.swing.JButton btnEliminarConsultorio;
     private javax.swing.JButton btnEliminarMedicamento;
+    private javax.swing.JButton btnVolverLogin;
     private javax.swing.JComboBox<String> cboEspecialidadConsultorio;
     private javax.swing.JComboBox<String> cboEspecialidadMedico;
     private javax.swing.JLabel etiAgregarConsultorio;
