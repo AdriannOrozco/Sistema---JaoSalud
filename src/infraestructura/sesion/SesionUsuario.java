@@ -160,4 +160,52 @@ public class SesionUsuario {
             throw new RuntimeException("Error verificando médico: " + e.getMessage());
         }
     }
+
+    public static boolean verificarRecepcionistaExiste(String usuario) {
+        String sql = "SELECT COUNT(*) FROM recepcionistas WHERE id = ?";
+        try (Connection conn = ConexionBD.conectar(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, usuario);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean verificarPacienteExiste(String usuario) {
+        String sql = "SELECT COUNT(*) FROM pacientes WHERE id = ?";
+        try (Connection conn = ConexionBD.conectar(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, usuario);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean verificarAdministradorExiste(String usuario) {
+        String sql = "SELECT COUNT(*) FROM administrador WHERE id = ?";
+        try (Connection conn = ConexionBD.conectar(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, usuario);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

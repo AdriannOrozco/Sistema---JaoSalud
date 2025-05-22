@@ -55,36 +55,36 @@ public class Login extends javax.swing.JFrame {
         javax.swing.GroupLayout lineaNegraLayout = new javax.swing.GroupLayout(lineaNegra);
         lineaNegra.setLayout(lineaNegraLayout);
         lineaNegraLayout.setHorizontalGroup(
-            lineaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lineaNegraLayout.createSequentialGroup()
-                .addGroup(lineaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(iconHospital, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(lineaNegraLayout.createSequentialGroup()
-                        .addGroup(lineaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(lineaNegraLayout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(labelJAO1))
-                            .addGroup(lineaNegraLayout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabel1))
-                            .addGroup(lineaNegraLayout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(labelJAO)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                lineaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(lineaNegraLayout.createSequentialGroup()
+                                .addGroup(lineaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(iconHospital, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(lineaNegraLayout.createSequentialGroup()
+                                                .addGroup(lineaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(lineaNegraLayout.createSequentialGroup()
+                                                                .addGap(37, 37, 37)
+                                                                .addComponent(labelJAO1))
+                                                        .addGroup(lineaNegraLayout.createSequentialGroup()
+                                                                .addGap(24, 24, 24)
+                                                                .addComponent(jLabel1))
+                                                        .addGroup(lineaNegraLayout.createSequentialGroup()
+                                                                .addGap(69, 69, 69)
+                                                                .addComponent(labelJAO)))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
         lineaNegraLayout.setVerticalGroup(
-            lineaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lineaNegraLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(labelJAO, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelJAO1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(iconHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addContainerGap(27, Short.MAX_VALUE))
+                lineaNegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(lineaNegraLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(labelJAO, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelJAO1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(iconHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)
+                                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         labelInicioSesión.setBackground(new java.awt.Color(0, 0, 0));
@@ -92,7 +92,7 @@ public class Login extends javax.swing.JFrame {
         labelInicioSesión.setText("INICIO DE SESIÓN");
 
         cboRol.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 18)); // NOI18N
-        cboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Administrador", "Recepcionista", "Medico", "Paciente" }));
+        cboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"---------------", "Administrador", "Recepcionista", "Medico"}));
         cboRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboRolActionPerformed(evt);
@@ -136,64 +136,64 @@ public class Login extends javax.swing.JFrame {
         javax.swing.GroupLayout fondoBlancoLayout = new javax.swing.GroupLayout(fondoBlanco);
         fondoBlanco.setLayout(fondoBlancoLayout);
         fondoBlancoLayout.setHorizontalGroup(
-            fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoBlancoLayout.createSequentialGroup()
-                .addGroup(fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(fondoBlancoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(buttonAtrás))
-                    .addGroup(fondoBlancoLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelSeleccione, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtUsuario)
-                            .addComponent(labelUsuario1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtContraseña)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoBlancoLayout.createSequentialGroup()
-                                .addComponent(buttonEntrar)
-                                .addGap(81, 81, 81))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoBlancoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelInicioSesión)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addComponent(lineaNegra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoBlancoLayout.createSequentialGroup()
+                                .addGroup(fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(fondoBlancoLayout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(buttonAtrás))
+                                        .addGroup(fondoBlancoLayout.createSequentialGroup()
+                                                .addGap(21, 21, 21)
+                                                .addGroup(fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(labelSeleccione, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(cboRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(labelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(txtUsuario)
+                                                        .addComponent(labelUsuario1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(txtContraseña)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoBlancoLayout.createSequentialGroup()
+                                                                .addComponent(buttonEntrar)
+                                                                .addGap(81, 81, 81))))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoBlancoLayout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(labelInicioSesión)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                                .addComponent(lineaNegra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         fondoBlancoLayout.setVerticalGroup(
-            fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lineaNegra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(fondoBlancoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(buttonAtrás)
-                .addGap(14, 14, 14)
-                .addComponent(labelInicioSesión)
-                .addGap(18, 18, 18)
-                .addComponent(labelSeleccione)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cboRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelUsuario1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonEntrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                fondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lineaNegra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(fondoBlancoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(buttonAtrás)
+                                .addGap(14, 14, 14)
+                                .addComponent(labelInicioSesión)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelSeleccione)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cboRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelUsuario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelUsuario1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buttonEntrar)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondoBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(fondoBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondoBlanco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(fondoBlanco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -227,13 +227,13 @@ public class Login extends javax.swing.JFrame {
             if (rol.equals("Medico")) {
                 try {
                     // Verificar si existe el médico en la base de datos
-                if (!SesionUsuario.verificarMedicoExiste(usuario)) {
-                    JOptionPane.showMessageDialog(this,
-                        "El médico no está registrado en el sistema",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
+                    if (!SesionUsuario.verificarMedicoExiste(usuario)) {
+                        JOptionPane.showMessageDialog(this,
+                                "El médico no está registrado en el sistema",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     // Establecer el ID del médico antes de crear la ventana
                     SesionUsuario.setIdMedico(usuario);
 
@@ -261,10 +261,9 @@ public class Login extends javax.swing.JFrame {
                 }
             }
 
-            if (rol.equals("Recepcionista")) {
+            if (rol.equals(val1)) {
                 new Recepcionista().setVisible(true);
                 this.dispose();
-                SesionUsuario.setIdRecepcionista(usuario);
             }
 
             if (rol.equals("Paciente")) {
@@ -274,10 +273,9 @@ public class Login extends javax.swing.JFrame {
 
             }
 
-            if (rol.equals("Administrador")) {
-                //Frame adminstrador
+            if (rol.equals(val4)) {
+                new Administrador().setVisible(true);
                 this.dispose();
-                SesionUsuario.setIdAdministrador(usuario);
             }
 
         } else {

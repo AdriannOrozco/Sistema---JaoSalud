@@ -539,7 +539,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="290" y="80" width="830" height="40"/>
+              <AbsoluteConstraints x="290" y="100" width="830" height="40"/>
             </Constraint>
           </Constraints>
 
@@ -566,7 +566,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="290" y="130" width="820" height="530"/>
+              <AbsoluteConstraints x="290" y="100" width="820" height="560"/>
             </Constraint>
           </Constraints>
 
@@ -686,7 +686,7 @@
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="6" max="32767" attributes="0"/>
+                              <EmptySpace pref="21" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
@@ -707,7 +707,7 @@
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <Component id="nroDCitasAtendidasDia" min="-2" pref="29" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="94" max="32767" attributes="0"/>
+                              <EmptySpace pref="106" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1349,13 +1349,13 @@
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace pref="42" max="32767" attributes="0"/>
+                                      <EmptySpace pref="57" max="32767" attributes="0"/>
                                       <Component id="labelDatoQueDesea" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace pref="10" max="32767" attributes="0"/>
+                                      <EmptySpace pref="25" max="32767" attributes="0"/>
                                       <Component id="labelCargarNombre" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                   </Group>
@@ -2006,14 +2006,15 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="panelFondoBlancoAtenderCitaMedica" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="panelFondoBlancoAtenderCitaMedica" alignment="0" max="32767" attributes="0"/>
+                      <Component id="panelFondoBlancoAtenderCitaMedica" alignment="1" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -2167,10 +2168,10 @@
                                                       <Component id="txtNomDoctor" min="-2" pref="171" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <EmptySpace min="0" pref="58" max="32767" attributes="0"/>
+                                              <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="189" pref="356" max="32767" attributes="0"/>
+                                      <EmptySpace min="189" pref="352" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>

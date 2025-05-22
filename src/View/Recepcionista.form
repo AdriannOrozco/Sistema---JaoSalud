@@ -52,7 +52,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="300" height="660"/>
+              <AbsoluteConstraints x="0" y="0" width="290" height="660"/>
             </Constraint>
           </Constraints>
 
@@ -306,7 +306,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="iconEditarPaciente" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="27" max="32767" attributes="0"/>
+                          <EmptySpace pref="11" max="32767" attributes="0"/>
                           <Component id="labelEditarPaciente" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
@@ -784,8 +784,6 @@
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblRealodInicioMouseClicked"/>
                       </Events>
                     </Component>
-                    <Component class="com.toedter.calendar.JCalendar" name="jCalendar1">
-                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
@@ -906,6 +904,7 @@
                                                           <Component id="txtEdad" max="32767" attributes="0"/>
                                                       </Group>
                                                   </Group>
+                                                  <Component id="dateChooserFechaNacimiento" alignment="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
@@ -998,7 +997,9 @@
                                               <Component id="labelRestoDeInfo" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                               <Component id="labelFechaNacimiento" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                              <Component id="dateChooserFechaNacimiento" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
                                               <Component id="labelEpsPaciente" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="cboEPS" min="-2" max="-2" attributes="0"/>
@@ -1012,7 +1013,7 @@
                                               <Component id="buttonCancelar" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="0" pref="45" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="59" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1621,6 +1622,8 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelarActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="com.toedter.calendar.JDateChooser" name="dateChooserFechaNacimiento">
+                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
@@ -1747,7 +1750,7 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1834,7 +1837,7 @@
                                       <Component id="cboTipoIdentificacion1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="30" max="32767" attributes="0"/>
+                              <EmptySpace pref="41" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2364,13 +2367,14 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="cboHoraCita" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                           <Component id="labelHoraCita" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="dateChooserFechaCita" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
                                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                                               <Component id="buttonCargarPaciente" min="-2" pref="91" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -2401,7 +2405,7 @@
                                           </Group>
                                           <Component id="labelTabbedAgendarCita" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="55" max="32767" attributes="0"/>
+                                      <EmptySpace pref="63" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -2479,7 +2483,9 @@
                                               <Component id="buttonCargarPaciente" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="dateChooserFechaCita" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -2491,7 +2497,7 @@
                                                   <Component id="labelEsAutomatico" min="-2" max="-2" attributes="0"/>
                                                   <Component id="txtIdentificacionCita" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace pref="47" max="32767" attributes="0"/>
+                                              <EmptySpace pref="59" max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="buttonReiniciar" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="buttonAgendar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2830,6 +2836,16 @@
                           <Image iconType="3" name="/Resources/fechaCitaAgenda.png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="FECHA DE AGENDA DE LA CITA:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="com.toedter.calendar.JDateChooser" name="dateChooserFechaCita">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="e1" green="e1" red="e1" type="rgb"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="0" type="rgb"/>
+                        </Property>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JPanel" name="jPanel2">
